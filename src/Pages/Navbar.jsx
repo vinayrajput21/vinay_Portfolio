@@ -5,15 +5,19 @@ import ProfileImage from "../assets/Profileimage.jpg";
 function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bounce, setBounce] = useState(false);
+  const [hasOpenedModal, setHasOpenedModal] = useState(false); 
   const modalRef = useRef(null);
   const bounceIntervalRef = useRef(null);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+    if (!hasOpenedModal) {
+      setHasOpenedModal(true); 
+    }
   };
 
   useEffect(() => {
-    if (!isModalOpen) {
+    if (!isModalOpen && !hasOpenedModal) { 
       bounceIntervalRef.current = setInterval(() => {
         setBounce(true);
         setTimeout(() => setBounce(false), 1000);
@@ -25,9 +29,8 @@ function Navbar() {
         clearInterval(bounceIntervalRef.current);
       }
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, hasOpenedModal]); 
 
-  // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
