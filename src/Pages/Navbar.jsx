@@ -4,11 +4,28 @@ import ProfileImage from "../assets/Profileimage.jpg";
 
 function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [bounce, setBounce] = useState(false);
   const modalRef = useRef(null);
+  const bounceIntervalRef = useRef(null);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      bounceIntervalRef.current = setInterval(() => {
+        setBounce(true);
+        setTimeout(() => setBounce(false), 1000);
+      }, 5000);
+    }
+
+    return () => {
+      if (bounceIntervalRef.current) {
+        clearInterval(bounceIntervalRef.current);
+      }
+    };
+  }, [isModalOpen]);
 
   // Close modal when clicking outside
   useEffect(() => {
@@ -45,7 +62,7 @@ function Navbar() {
   }, [isModalOpen]);
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-black text-white flex justify-between items-center px-6 py-4 rounded-b-xl z-50">
+    <div className="fixed top-0 left-0 w-full bg-black text-white flex justify-between items-center px-4 py-2 rounded-b-xl z-50">
       <div className="relative" ref={modalRef}>
         <button
           onClick={toggleModal}
@@ -55,10 +72,11 @@ function Navbar() {
           <img
             src={ProfileImage}
             alt="Profile"
-            className="w-10 h-10 rounded-full object-cover border-2 border-transparent group-hover:border-yellow-400 transition-all duration-300 group-hover:scale-105"
+            className={`w-12 h-12 rounded-full object-cover border-2 border-transparent group-hover:border-yellow-400 transition-all duration-300 group-hover:scale-105 ${
+              bounce ? "animate-bounce" : ""
+            }`}
           />
         </button>
-
         {isModalOpen && (
           <div className="absolute top-16 left-0 z-50">
             <div
