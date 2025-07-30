@@ -131,7 +131,7 @@ function Navbar() {
             isActive ? "text-yellow-400" : "hover:text-yellow-400"
           }
         >
-          Project
+          Projects
         </NavLink>
         <NavLink
           to="/about"
@@ -139,7 +139,7 @@ function Navbar() {
             isActive ? "text-yellow-400" : "hover:text-yellow-400"
           }
         >
-          AboutMe
+          About Me
         </NavLink>
         <NavLink
           to="/contact"
