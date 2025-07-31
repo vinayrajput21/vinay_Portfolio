@@ -52,7 +52,7 @@ const projects = [
     image: Project2,
     mainImage: FMSmain,
     name: "freight-management.aventiq.ai",
-    link: "https://freight-management.aventiq.ai/login",
+    link: "https://freight-management.aventiq.ai",
     description: ` Freight Management System is a comprehensive logistics platform that provides end-to-end visibility and control over maritime shipping operations. This sophisticated system meticulously tracks all stakeholders in the supply chain, including shipping lines, shippers, and customs housing agents, while maintaining detailed records of freight charges and associated costs. The platform enables users to efficiently book available slots and monitor booked shipments across various ports and harbors worldwide. With complete cargo tracking capabilities, the system captures and maintains data from origin to final destination, providing real-time updates on shipment status, transit times, and delivery milestones. The integrated dashboard serves as a centralized command center, presenting critical shipping data through intuitive visualizations and reports that enable stakeholders to make informed decisions quickly.`,
     images: [F1, F2, F3, F4, F5, F6],
   },
