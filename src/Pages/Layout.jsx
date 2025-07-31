@@ -10,7 +10,7 @@ function Layout() {
   if (location.pathname === "/project") {
     backgroundStyle = { backgroundColor: "#EB7711" };
   } else if (location.pathname === "/about") {
-    backgroundStyle = { backgroundColor: "#106EE8" };
+    backgroundStyle = { backgroundColor: "#EB7711" };
   } else if (location.pathname === "/contact") {
     isGradient = true;
   }
