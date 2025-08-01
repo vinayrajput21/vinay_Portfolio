@@ -27,6 +27,10 @@ function Info({ isOpen, onClose }) {
               <span className="text-gray-800 font-medium">AWS S3</span>
             </div>
             <div className="flex items-center justify-start bg-white bg-opacity-30 rounded-lg p-2">
+              <span className="mr-3">⚡</span>
+              <span className="text-gray-800 font-medium">Github Actions</span>
+            </div>
+            <div className="flex items-center justify-start bg-white bg-opacity-30 rounded-lg p-2">
               <span className="mr-3">⚛️</span>
               <span className="text-gray-800 font-medium">ReactJS</span>
             </div>
