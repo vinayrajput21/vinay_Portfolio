@@ -14,7 +14,7 @@ function AppContent() {
   useEffect(() => {
     const timer = setTimeout(() => {
       openInfoModal();
-    }, 30000);
+    }, 60000);
 
     return () => clearTimeout(timer);
   }, [openInfoModal]);

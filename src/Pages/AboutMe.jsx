@@ -123,7 +123,7 @@ function AboutMe() {
                 <img
                   src={EduaiExp}
                   alt="Eduai Certificate"
-                  className="w-16 h-16 object-contain cursor-pointer hover:scale-105 transition-transform duration-200"
+                  className="w-16 h-16 object-contain border border-black rounded-xl cursor-pointer hover:scale-105 transition-transform duration-200"
                   onClick={() => openModal(EduaiExp)}
                 />
                 <div>
@@ -247,7 +247,7 @@ function AboutMe() {
               <img
                 src={NPTEL}
                 alt="NPTEL Certificate"
-                className="w-16 h-16 object-contain cursor-pointer hover:scale-105 transition-transform duration-200"
+                className="w-16 h-16 object-contain border border-black rounded-xl cursor-pointer hover:scale-105 transition-transform duration-200"
                 onClick={() => openModal(NPTEL)}
               />
               <div>
@@ -262,14 +262,14 @@ function AboutMe() {
         {/* Modal for Full-Screen Image */}
         {isModalOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={closeModal}
           >
             <div className="relative max-w-3xl w-full">
               <img
                 src={selectedImage}
                 alt="Full-screen Certificate"
-                className="w-full h-auto rounded-lg border-4 border-gray-800"
+                className="w-full h-auto rounded-lg border-gray-800"
               />
             </div>
           </div>
