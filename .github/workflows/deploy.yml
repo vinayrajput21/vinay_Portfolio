@@ -33,3 +33,9 @@ jobs:
 
     - name: Deploy to S3
       run: aws s3 sync ./dist s3://vinay-portfolio-profile --delete
+
+    - name: Install Netlify CLI
+      run: npm install -g netlify-cli
+
+    - name: Deploy to Netlify
+      run: netlify deploy --dir=dist --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
