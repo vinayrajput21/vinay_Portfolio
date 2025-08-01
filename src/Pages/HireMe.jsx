@@ -192,7 +192,7 @@ function HireMe({ isOpen, onClose }) {
                     ></path>
                   </svg>
                 ) : null}
-                {isSaved ? "Saved" : "Availasdfgble"}
+                {isSaved ? "Saved" : "Available"}
               </button>
               <p className="text-xs text-black text-center mt-2 font-semibold">
                 Click above to send your hiring details
