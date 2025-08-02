@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { hireMeAPI } from "../Services/APIserives";
+import { toast } from "react-toastify";
 
 function HireMe({ isOpen, onClose }) {
   const [companyName, setCompanyName] = useState("");
@@ -9,8 +10,6 @@ function HireMe({ isOpen, onClose }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSaved, setIsSaved] = useState(false);
-
-  if (!isOpen) return null;
 
   const validateFields = () => {
     const newErrors = {};
@@ -37,6 +36,14 @@ function HireMe({ isOpen, onClose }) {
     return Object.keys(newErrors).length === 0;
   };
 
+  useEffect(() => {
+    if (!isOpen) {
+      setIsSaved(false);
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
   const handleHire = async () => {
     if (!validateFields()) {
       return;
@@ -54,12 +61,16 @@ function HireMe({ isOpen, onClose }) {
       const response = await hireMeAPI(payload);
       console.log("response", response);
 
+      toast.success("Data saved successfully! Will contact you soon.", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+
       setIsSaved(true);
       setCompanyName("");
       setWeblink("");
       setEmail("");
       setRole("");
-      onClose();
     } catch (err) {
       console.error("Failed to hire:", err);
     } finally {
@@ -115,7 +126,7 @@ function HireMe({ isOpen, onClose }) {
                   className="w-full p-1.5 rounded-lg bg-white text-black focus:outline-none focus:border-[#A259FF] transition-colors duration-200 font-semibold placeholder-gray-500"
                 />
                 {errors.companyName && (
-                  <p className="text-red-500 text-xs mt-1">
+                  <p className="text-black text-xs mt-1">
                     {errors.companyName}
                   </p>
                 )}
@@ -132,7 +143,7 @@ function HireMe({ isOpen, onClose }) {
                   className="w-full p-1.5 rounded-lg bg-white text-black focus:outline-none focus:border-[#A259FF] transition-colors duration-200 font-semibold placeholder-gray-500"
                 />
                 {errors.weblink && (
-                  <p className="text-red-500 text-xs mt-1">{errors.weblink}</p>
+                  <p className="text-black text-xs mt-1">{errors.weblink}</p>
                 )}
               </div>
               <div>
@@ -147,7 +158,7 @@ function HireMe({ isOpen, onClose }) {
                   className="w-full p-1.5 rounded-lg bg-white text-black focus:outline-none focus:border-[#A259FF] transition-colors duration-200 font-semibold placeholder-gray-500"
                 />
                 {errors.role && (
-                  <p className="text-red-500 text-xs mt-1">{errors.role}</p>
+                  <p className="text-black text-xs mt-1">{errors.role}</p>
                 )}
               </div>
               <div>
@@ -162,7 +173,7 @@ function HireMe({ isOpen, onClose }) {
                   className="w-full p-1.5 rounded-lg bg-white text-black focus:outline-none focus:border-[#A259FF] transition-colors duration-200 font-semibold placeholder-gray-500"
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                  <p className="text-black text-xs mt-1">{errors.email}</p>
                 )}
               </div>
               <button

@@ -38,100 +38,91 @@ function Home() {
   return (
     <>
       {/* First Section */}
-      <div className="min-h-screen bg-[#FFDD55] flex flex-col md:flex-row justify-center items-center px-4 md:px-8 py-6">
-        {/* Left Section */}
-        <div className="flex flex-col justify-center items-start max-w-md space-y-4 w-full md:w-1/2">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-            Hello, <br /> I’m Vinay
-          </h1>
-          <p className="text-black text-lg sm:text-xl">
-            Full Stack Developer, <span className="text-gray-700">AWS</span>
-          </p>
-          <div className="flex space-x-3">
-            <img
-              src={HireMe}
-              alt="Hire Me"
-              onClick={openHireMeModal}
-              className="h-10 sm:h-12 cursor-pointer hover:scale-105 transition-transform"
-            />
-            <a href={cvPdf} download="Vinay_Rajput_MERN.pdf">
-              <img
-                src={DownloadCV}
-                alt="Download CV"
-                className="h-10 sm:h-12 cursor-pointer hover:scale-105 transition-transform"
-              />
-            </a>
-          </div>
-        </div>
+<div className="min-h-screen bg-[#FFDD55] flex flex-col md:flex-row justify-center items-center px-4 md:px-8 py-6">
+  {/* Left Section */}
+  <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left max-w-md space-y-4 w-full md:w-1/2">
+    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+      Hello, <br /> I’m Vinay
+    </h1>
+    <p className="text-black text-lg sm:text-xl">
+      Full Stack Developer, <span className="text-gray-700">AWS</span>
+    </p>
+    <div className="flex space-x-3 justify-center">
+      <img
+        src={HireMe}
+        alt="Hire Me"
+        onClick={openHireMeModal}
+        className="h-10 sm:h-12 cursor-pointer hover:scale-105 transition-transform"
+      />
+      <a href={cvPdf} download="Vinay_Rajput_MERN.pdf">
+        <img
+          src={DownloadCV}
+          alt="Download CV"
+          className="h-10 sm:h-12 cursor-pointer hover:scale-105 transition-transform"
+        />
+      </a>
+    </div>
 
-        {/* Right Section */}
-        <div className="relative flex items-center justify-center w-full md:w-1/2 mt-6 md:mt-0">
-          <img
-            src={profileImage}
-            alt="profile"
-            className="h-60 sm:h-72 md:h-110 w-auto"
-          />
+    {/* Social Icons on Small Screens */}
+{/* Social Icons on Medium and Larger Screens */}
+<div className="absolute right-[-1rem] sm:right-2 top-1/2 transform -translate-y-1/2 space-y-3 hidden md:flex">
+  ...
+</div>
 
-          {/* Social Icons */}
-          <div className="absolute right-[-1rem] sm:right-2 top-1/2 transform -translate-y-1/2 space-y-3">
-            <a
-              href="https://www.linkedin.com/in/vinay-rajput-64406b2b5"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-8 h-8 sm:w-10 sm:h-10 p-1 bg-white rounded-full shadow hover:scale-125 transition-transform duration-200"
-            >
-              <img
-                src={linkedin}
-                alt="LinkedIn"
-                className="w-full h-full object-contain"
-              />
-            </a>
-            <a
-              href="https://github.com/vinayrajput21"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-8 h-8 sm:w-10 sm:h-10 p-1 bg-white rounded-full shadow hover:scale-125 transition-transform duration-200"
-            >
-              <img
-                src={github}
-                alt="GitHub"
-                className="w-full h-full object-contain"
-              />
-            </a>
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=vinaypawar692002@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-8 h-8 sm:w-10 sm:h-10 p-1 bg-white rounded-full shadow hover:scale-125 transition-transform duration-200"
-            >
-              <img
-                src={gmail}
-                alt="Gmail"
-                className="w-full h-full object-contain"
-              />
-            </a>
-            <div className="relative">
-              <a
-                href="#"
-                onClick={handleCopyPhone}
-                className="block w-8 h-8 sm:w-10 sm:h-10 p-1 bg-white rounded-full shadow hover:scale-125 transition-transform duration-200"
-              >
-                <img
-                  src={phone}
-                  alt="Phone"
-                  className="w-full h-full object-contain"
-                />
-              </a>
-              {showCopyMessage && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-black text-white text-xs px-3 py-1 rounded-lg shadow-md z-10 flex items-center justify-center">
-                  Copied Mobile no
-                  <div className="absolute top-[-6px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-black"></div>
-                </div>
-              )}
-            </div>
+  </div>
+
+  {/* Right Section - Hidden on small screens */}
+  <div className="relative hidden md:flex items-center justify-center w-full md:w-1/2 mt-6 md:mt-0">
+    <img
+      src={profileImage}
+      alt="profile"
+      className="h-60 sm:h-72 md:h-110 w-auto"
+    />
+
+    {/* Social Icons on Medium and Larger Screens */}
+    <div className="absolute right-[-1rem] sm:right-2 top-1/2 transform -translate-y-1/2 space-y-3">
+      <a
+        href="https://www.linkedin.com/in/vinay-rajput-64406b2b5"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-8 h-8 sm:w-10 sm:h-10 p-1 bg-white rounded-full shadow hover:scale-125 transition-transform duration-200"
+      >
+        <img src={linkedin} alt="LinkedIn" className="w-full h-full object-contain" />
+      </a>
+      <a
+        href="https://github.com/vinayrajput21"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-8 h-8 sm:w-10 sm:h-10 p-1 bg-white rounded-full shadow hover:scale-125 transition-transform duration-200"
+      >
+        <img src={github} alt="GitHub" className="w-full h-full object-contain" />
+      </a>
+      <a
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=vinaypawar692002@gmail.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-8 h-8 sm:w-10 sm:h-10 p-1 bg-white rounded-full shadow hover:scale-125 transition-transform duration-200"
+      >
+        <img src={gmail} alt="Gmail" className="w-full h-full object-contain" />
+      </a>
+      <div className="relative">
+        <a
+          href="#"
+          onClick={handleCopyPhone}
+          className="block w-8 h-8 sm:w-10 sm:h-10 p-1 bg-white rounded-full shadow hover:scale-125 transition-transform duration-200"
+        >
+          <img src={phone} alt="Phone" className="w-full h-full object-contain" />
+        </a>
+        {showCopyMessage && (
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-black text-white text-xs px-3 py-1 rounded-lg shadow-md z-10 flex items-center justify-center">
+            Copied Mobile no
+            <div className="absolute top-[-6px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-black"></div>
           </div>
-        </div>
+        )}
       </div>
+    </div>
+  </div>
+</div>
 
       {/* Second Section (Banner) */}
       <div className="bg-[#EB7711] flex flex-col ml-20 mr-20 mb-20 md:flex-row justify-center items-center px-4 md:px-8 py-15 rounded-xl text-white">

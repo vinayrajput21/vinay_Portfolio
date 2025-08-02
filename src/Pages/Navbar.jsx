@@ -147,7 +147,7 @@ function Navbar() {
             isActive ? "text-yellow-400" : "hover:text-yellow-400"
           }
         >
-          Contact Me
+          Contact
         </NavLink>
       </div>
 
