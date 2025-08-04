@@ -36,10 +36,10 @@ jobs:
         aws-region: ap-south-1
 
     - name: Deploy to S3
-      run: aws s3 sync UI/dist/ s3://vinay-portfolio-profile --delete
+      run: aws s3 sync UI/ s3://vinay-portfolio-profile --exclude "node_modules/*" --exclude "dist/*" --delete
 
     - name: Install Netlify CLI
       run: npm install -g netlify-cli
 
     - name: Deploy to Netlify
-      run: netlify deploy --dir=UI/dist --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETFILY_AUTH_TOKEN }} --prodchanges
+      run: netlify deploy --dir=UI/dist --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETFILY_AUTH_TOKEN }} --prod
