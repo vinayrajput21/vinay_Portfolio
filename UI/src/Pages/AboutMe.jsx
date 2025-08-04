@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProfileImage from "../assets/about2.png";
+import ProfileImage from "../assets/about2.jpg";
 import JCBOSE from "../assets/JCBose.png";
 import MDU from "../assets/MDU.png";
 import EduaiExp from "../assets/EduaiCertificate.png";
