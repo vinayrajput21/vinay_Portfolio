@@ -18,14 +18,10 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Install dependencies
+    - name: Install dependencies and build
       run: |
         cd UI
         npm install
-
-    - name: Build application
-      run: |
-        cd UI
         npm run build
 
     - name: Configure AWS Credentials
@@ -36,10 +32,10 @@ jobs:
         aws-region: ap-south-1
 
     - name: Deploy to S3
-      run: aws s3 sync UI/ s3://vinay-portfolio-profile --exclude "node_modules/*" --exclude "dist/*" --delete
-
-    - name: Install Netlify CLI
-      run: npm install -g netlify-cli
+      run: aws s3 sync UI/dist/ s3://vinay-portfolio-profile --delete
 
     - name: Deploy to Netlify
-      run: netlify deploy --dir=UI/dist --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+      working-directory: ./UI
+      run: |
+        npm install -g netlify-cli
+        netlify deploy --dir=dist --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
