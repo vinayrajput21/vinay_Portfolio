@@ -13,7 +13,7 @@ import phone from "../assets/phone.svg";
 import cvPdf from "../assets/Vinay_Rajput_MERN.pdf";
 import { useModal } from "../Context/ModalContext";
 import { useNavigate } from "react-router-dom";
-
+///bhnjmk
 function Home() {
   const [showCopyMessage, setShowCopyMessage] = React.useState(false);
   const { openHireMeModal } = useModal();
