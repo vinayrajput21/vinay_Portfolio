@@ -86,7 +86,7 @@ function AboutMe() {
                   <p className="text-teal-600 font-medium text-sm sm:text-base">
                     Master of Computer Applications • Aug 2023 – June 2025
                   </p>
-                  <p className="text-teal-600 font-medium text-sm sm:text-base">CGPA: 8/10</p>
+                  <p className="text-teal-600 font-medium text-sm sm:text-base">CGPA: 8.2/10</p>
                   <p className="text-gray-600 text-sm sm:text-base">
                     Coursework: Operating System, Computer Networks, Object-Oriented Programming, Database Management System
                   </p>
@@ -141,7 +141,7 @@ function AboutMe() {
                   <h3 className="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold">
                     Aventiq - Orchestrate and Freight Management
                   </h3>
-                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • 3 months</p>
+                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • Present</p>
                   <p className="text-gray-600 text-sm sm:text-base">
                     Built features for Orchestrate and freight management systems using React.js, Node.js, MongoDB, and AWS.
                   </p>
