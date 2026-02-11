@@ -10,32 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js environment
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-    - name: Install dependencies and build
-      run: |
-        cd UI
-        npm install
-        npm run build
+      - name: Install dependencies and build
+        run: |
+          cd UI
+          npm install
+          npm run build
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-south-1
-
-    - name: Deploy to S3
-      run: aws s3 sync UI/dist/ s3://vinay-portfolio-profile --delete
-
-    - name: Deploy to Netlify
-      working-directory: ./UI
-      run: |
-        npm install -g netlify-cli
-        netlify deploy --dir=dist --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+      - name: Deploy to Netlify
+        working-directory: ./UI
+        run: |
+          npm install -g netlify-cli
+          netlify deploy --dir=dist --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
