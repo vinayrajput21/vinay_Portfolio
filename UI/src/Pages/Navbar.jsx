@@ -1,87 +1,83 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
+import { Menu, X } from "lucide-react"; // Install lucide-react or use SVG
 import ProfileImage from "../assets/Profileimage.jpg";
 
 function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [bounce, setBounce] = useState(false);
-  const [hasOpenedModal, setHasOpenedModal] = useState(false); 
+  const [hasOpenedModal, setHasOpenedModal] = useState(false);
   const modalRef = useRef(null);
   const bounceIntervalRef = useRef(null);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
-    if (!hasOpenedModal) {
-      setHasOpenedModal(true); 
-    }
+    if (!hasOpenedModal) setHasOpenedModal(true);
   };
 
+  // Profile Bounce Effect
   useEffect(() => {
-    if (!isModalOpen && !hasOpenedModal) { 
+    if (!isModalOpen && !hasOpenedModal) {
       bounceIntervalRef.current = setInterval(() => {
         setBounce(true);
         setTimeout(() => setBounce(false), 1000);
       }, 5000);
     }
+    return () => clearInterval(bounceIntervalRef.current);
+  }, [isModalOpen, hasOpenedModal]);
 
-    return () => {
-      if (bounceIntervalRef.current) {
-        clearInterval(bounceIntervalRef.current);
-      }
-    };
-  }, [isModalOpen, hasOpenedModal]); 
-
+  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setIsModalOpen(false);
       }
     };
-
-    if (isModalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    if (isModalOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isModalOpen]);
 
-  // Close modal on escape key
-  useEffect(() => {
-    const handleEscapeKey = (event) => {
-      if (event.key === "Escape") {
-        setIsModalOpen(false);
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Projects", path: "/project" },
+    { name: "About Me", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  const NavItem = ({ to, children, onClick }) => (
+    <NavLink
+      to={to}
+      onClick={onClick}
+      className={({ isActive }) =>
+        `transition-colors duration-200 ${
+          isActive ? "text-yellow-400" : "hover:text-yellow-400"
+        }`
       }
-    };
-
-    if (isModalOpen) {
-      document.addEventListener("keydown", handleEscapeKey);
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleEscapeKey);
-    };
-  }, [isModalOpen]);
+    >
+      {children}
+    </NavLink>
+  );
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-black text-white flex justify-between items-center px-4 py-2 rounded-b-xl z-50">
-      <div className="relative" ref={modalRef}>
-        <button
-          onClick={toggleModal}
-          className="relative group"
-          aria-label="Open profile menu"
-        >
-          <img
-            src={ProfileImage}
-            alt="Profile"
-            className={`w-12 h-12 rounded-full object-cover border-2 border-transparent group-hover:border-yellow-400 transition-all duration-300 group-hover:scale-105 ${
-              bounce ? "animate-bounce" : ""
-            }`}
-          />
-        </button>
-        {isModalOpen && (
-          <div className="absolute top-16 left-0 z-50">
+    <nav className="fixed top-0 left-0 w-full bg-black text-white z-50 rounded-b-xl border-b border-gray-800">
+      <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+        
+        {/* LEFT: Profile Section */}
+        <div className="relative" ref={modalRef}>
+          <button onClick={toggleModal} className="relative group flex items-center">
+            <img
+              src={ProfileImage}
+              alt="Profile"
+              className={`w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-transparent group-hover:border-yellow-400 transition-all ${
+                bounce ? "animate-bounce" : ""
+              }`}
+            />
+          </button>
+
+          {/* Profile Modal */}
+          {isModalOpen && (
+            <div className="absolute top-16 left-0 z-50">
             <div
               className="fixed inset-0 bg-opacity-30"
               onClick={() => setIsModalOpen(false)}
@@ -113,60 +109,50 @@ function Navbar() {
               </div>
             </div>
           </div>
-        )}
+          )}
+        </div>
+
+        {/* CENTER/RIGHT: Desktop Links */}
+        <div className="hidden md:flex space-x-8 font-medium">
+          {navLinks.map((link) => (
+            <NavItem key={link.path} to={link.path}>{link.name}</NavItem>
+          ))}
+        </div>
+
+        {/* RIGHT: Mobile Toggle */}
+        <div className="md:hidden flex items-center">
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-white focus:outline-none"
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
-      <div className="space-x-6 font-medium">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? "text-yellow-400" : "hover:text-yellow-400"
-          }
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="/project"
-          className={({ isActive }) =>
-            isActive ? "text-yellow-400" : "hover:text-yellow-400"
-          }
-        >
-          Projects
-        </NavLink>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            isActive ? "text-yellow-400" : "hover:text-yellow-400"
-          }
-        >
-          About Me
-        </NavLink>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) =>
-            isActive ? "text-yellow-400" : "hover:text-yellow-400"
-          }
-        >
-          Contact
-        </NavLink>
-      </div>
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-black border-t border-gray-800 px-6 py-6 flex flex-col space-y-4 animate-in">
+          {navLinks.map((link) => (
+            <NavItem 
+              key={link.path} 
+              to={link.path} 
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <span className="text-lg block py-2">{link.name}</span>
+            </NavItem>
+          ))}
+        </div>
+      )}
 
       <style jsx>{`
         @keyframes animate-in {
-          from {
-            opacity: 0;
-            transform: scale(0.95) translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        .animate-in {
-          animation: animate-in 0.2s ease-out;
-        }
+        .animate-in { animation: animate-in 0.25s ease-out; }
       `}</style>
-    </div>
+    </nav>
   );
 }
 
