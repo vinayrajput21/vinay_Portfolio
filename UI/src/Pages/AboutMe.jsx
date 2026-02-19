@@ -119,6 +119,28 @@ function AboutMe() {
               <h2 className="text-white text-xl sm:text-2xl font-bold ml-3 sm:ml-4">Experience</h2>
             </div>
             <div className="space-y-3 sm:space-y-4">
+              <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg border-2 border-gray-800">
+                <div className="text-center sm:text-left">
+                  <h3 className="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold">
+                    Makesitweb
+                  </h3>
+                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • Present</p>
+                  <p className="text-gray-600 text-sm sm:text-base">
+                    Developing modern web solutions and scalable applications using the MERN stack.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg border-2 border-gray-800">
+                <div className="text-center sm:text-left">
+                  <h3 className="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold">
+                    Aventiq - Orchestrate and Freight Management
+                  </h3>
+                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • 6 months</p>
+                  <p className="text-gray-600 text-sm sm:text-base">
+                    Built features for Orchestrate and freight management systems using React.js, Node.js, MongoDB, and AWS.
+                  </p>
+                </div>
+              </div>
               <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg border-2 border-gray-800">
                 <img
                   src={EduaiExp}
@@ -130,20 +152,9 @@ function AboutMe() {
                   <h3 className="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold">
                     Eduai - Aanya Tutor
                   </h3>
-                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • 5 months</p>
+                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • 6 months</p>
                   <p className="text-gray-600 text-sm sm:text-base">
                     Developed Aanya Tutor using React.js, FastAPI, and MongoDB, creating an interactive educational platform.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg border-2 border-gray-800">
-                <div className="text-center sm:text-left">
-                  <h3 className="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold">
-                    Aventiq - Orchestrate and Freight Management
-                  </h3>
-                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • Present</p>
-                  <p className="text-gray-600 text-sm sm:text-base">
-                    Built features for Orchestrate and freight management systems using React.js, Node.js, MongoDB, and AWS.
                   </p>
                 </div>
               </div>
