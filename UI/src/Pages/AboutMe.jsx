@@ -122,11 +122,11 @@ function AboutMe() {
               <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg border-2 border-gray-800">
                 <div className="text-center sm:text-left">
                   <h3 className="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold">
-                    Makesitweb
+                    Blockcube
                   </h3>
-                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • Present</p>
+                  <p className="text-teal-600 font-medium text-sm sm:text-base">Angular Developer • Present</p>
                   <p className="text-gray-600 text-sm sm:text-base">
-                    Developing modern web solutions and scalable applications using the MERN stack.
+                    Developing modern web solutions and scalable applications using the MEAN stack.
                   </p>
                 </div>
               </div>
