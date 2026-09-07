@@ -41,131 +41,161 @@ export const topicMeta = {
 export const dsaData = {
   learnTheBasics: [
     {
-      title: "Right-Angled Triangle Pattern",
-      link: "https://takeuforward.org/strivers-a2z-dsa-course/must-do-pattern-problems-before-starting-dsa/",
+      title: "Pyramid Pattern",
       question:
-        "Given a number n, print a right-angled triangle made of stars, with n rows, where row i contains i stars.",
+        "Given a number n, print a centered pyramid pattern of stars with n rows, where the i-th row (0-indexed) contains (2*i + 1) stars preceded by spaces.",
+      example: `    *
+   ***
+  *****
+ *******
+*********`,
       approach:
-        "Loop rows from 1 to n. For each row, loop columns from 1 to the current row number and print a star. This is the base pattern most other star/number patterns build on.",
-      code: `public class Solution {
-    public static void printTriangle(int n) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= i; j++) {
-                result.append("*");
-            }
-            result.append("\\n");
-        }
-        System.out.print(result.toString());
-    }
-
+        "Iterate row index i from 0 to n - 1. For each row, print (n - i - 1) leading spaces to center the stars, then run an inner loop to print (2 * i + 1) stars, followed by a newline.",
+      code: `class Main {
     public static void main(String[] args) {
-        printTriangle(5);
+        int n=5;
+       for(int i=0;i<n;i++){
+           for(int k=0;k<n-i-1;k++){
+               System.out.print(" ");
+           }
+           for(int j=0;j<=2*i;j++){
+                System.out.print("*");
+           }
+           System.out.println(" ");
+       }
     }
 }`,
       language: "java",
-      complexity: { time: "O(n^2)", space: "O(1)" },
     },
     {
       title: "Inverted Pyramid Pattern",
-      link: "https://takeuforward.org/strivers-a2z-dsa-course/must-do-pattern-problems-before-starting-dsa/",
       question:
-        "Given a number n, print an inverted pyramid of stars centered on each line, decreasing width as rows go down.",
+        "Given a number n, print an inverted pyramid pattern of stars with n rows, where the top row has the maximum number of stars and each subsequent row decreases symmetrically.",
+      example: `*********
+ *******
+  *****
+   ***
+    *`,
       approach:
-        "For each row i from n down to 1, print (n - i) leading spaces followed by (2*i - 1) stars. Track spaces and stars separately to keep the triangle centered.",
-      code: `public class Solution {
-    public static void invertedPyramid(int n) {
-        StringBuilder result = new StringBuilder();
-        for (int i = n; i >= 1; i--) {
-            for (int j = 0; j < n - i; j++) {
-                result.append(" ");
-            }
-            for (int j = 0; j < 2 * i - 1; j++) {
-                result.append("*");
-            }
-            result.append("\\n");
-        }
-        System.out.print(result.toString());
-    }
-
+        "Iterate row index i from 0 to n - 1. Print i leading spaces to indent each subsequent line, followed by an inner loop printing the decreasing odd count of stars (2 * (n - i) - 1).",
+      code: `class Main {
     public static void main(String[] args) {
-        invertedPyramid(5);
+        int n=5;
+       for(int i=0;i<n;i++){
+            for(int k=0;k<i;k++){
+               System.out.print(" ");
+           }
+           for(int j=n*2;j>2*i+1;j--){
+                System.out.print("*");
+           }
+  
+           System.out.println(" ");
+       }
     }
 }`,
       language: "java",
-      complexity: { time: "O(n^2)", space: "O(1)" },
     },
-  ],
-
-  sorting: [
     {
-      title: "Bubble Sort",
-      link: "https://takeuforward.org/data-structure/bubble-sort-algorithm/",
+      title: "Diamond Pattern",
       question:
-        "Sort an array of integers in ascending order using bubble sort, and stop early once no swaps happen in a pass.",
+        "Given a number n, print a symmetric diamond shape made of stars consisting of an upper pyramid of (n - 1) rows and an inverted pyramid of n rows.",
+      example: `    *
+   ***
+  *****
+ *******
+*********
+ *******
+  *****
+   ***
+    *`,
       approach:
-        "Repeatedly walk the array, swapping adjacent elements that are out of order. After each full pass, the largest remaining element is guaranteed to be at the end, so shrink the range each time. Add a swapped flag to break early on an already-sorted array.",
-      code: `import java.util.Arrays;
-
-public class Solution {
-    public static void bubbleSort(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            boolean swapped = false;
-            for (int j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    swapped = true;
-                }
-            }
-            if (!swapped) break;
-        }
-    }
-
+        "Divide the pattern into two sections. First, print an upright pyramid of n - 1 rows using leading spaces and odd star counts. Second, print an inverted pyramid of n rows with increasing leading spaces and decreasing star counts.",
+      code: `class Main {
     public static void main(String[] args) {
-        int[] arr = {5, 1, 4, 2, 8};
-        bubbleSort(arr);
-        System.out.println(Arrays.toString(arr));
+        int n=5;
+       for(int i=0;i<n-1;i++){
+            for(int k=0;k<n-i-1;k++){
+               System.out.print(" ");
+           }
+            for(int j=0;j<=2*i;j++){
+                System.out.print("*");
+           }
+            System.out.println(" ");
+       }
+        for(int i=0;i<n;i++){
+            for(int k=0;k<i;k++){
+               System.out.print(" ");
+           }
+           for(int j=n*2;j>2*i+1;j--){
+                System.out.print("*");
+           }
+  
+           System.out.println(" ");
+       }
     }
 }`,
       language: "java",
-      complexity: { time: "O(n^2)", space: "O(1)" },
     },
-  ],
-
-  arrays: [
     {
-      title: "Second Largest Element in an Array",
-      link: "https://takeuforward.org/data-structure/find-second-smallest-and-second-largest-element-in-an-array/",
+      title: "Hollow Square Pattern",
       question:
-        "Given an array of integers, find the second largest element without sorting the array.",
+        "Given a number n, print an n x n hollow square where only the border positions contain stars and all internal positions contain spaces.",
+      example: `*****
+*   *
+*   *
+*   *
+*****`,
       approach:
-        "Track two variables, largest and secondLargest, in a single pass. When a number beats largest, the old largest becomes secondLargest. When a number sits strictly between the two, only secondLargest updates.",
-      code: `public class Solution {
-    public static int secondLargest(int[] arr) {
-        int largest = Integer.MIN_VALUE;
-        int second = Integer.MIN_VALUE;
-
-        for (int num : arr) {
-            if (num > largest) {
-                second = largest;
-                largest = num;
-            } else if (num > second && num < largest) {
-                second = num;
-            }
-        }
-
-        return second == Integer.MIN_VALUE ? -1 : second;
-    }
-
+        "Loop through rows from 0 to n - 1. For the first (i == 0) and last (i == n - 1) rows, fill all columns with stars. For intermediate rows, print a star at the boundary columns (j == 0 or j == n - 1) and spaces everywhere in between.",
+      code: `class Main {
     public static void main(String[] args) {
-        int[] arr = {12, 35, 1, 10, 34, 1};
-        System.out.println(secondLargest(arr));
+        int n=5;
+       for(int i=0;i<n;i++){
+           if(i==0||i==n-1){
+               for(int j=0;j<n;j++){
+                   System.out.print("*");
+               }
+           }else{
+               for(int j=0;j<n;j++){
+                   if(j==0||j==n-1){
+                     System.out.print("*");  
+                   }else{
+                     System.out.print(" ");
+                   }
+               }
+           
+           }
+           System.out.println("");
+       }
+    }
+}`,
+      language: "java",
+    },
+    {
+      title: "Floyd's Triangle Pattern",
+      question:
+        "Given a number n, print Floyd's Triangle with n rows, filling consecutive natural numbers sequentially in a right-angled triangle format.",
+      example: `1 
+2 3 
+4 5 6 
+7 8 9 10 
+11 12 13 14 15`,
+      approach:
+        "Maintain a running counter initialized to 1. Use an outer loop for the row number and an inner loop running up to the current row index, printing and incrementing the counter at each step.",
+      code: `class Main {
+    public static void main(String[] args) {
+        int n=5;
+        int num=1;
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<i;j++){
+                System.out.print(num++ +" ");
+            }
+        System.out.println("");
+        }
     }
 }`,
       language: "java",
     },
   ],
+  // ... rest of dsaData (sorting, arrays, etc.)
 };

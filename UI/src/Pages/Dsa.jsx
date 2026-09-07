@@ -121,6 +121,17 @@ function Dsa({ topicKey }) {
                 <p className="leading-relaxed text-gray-900 text-sm sm:text-base break-words">
                   {problem.question}
                 </p>
+
+                {problem.example && (
+                  <div className="mt-3">
+                    <span className="text-xs font-bold text-gray-600 block mb-1">
+                      Example:
+                    </span>
+                    <pre className="bg-[#f5f5f5] text-black font-mono text-xs sm:text-sm p-3 border-2 border-black rounded-md whitespace-pre overflow-x-auto leading-tight">
+                      {problem.example}
+                    </pre>
+                  </div>
+                )}
               </section>
 
               <section className="mb-4">
