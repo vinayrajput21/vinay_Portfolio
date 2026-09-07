@@ -41,6 +41,7 @@ function Navbar() {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Projects", path: "/project" },
+    { name: "DSA blogs", path: "/dsa" },
     { name: "About Me", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
@@ -60,7 +61,7 @@ function Navbar() {
   );
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black text-white z-50 rounded-b-xl border-b border-gray-800">
+    <nav className="fixed top-0 left-0 w-full bg-black text-white z-50 border-b border-gray-800">
       <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
         
         {/* LEFT: Profile Section */}

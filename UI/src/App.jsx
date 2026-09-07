@@ -9,6 +9,7 @@ import AboutMe from "./Pages/AboutMe";
 import Layout from "./Pages/Layout";
 import { ModalProvider, useModal } from './Context/ModalContext';
 import ModalRoot from './ModalRoot/ModalRoot.jsx';
+import DsaLayout from "./Pages/DsaLayout.jsx";
 
 function AppContent() {
   const { openInfoModal } = useModal();
@@ -27,6 +28,7 @@ function AppContent() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/project" element={<Project />} />
+          <Route path="/dsa" element={<DsaLayout />} />
           <Route path="/about" element={<AboutMe />} />
           <Route path="/contact" element={<ContactMe />} />
         </Route>

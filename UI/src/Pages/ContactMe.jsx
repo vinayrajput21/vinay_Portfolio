@@ -4,7 +4,7 @@ import { Mail, Phone, MessageCircle, Send, MapPin, Github, Linkedin } from 'luci
 function ContactMe() {
 
   return (
-    <div className="min-h-screen bg-yellow-400 p-2 flex items-center justify-center">
+    <div className="min-h-screen p-2 flex items-center justify-center">
       <div className="w-full max-w-md">
         
         {/* Contact Card */}

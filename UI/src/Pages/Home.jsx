@@ -10,7 +10,7 @@ import linkedin from "../assets/linkedin.svg";
 import github from "../assets/github.svg";
 import gmail from "../assets/gmail.svg";
 import phone from "../assets/phone.svg";
-import cvPdf from "../assets/Vinay_Rajput_MERN.pdf";
+import cvPdf from "../assets/fullStackblock-3.pdf";
 import { useModal } from "../Context/ModalContext";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +45,7 @@ function Home() {
       Hello, <br /> I’m Vinay
     </h1>
     <p className="text-black text-lg sm:text-xl">
-      Full Stack Developer, <span className="text-gray-700">AWS</span>
+      Full Stack Developer
     </p>
     <div className="flex space-x-3 justify-center">
       <img
@@ -143,13 +143,8 @@ function Home() {
           <p className="text-lg sm:text-xl font-semibold text-white">
             Full Stack Developer
           </p>
-          <p className="text-lg sm:text-xl font-semibold text-white mb-3">
-            AWS
-          </p>
           <p className="text-white text-base sm:text-lg mb-4 leading-relaxed">
-            Hi! I'm a full stack developer leveraging AWS. Dive into my
-            portfolio to explore a blend of innovative frontend designs and
-            robust backend solutions using cloud technologies.
+            Hi! I'm a full stack developer who develope in JAVASCRIPT can do dsa in JAVA and want to build AI/RAG systems
           </p>
 
           {/* Image Buttons */}
@@ -173,9 +168,6 @@ function Home() {
           </h2>
           <p className="text-lg sm:text-xl font-semibold text-white">
             Full Stack Developer
-          </p>
-          <p className="text-lg sm:text-xl font-semibold text-white mb-3">
-            AWS Powered
           </p>
           <p className="text-white text-base sm:text-lg mb-4 leading-relaxed">
             Check out my portfolio to see a variety of projects showcasing my

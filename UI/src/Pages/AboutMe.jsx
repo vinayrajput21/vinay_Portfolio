@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProfileImage from "../assets/about2.jpg";
+import ProfileImage from "../assets/avatar.png";
 import JCBOSE from "../assets/JCBose.png";
 import MDU from "../assets/MDU.png";
 import EduaiExp from "../assets/EduaiCertificate.png";
@@ -39,17 +39,15 @@ function AboutMe() {
       <div className="mx-auto max-w-7xl">
         {/* Profile Image and Intro Text Side by Side */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 mb-6 md:mb-8">
-          {/* Profile Image */}
+
           <div className="flex-shrink-0 self-center sm:self-start">
-            <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 border-4 border-gray-800 shadow-[4px_4px_0px_#1f2937] sm:shadow-[6px_6px_0px_#1f2937] md:shadow-[8px_8px_0px_#1f2937] rounded-lg overflow-hidden">
-              <img
-                src={ProfileImage}
-                alt="Profile"
-                className="w-full h-full object-cover"
-              />
-            </div>
+<img
+      src={ProfileImage}
+      alt="profile"
+      className="h-45 sm:h-62 md:h-90 w-auto"
+    />
           </div>
-          {/* Introductory Text */}
+
           <div className="flex-1 text-center sm:text-left sm:mt-8 md:mt-12 lg:mt-20">
             <h1 className="text-gray-800 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-2 sm:mb-4">
               Hey!
@@ -116,7 +114,7 @@ function AboutMe() {
               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-yellow-400 rounded-full flex items-center justify-center text-gray-800 font-bold border-2 border-gray-800">
                 <span className="text-sm sm:text-base">2</span>
               </div>
-              <h2 className="text-white text-xl sm:text-2xl font-bold ml-3 sm:ml-4">Experience</h2>
+              <h2 className="text-white text-xl sm:text-2xl font-bold ml-3 sm:ml-4">Experience (1.8 Years)</h2>
             </div>
             <div className="space-y-3 sm:space-y-4">
               <div className="flex items-start gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg border-2 border-gray-800">
