@@ -98,7 +98,7 @@ function Dsa({ topicKey }) {
       </div>
 
       {problems.length === 0 ? (
-        <div className="bg-white border-2 sm:border-4 border-black rounded-lg shadow-[4px_4px_0px_#000] sm:shadow-[6px_6px_0px_#000] p-4 sm:p-6 font-semibold text-sm sm:text-base">
+        <div className="bg-white border-1 sm:border-4 border-black rounded-lg shadow-[4px_4px_0px_#000] sm:shadow-[6px_6px_0px_#000] p-4 sm:p-6 font-semibold text-sm sm:text-base">
           Nothing posted here yet — check back soon.
         </div>
       ) : (
@@ -106,7 +106,7 @@ function Dsa({ topicKey }) {
           {problems.map((problem, index) => (
             <article
               key={problem.title + index}
-              className="bg-white border-2 sm:border-4 border-black shadow-[4px_4px_0px_#000] sm:shadow-[6px_6px_0px_#000] rounded-lg p-4 sm:p-6 overflow-hidden"
+              className="bg-white border-1 sm:border-4 border-black shadow-[4px_4px_0px_#000] sm:shadow-[6px_6px_0px_#000] rounded-lg p-4 sm:p-6 overflow-hidden"
             >
               <div className="flex items-start justify-between gap-4 flex-wrap border-b-2 border-black pb-3 mb-4">
                 <h3 className="text-base sm:text-lg md:text-xl font-bold break-words">
