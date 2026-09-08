@@ -1,18 +1,39 @@
 import React, { useState } from 'react'
+import SystemDesignData from '../Services/SystemDesignData.jsx'
 
 const skillsData = {
   'full-stack': {
     title: 'Full Stack Development',
     items: [
       {
-        name: 'Frontend Technologies',
-        subtitle: 'React.js, Next.js, Tailwind CSS, TypeScript, Redux',
-        description: 'Building responsive, accessible, and high-performance user interfaces with modern web standards.'
+        name: 'Frontend Development',
+        subtitle: 'React.js, Next.js, HTML5, CSS3, JavaScript, TypeScript, Tailwind CSS',
+        description: 'Building modern, performant web applications with deep React ecosystem expertise: Context API, Axios, Redux Toolkit, custom hooks, and type-safe component architectures.'
       },
       {
-        name: 'Backend Technologies',
-        subtitle: 'Node.js, Express, Go, PostgreSQL, MongoDB, Redis',
-        description: 'Architecting robust RESTful and GraphQL APIs, managing databases, and implementing authentication.'
+        name: 'Backend & Databases',
+        subtitle: 'Node.js, Express.js, MongoDB, SQL',
+        description: 'Designing scalable RESTful APIs, data validation layers, schema architecture, and query optimization across relational and NoSQL databases.'
+      },
+      {
+        name: 'Version Control & DevOps',
+        subtitle: 'Git, GitHub, GitLab, GitHub Actions, Jenkins',
+        description: 'Managing source control workflows, branch protection strategies, automated CI/CD pipelines, and continuous integration deployments.'
+      }
+    ]
+  },
+  'aws': {
+    title: 'AWS Cloud Services',
+    items: [  
+      {
+        name: 'Compute & Serverless',
+        subtitle: 'AWS Lambda, Amazon EC2, Amazon ECS',
+        description: 'Provisioning scalable virtual servers, orchestrating containers, and developing event-driven, cost-efficient serverless microservices.'
+      },
+      {
+        name: 'API Management & Networking',
+        subtitle: 'Amazon API Gateway, S3 bucket, CloudFront',
+        description: 'Creating, publishing, securing, and monitoring robust REST and WebSocket endpoints with integrated throttling, caching, and custom domain routing.'
       }
     ]
   },
@@ -20,29 +41,15 @@ const skillsData = {
     title: 'AI / Machine Learning',
     items: [
       {
-        name: 'LLM & Generative AI',
-        subtitle: 'LangChain, OpenAI API, HuggingFace, Vector DBs (Pinecone, Chroma)',
-        description: 'Implementing RAG pipelines, fine-tuning prompt workflows, and embedding-based search retrieval.'
-      },
-      {
-        name: 'Core Machine Learning',
-        subtitle: 'Python, PyTorch, Scikit-Learn, Pandas, NumPy',
-        description: 'Data preprocessing, feature engineering, classification models, and neural network development.'
+        name: 'Upcoming Skills'
       }
     ]
   },
-  'system-design': {
-    title: 'System Design & Architecture',
+  'rag': {
+    title: 'RAG - Retrieval-Augmented Generation',
     items: [
       {
-        name: 'Distributed Systems',
-        subtitle: 'Microservices, Event-Driven Architecture, Kafka, RabbitMQ',
-        description: 'Designing fault-tolerant, horizontally scalable backend infrastructure and asynchronous message queues.'
-      },
-      {
-        name: 'Cloud & DevOps',
-        subtitle: 'Docker, Kubernetes, AWS (S3, EC2, ECS), CI/CD Actions',
-        description: 'Containerizing services, managing orchestrations, load balancers, caching layers, and deployment pipelines.'
+        name: 'Upcoming Skills'
       }
     ]
   }
@@ -50,19 +57,21 @@ const skillsData = {
 
 const navItems = [
   { id: 'full-stack', label: 'Full Stack', badge: '1' },
-  { id: 'ai-ml', label: 'AI / ML', badge: '2' },
-  { id: 'system-design', label: 'System Design', badge: '3' }
+  { id: 'system-design', label: 'System Design', badge: '2' },
+  { id: 'aws', label: 'AWS', badge: '3' },
+  { id: 'ai-ml', label: 'AI / ML', badge: '4' },
+  { id: 'rag', label: 'RAG', badge: '5' }
 ]
 
 function Skills() {
-  const [activeTab, setActiveTab] = useState('full-stack')
+  const [activeTab, setActiveTab] = useState('system-design')
 
   return (
-    <div className="min-h-screen bg-[#FCD34D] p-4 sm:p-8 font-sans flex justify-center items-center">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row gap-6 items-start">
+    <div className="min-h-screen bg-[#FCD34D] p-4 sm:p-8 font-sans flex justify-center items-start">
+      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-6 items-start">
         
         <div className="w-full md:w-80 bg-[#00A896] border-4 border-black rounded-2xl shadow-[6px_6px_0px_0px_#000] p-5 flex flex-col gap-4">
-          <div className="flex items-center gap-3 pb-2 border-b-4 border-black">
+          <div className="flex items-center gap-3 pb-2 ">
             <span className="w-8 h-8 rounded-full bg-amber-400 border-2 border-black flex items-center justify-center font-black text-sm text-black">
               ★
             </span>
@@ -72,6 +81,8 @@ function Skills() {
           <div className="flex flex-col gap-3">
             {navItems.map((item) => {
               const isSelected = activeTab === item.id
+              const isSpecial = item.id === 'system-design'
+
               return (
                 <button
                   key={item.id}
@@ -79,6 +90,8 @@ function Skills() {
                   className={`w-full flex items-center justify-between p-3.5 rounded-xl border-3 border-black text-left font-black transition-all cursor-pointer ${
                     isSelected
                       ? 'bg-amber-400 text-black shadow-[4px_4px_0px_0px_#000] translate-x-1'
+                      : isSpecial
+                      ? 'bg-emerald-200 text-black hover:bg-emerald-300 shadow-[2px_2px_0px_0px_#000]'
                       : 'bg-white text-black hover:bg-amber-100 shadow-[2px_2px_0px_0px_#000]'
                   }`}
                 >
@@ -96,33 +109,58 @@ function Skills() {
         </div>
 
         <div className="flex-1 w-full bg-[#00A896] border-4 border-black rounded-2xl shadow-[6px_6px_0px_0px_#000] p-5 flex flex-col gap-5">
-          <div className="flex items-center gap-3">
-            <span className="w-9 h-9 rounded-full bg-amber-400 border-2 border-black flex items-center justify-center font-black text-base text-black">
-              {navItems.find((tab) => tab.id === activeTab)?.badge}
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-wide text-white">
-              {skillsData[activeTab].title}
-            </h2>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            {skillsData[activeTab].items.map((card, index) => (
-              <div
-                key={index}
-                className="bg-white border-3 border-black rounded-xl p-5 shadow-[4px_4px_0px_0px_#000] flex flex-col gap-2"
-              >
-                <h3 className="text-xl font-black text-black">
-                  {card.name}
-                </h3>
-                <p className="text-sm font-bold text-[#00A896]">
-                  {card.subtitle}
-                </p>
-                <p className="text-sm font-semibold text-slate-700 leading-relaxed">
-                  {card.description}
-                </p>
+          {activeTab === 'system-design' ? (
+            <>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 ">
+                <div className="flex items-center gap-3">
+                  <span className="w-9 h-9 rounded-full bg-amber-400 border-2 border-black flex items-center justify-center font-black text-base text-black">
+                    ★
+                  </span>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-black tracking-wide text-white">
+                      System Design blogs
+                    </h2>
+                    <p className="text-xs font-bold text-amber-200">Continuous updates</p>
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
+              <SystemDesignData />
+            </>
+          ) : (
+            <>
+              <div className="flex items-center gap-3">
+                <span className="w-9 h-9 rounded-full bg-amber-400 border-2 border-black flex items-center justify-center font-black text-base text-black">
+                  {navItems.find((tab) => tab.id === activeTab)?.badge}
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-wide text-white">
+                  {skillsData[activeTab]?.title}
+                </h2>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {skillsData[activeTab]?.items.map((card, index) => (
+                  <div
+                    key={index}
+                    className="bg-white border-3 border-black rounded-xl p-5 shadow-[4px_4px_0px_0px_#000] flex flex-col gap-2"
+                  >
+                    <h3 className="text-xl font-black text-black">
+                      {card.name}
+                    </h3>
+                    {card.subtitle && (
+                      <p className="text-sm font-bold text-[#00A896]">
+                        {card.subtitle}
+                      </p>
+                    )}
+                    {card.description && (
+                      <p className="text-sm font-semibold text-slate-700 leading-relaxed">
+                        {card.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
       </div>

@@ -6,6 +6,11 @@ function DsaLayout() {
   const [activeTopic, setActiveTopic] = useState(topicOrder[0]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const totalQuestions = topicOrder.reduce(
+    (acc, key) => acc + (dsaData[key]?.length ?? 0),
+    0
+  );
+
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-[#FFDD55]">
       <div className="md:hidden flex items-center justify-between p-4 border-b-4 border-black bg-[#0ACF83]">
@@ -28,7 +33,10 @@ function DsaLayout() {
             (isSidebarOpen ? "translate-x-0" : "-translate-x-full")
           }
         >
-          <div className="text-black font-bold text-sm mb-4 pl-1">Topics</div>
+          <div className="flex justify-between text-black font-bold text-sm mb-4 pl-1">
+            <span>Topics</span>
+            <span>Total Solved QnA: {totalQuestions}</span>
+          </div>          
           <nav className="flex flex-col gap-3 md:gap-5">
             {topicOrder.map((key) => {
               const meta = topicMeta[key];

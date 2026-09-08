@@ -132,7 +132,7 @@ function Project() {
         return (
           <div
             key={project.id}
-            className="relative w-full max-w-7xl bg-teal-500 border-2 border-gray-800 shadow-[4px_4px_0px_#1f2937] sm:shadow-[6px_6px_0px_#1f2937] md:shadow-[8px_8px_0px_#1f2937] rounded-lg p-4 sm:p-6 hover:scale-105 transition-transform duration-200"
+            className="relative w-full max-w-7xl bg-teal-500 border-3 border-gray-800 shadow-[2px_2px_0px_#1f2937] sm:shadow-[4px_4px_0px_#1f2937] md:shadow-[6px_6px_0px_#1f2937] rounded-lg p-4 sm:p-6 hover:scale-105 transition-transform duration-200"
           >
             {/* Star rating badge - top right */}
             <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex flex-row items-end gap-1 z-10">
@@ -167,13 +167,13 @@ function Project() {
                 <img
                   src={project.mainImage}
                   alt={project.name}
-                  className="w-full h-64 sm:h-72 md:h-80 lg:h-full lg:min-h-[22rem] object-cover rounded-lg border-2 border-black cursor-pointer"
+                  className="w-full h-64 sm:h-72 md:h-80 lg:h-full lg:min-h-[22rem] object-cover rounded-lg  cursor-pointer"
                   onClick={() => openGallery(project.images)}
                 />
               </div>
 
               {/* White text box */}
-              <div className="flex-1 bg-white rounded-lg p-4 sm:p-5 md:p-6 flex flex-col justify-between border-2 border-black">
+              <div className="flex-1 bg-white rounded-lg p-4 sm:p-5 md:p-6 flex flex-col justify-between ">
                 <div>
                   <a
                     href={project.link}
@@ -202,7 +202,7 @@ function Project() {
 
                 <button
                   onClick={() => openGallery(project.images)}
-                  className="mt-4 self-start bg-[#ffdd55] hover:bg-yellow-500 text-black font-bold py-2 sm:py-2.5 px-8 sm:px-10 rounded text-sm sm:text-base transition-colors border-2 border-black hover:scale-105 transform duration-200 cursor-pointer"
+                  className="mt-4 self-start bg-[#ffdd55] hover:bg-yellow-500 text-black font-bold py-2 sm:py-2.5 px-8 sm:px-10 rounded text-sm sm:text-base transition-colors border-2 border-black hover:scale-105 transform duration-200 cursor-pointer shadow-[5px_5px_0px_0px_#000]"
                 >
                   View Gallery
                 </button>
