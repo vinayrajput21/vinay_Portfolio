@@ -298,5 +298,219 @@ export const dsaData = {
     language: "java",
   }
   ],
-  
+  sorting:[
+  {
+    title: "Bubble Sort",
+    question:
+      "Given an array of integers, sort the array in ascending order using the Bubble Sort algorithm. Optimize the algorithm so that it terminates early if no swaps occur in a pass.",
+    example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+Output: [2, 3, 5, 8, 9, 23, 67]`,
+    approach:
+      "Iterate through the array multiple times, comparing adjacent elements and swapping them if they are out of order. Maintain a boolean flag to track if any swaps occurred during the iteration; if no elements were swapped, the array is already sorted and the loop breaks early.",
+    code: `import java.util.*;
+class Main {
+    static int [] bubbleSort(int arr[]){
+        int n = arr.length;
+        boolean swapped=false;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n-1;j++){
+                if(arr[j]>arr[j+1]){
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                    swapped=true;
+                }
+            }
+            if(!swapped){
+                break;
+            }
+        }
+        return arr;
+    }
+    public static void main(String[] args) {
+        int arr[]={23,2,5,67,9,3,8};
+        int result[] = bubbleSort(arr);
+        System.out.println(Arrays.toString(result));
+    }
+}`,
+    language: "java",
+  },
+  {
+    title: "Selection Sort",
+    question:
+      "Given an array of integers, sort the array in ascending order using the Selection Sort technique by repeatedly locating the appropriate element and placing it into position.",
+    example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+Output: [2, 3, 5, 8, 9, 23, 67]`,
+    approach:
+      "Iterate across the array indices. For each position, scan the remaining elements to identify the target value according to order, then swap the values into the active position.",
+    code: `import java.util.*;
+class Main {
+    static int [] selectionSort(int arr[]){
+        int n = arr.length;
+       for(int i=0;i<n;i++){
+           int smallest=i;
+           for(int j=0;j<n;j++){
+               if(arr[j]>arr[smallest]){
+                 int temp = arr[smallest];
+                    arr[smallest]=arr[j];
+                    arr[j]=temp;
+               }
+           }
+       }
+        return arr;
+    }
+    public static void main(String[] args) {
+        int arr[]={23,2,5,67,9,3,8};
+        int result[] = selectionSort(arr);
+        System.out.println(Arrays.toString(result));
+    }
+}`,
+    language: "java",
+  },
+  {
+    title: "Insertion Sort",
+    question:
+      "Given an array of integers, sort the array in ascending order using the Insertion Sort algorithm by building a sorted prefix one element at a time.",
+    example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+Output: [2, 3, 5, 8, 9, 23, 67]`,
+    approach:
+      "Iterate from index 1 to the end of the array, picking the current element as a key. Compare the key with elements in the already sorted subarray to its left, shifting all elements greater than the key one position to the right, and then insert the key into its correct position.",
+    code: `import java.util.*;
+class Main {
+    static int [] insertionSort(int arr[]){
+        int n = arr.length;
+        for(int i=1;i<n;i++){
+            int key = arr[i];
+            int j=i-1;
+            while(j>=0&&arr[j]>key){
+                arr[j+1]=arr[j];
+                j--;
+            }
+            arr[j+1]=key;
+        }
+        return arr;
+    }
+    public static void main(String[] args) {
+        int arr[]={23,2,5,67,9,3,8};
+        int result[] = insertionSort(arr);
+        System.out.println(Arrays.toString(result));
+    }
+}`,
+    language: "java",
+  },
+  {
+    title: "Merge Sort",
+    question:
+      "Given an array of integers, sort the array in ascending order using the Merge Sort divide-and-conquer algorithm.",
+    example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+Output: [2, 3, 5, 8, 9, 23, 67]`,
+    approach:
+      "Divide the array recursively into two halves until single-element subarrays remain. Merge the halves back together by copying elements into temporary arrays, comparing elements sequentially, and placing the smaller value back into the original array.",
+    code: `import java.util.*;
+class Main {
+    static void merge(int arr[],int l, int m, int r){
+        int n1=m-l+1;
+        int n2=r-m;
+        int L[]=new int[n1];
+        int R[]=new int[n2];
+
+        for(int i=0;i<n1;i++){
+            L[i]=arr[l+i];
+        }
+        for(int i=0;i<n2;i++){
+            R[i]=arr[m+i+1];
+        }
+
+        int i=0,j=0;
+        int k=l;
+        while(i<n1&&j<n2){
+             if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            }
+            else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+        
+    }
+    static void mergeSort(int arr[], int l, int r){
+        if(l<r){
+            int m = l+(r-l)/2;
+            mergeSort(arr,l,m);
+            mergeSort(arr,m+1,r);
+            merge(arr,l,m,r);
+        }
+    }
+    public static void main(String[] args) {
+        int arr[]={23,2,5,67,9,3,8};
+        mergeSort(arr,0,arr.length-1);
+        System.out.println(Arrays.toString(arr));
+    }
+}`,
+    language: "java",
+  },
+  {
+    title: "Quick Sort",
+    question:
+      "Given an array of integers, sort the array in ascending order using the Quick Sort divide-and-conquer partitioning algorithm.",
+    example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+Output: 2 3 5 8 9 23 67`,
+    approach:
+      "Choose the last element as the pivot. Rearrange the array so that all elements smaller than the pivot are placed to its left and all greater elements to its right. Recursively apply the same partitioning strategy to the subarrays on either side of the pivot index.",
+    code: `import java.util.*;
+
+class Main {
+    static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+        for (int j = low; j <= high - 1; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+        
+        swap(arr, i + 1, high);  
+        return i + 1;
+    }
+    static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    public static void main(String[] args) {
+        int arr[]={23,2,5,67,9,3,8};
+        int n = arr.length;
+      
+        quickSort(arr, 0, n - 1);
+        
+        for (int val : arr) {
+            System.out.print(val + " ");  
+        }
+    }
+}`,
+    language: "java",
+  },
+],
 };
