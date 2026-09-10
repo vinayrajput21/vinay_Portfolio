@@ -560,7 +560,176 @@ class Main {
         }
     }`,
             language: "java",
+        },
+        {
+    title: 'Check if an array is sorted and rotated',
+    question:
+        "Given an array of integers, check whether the array is sorted and then rotated.",
+    example: `Input: [3, 4, 5, 1, 2]`,
+    output: `Output: true`,
+    approach: 'Count the number of times an element is greater than the next element. Since a sorted and rotated array can have at most one such point, return true if the count is less than or equal to 1.',
+    code: `class Solution {
+    public boolean check(int[] nums) {
+        int n = nums.length;
+        int count = 0;
+
+        for(int i = 0; i < n; i++) {
+            if(nums[i] > nums[(i + 1) % n]) {
+                count++;
+            }
         }
+
+        return count <= 1;
+    }
+}`,
+    language: "java",
+},
+{
+    title: 'Remove duplicates and return actual elements size',
+    question:
+        "Given a sorted array, remove the duplicates in-place and return the number of unique elements.",
+    example: `Input: [1, 1, 2, 2, 3]`,
+    output: `Output: 3`,
+    approach: 'Use two pointers. Keep one pointer i at the position of the last unique element and another pointer j to scan the array. Whenever nums[j] is different from nums[i], move i forward and store nums[j] at that position. Finally, return i + 1 as the number of unique elements.',
+    code: `class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i = 0;
+
+        for(int j = 1; j < nums.length; j++) {
+            if(nums[i] != nums[j]) {
+                i++;
+                nums[i] = nums[j];
+            }
+        }
+
+        return i + 1;
+    }
+}`,
+    language: "java",
+},
+{
+    title: 'Rotate array',
+    question:
+        "Given an array of integers, rotate the array to the right by k positions.",
+    example: `Input: [1, 2, 3, 4, 5, 6, 7], k = 3`,
+    output: `Output: [5, 6, 7, 1, 2, 3, 4]`,
+    approach: 'First calculate k modulo the length of the array to handle cases where k is larger than the array size. Store the last k elements in a temporary array, shift the remaining elements to the right by k positions, and then place the stored elements at the beginning.',
+    code: `class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k = k % n;
+
+        if(k == 0) return;
+
+        int[] temp = new int[k];
+
+        for(int i = n - k; i < n; i++) {
+            temp[i - n + k] = nums[i];
+        }
+
+        for(int i = n - k - 1; i >= 0; i--) {
+            nums[k + i] = nums[i];
+        }
+
+        for(int i = 0; i < k; i++) {
+            nums[i] = temp[i];
+        }
+    }
+}`,
+    language: "java",
+},
+{
+    title: 'Move zeroes to the end',
+    question:
+        "Given an array of integers, move all zeroes to the end while maintaining the relative order of the non-zero elements.",
+    example: `Input: [0, 1, 0, 3, 12]`,
+    output: `Output: [1, 3, 12, 0, 0]`,
+    approach: 'Use a pointer k to track the position where the next non-zero element should be placed. Iterate through the array and copy every non-zero element to nums[k]. After all non-zero elements are placed, fill the remaining positions with zeroes.',
+    code: `class Solution {
+    public void moveZeroes(int[] nums) {
+        int k = 0;
+
+        for(int num : nums) {
+            if(num != 0) {
+                nums[k++] = num;
+            }
+        }
+
+        while(k < nums.length) {
+            nums[k++] = 0;
+        }
+    }
+}`,
+    language: "java",
+},
+{
+    title: 'Linear search',
+    question:
+        "Given an array of integers and a target element, find the index of the target element using linear search.",
+    example: `Input: [10, 20, 30, 40, 50], target = 30`,
+    output: `Output: 2`,
+    approach: 'Iterate through the array from the beginning and compare each element with the target. If an element matches the target, return its index. If the target is not found after checking all elements, return -1.',
+    code: `class Solution {
+    public int linearSearch(int[] nums, int target) {
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] == target) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+}`,
+    language: "java",
+},
+{
+    title: 'Maximum consecutive ones',
+    question:
+        "Given a binary array, find the maximum number of consecutive 1s in the array.",
+    example: `Input: [1, 1, 0, 1, 1, 1]`,
+    output: `Output: 3`,
+    approach: 'Maintain a count of consecutive 1s and a variable max to store the maximum count found so far. Increment count when the current element is 1. When a 0 is encountered, update max and reset count to 0. Finally, return the maximum of count and max to handle an array ending with 1s.',
+    code: `class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int n = nums.length;
+        int count = 0;
+        int max = 0;
+
+        for(int i = 0; i < n; i++) {
+            if(nums[i] == 1) {
+                count++;
+            } else {
+                max = Math.max(max, count);
+                count = 0;
+            }
+        }
+
+        return Math.max(count, max);
+    }
+}`,
+    language: "java",
+},
+{
+    title: 'Single number using XOR',
+    question:
+        "Given a non-empty array of integers where every element appears twice except for one element, find the element that appears only once.",
+    example: `Input: [4, 1, 2, 1, 2]`,
+    output: `Output: 4`,
+    approach: 'Use the XOR operation on every element. XOR has the property that a number XOR itself is 0 and a number XOR 0 is the number itself. Therefore, all duplicate elements cancel each other out, leaving only the element that appears once.',
+    code: `class Solution {
+    public int singleNumber(int[] nums) {
+        int result = 0;
+
+        for(int num : nums) {
+            result ^= num;
+        }
+
+        return result;
+    }
+}`,
+    language: "java",
+},
+
             
     ]
 };
