@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import SystemDesignData from '../Services/SystemDesignData.jsx'
+import SystemDesignData from './SystemDesignData.jsx'
+import {useNavigate} from 'react-router-dom'
 
 const skillsData = {
   'full-stack': {
@@ -63,8 +64,14 @@ const navItems = [
   { id: 'rag', label: 'RAG', badge: '5' }
 ]
 
+
 function Skills() {
   const [activeTab, setActiveTab] = useState('system-design')
+  const navigate = useNavigate();
+  
+  const ToSystemDesign = ()=>{
+  navigate('/systemDesign');
+}
 
   return (
     <div className="min-h-screen bg-[#FCD34D] p-4 sm:p-8 font-sans flex justify-center items-start">
@@ -124,7 +131,7 @@ function Skills() {
                   </div>
                 </div>
               </div>
-              <SystemDesignData />
+              <div> <span style={{ textDecoration: 'underline', color:'#FFDD55', cursor:'pointer'}} onClick={ToSystemDesign}>click here</span> to check System Design blogs </div>
             </>
           ) : (
             <>

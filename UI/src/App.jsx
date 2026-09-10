@@ -11,6 +11,7 @@ import { ModalProvider, useModal } from './Context/ModalContext';
 import ModalRoot from './ModalRoot/ModalRoot.jsx';
 import DsaLayout from "./Pages/DsaLayout.jsx";
 import Skills from "./Pages/Skills.jsx";
+import SystemDesignData from "./Pages/SystemDesignData.jsx";
 
 function AppContent() {
   const { openInfoModal } = useModal();
@@ -29,8 +30,9 @@ function AppContent() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/project" element={<Project />} />
-          <Route path="/dsa" element={<DsaLayout />} />
           <Route path="/skills" element={<Skills />} />
+          <Route path="/dsa" element={<DsaLayout />} />
+          <Route path="/systemDesign" element={<SystemDesignData />} />
           <Route path="/about" element={<AboutMe />} />
           <Route path="/contact" element={<ContactMe />} />
         </Route>

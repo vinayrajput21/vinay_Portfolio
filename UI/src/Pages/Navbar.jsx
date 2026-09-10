@@ -41,8 +41,9 @@ function Navbar() {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Projects", path: "/project" },
-    { name: "DSA blogs", path: "/dsa" },
     { name: "Advance Skills", path: "/skills" },
+    { name: "DSA blogs", path: "/dsa" },
+    { name: "System Design", path: "/systemDesign" },
     { name: "About Me", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
