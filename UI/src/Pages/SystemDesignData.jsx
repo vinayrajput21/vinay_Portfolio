@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-/* ------------------------------------------------------------------ */
-/*  Small animated diagrams — pure CSS/SVG, no external libraries.     */
-/* ------------------------------------------------------------------ */
 
 const Box = ({ children, className = "" }) => (
   <div
@@ -34,7 +31,101 @@ function DNSDiagram() {
     </div>
   );
 }
+function SysDiagram() {
+  return (
+    <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 text-[#f8fafc] rounded-xl font-mono text-xs">
+      <div className="flex flex-col items-center gap-2 p-4 border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+        <span className="text-black  font-bold">Client Layer</span>
+        <div className="px-4 py-2 bg-[#facc15] text-black border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">Web / Mobile App</div>
+      </div>
 
+      <div className="flex items-center text-[#94a3b8]">
+        <span className="w-6 h-[3px] bg-black"></span>
+        <span className="px-2 text-[10px] uppercase tracking-wider font-bold bg-[#1e293b] border-2 border-black text-white rounded">HTTPS</span>
+        <span className="w-6 h-[3px] bg-black"></span>
+      </div>
+
+      <div className="flex flex-col items-center gap-2 p-4 border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+        <span className="text-black font-bold">Routing</span>
+        <div className="px-4 py-2 bg-[#2dd4bf] text-black border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">API Gateway</div>
+      </div>
+
+      <div className="flex items-center text-[#94a3b8]">
+        <span className="w-6 h-[3px] bg-black"></span>
+        <span className="px-2 text-[10px] uppercase tracking-wider font-bold bg-[#1e293b] border-2 border-black text-white rounded">gRPC</span>
+        <span className="w-6 h-[3px] bg-black"></span>
+      </div>
+
+      <div className="flex flex-col gap-2 p-4 border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+        <span className="text-black font-bold">Services</span>
+        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">Auth Service</div>
+        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">Core Service</div>
+        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">Notification Queue</div>
+      </div>
+
+      <div className="flex items-center text-[#94a3b8]">
+        <span className="w-6 h-[3px] bg-black"></span>
+      </div>
+
+      <div className="flex flex-col gap-2 p-4 border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+        <span className="text-black font-bold">Databases</span>
+        <div className="px-3 py-1.5 bg-[#0ACF83] border-2 border-black text-black rounded text-center font-bold shadow-[2px_2px_0px_0px_#000000]">MongoDB/SQL</div>
+        <div className="px-3 py-1.5 bg-[#fca5a5] border-2 border-black text-black rounded text-center font-bold shadow-[2px_2px_0px_0px_#000000]">Redis Cache</div>
+      </div>
+    </div>
+  );
+}
+function HLDvsLLDDiagram() {
+  return (
+    <div className="flex flex-col gap-6 p-6 bg-[#f8fafc] text-[#0f172a] rounded-xl font-mono text-xs">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex flex-col gap-4 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+          <div className="flex items-center justify-between pb-2 border-b-2 border-black">
+            <span className="text-[#854d0e] font-bold text-sm">High-Level Design (HLD)</span>
+            <span className="px-2 py-0.5 bg-[#fef08a] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">MACRO</span>
+          </div>
+          <p className="text-[#475569] text-[11px]">Focuses on system architecture, tech stack, scalability, and component interactions.</p>
+          <div className="flex flex-col gap-2 p-3 bg-[#f1f5f9] border-2 border-black rounded shadow-[2px_2px_0px_0px_#000000]">
+            <div className="flex justify-between items-center bg-[#ffffff] p-2 border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">
+              <span className="text-[#0f172a]">Client / UI</span>
+              <span className="text-[#0d9488]">React / Next.js</span>
+            </div>
+            <div className="text-center font-bold text-slate-600">↓ HTTPS / REST</div>
+            <div className="flex justify-between items-center bg-[#ffffff] p-2 border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">
+              <span className="text-[#0f172a]">API Gateway</span>
+              <span className="text-[#ca8a04]">Load Balancer</span>
+            </div>
+            <div className="text-center font-bold text-slate-600">↓ Internal Network</div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">Auth Service</div>
+              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">Core Service</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+          <div className="flex items-center justify-between pb-2 border-b-2 border-black">
+            <span className="text-[#0f766e] font-bold text-sm">Low-Level Design (LLD)</span>
+            <span className="px-2 py-0.5 bg-[#99f6e4] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">MICRO</span>
+          </div>
+          <p className="text-[#475569] text-[11px]">Focuses on class diagrams, design patterns, data structures, and logic implementation.</p>
+          <div className="flex flex-col gap-2 p-3 bg-[#f1f5f9] border-2 border-black rounded shadow-[2px_2px_0px_0px_#000000]">
+            <div className="bg-[#ffffff] p-2 border-2 border-black rounded font-bold flex flex-col gap-1 shadow-[2px_2px_0px_0px_#000000]">
+              <span className="text-[#0d9488]">Class: UserService</span>
+              <span className="text-[10px] text-[#475569] font-normal">- repository: UserRepository</span>
+              <span className="text-[10px] text-[#475569] font-normal">+ authenticate(token: string): User</span>
+            </div>
+            <div className="text-center font-bold text-slate-600">↓ Implements</div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-xs text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">Strategy Pattern</div>
+              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-xs text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">OOPS & Schema</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 function ScalingDiagram() {
   return (
     <div className="grid grid-cols-2 gap-4 py-4">
@@ -120,19 +211,60 @@ function FanOutDiagram() {
 
 function CAPDiagram() {
   return (
-    <div className="flex items-center justify-center gap-3 py-4">
-      <Box className="w-20 cap-node-1 bg-amber-100">Consistency</Box>
-      <span className="font-black text-slate-400">+</span>
-      <Box className="w-20 cap-node-2 bg-amber-100">Availability</Box>
-      <span className="font-black text-slate-400">+</span>
-      <Box className="w-24 cap-node-3 bg-amber-100">
-        Partition
-        Tolerance
-      </Box>
+    <div className="flex flex-col gap-6 p-6 bg-[#f8fafc] text-[#0f172a] rounded-xl font-mono text-xs ">
+      <div className="flex items-center justify-between pb-3 border-b-2 border-black">
+        <span className="font-bold text-sm text-[#0f172a]">CAP Theorem Trade-offs</span>
+        <span className="px-2 py-0.5 bg-[#fef08a] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">DISTRIBUTED SYSTEMS</span>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="flex flex-col gap-2 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-[#0d9488]">Consistency (C)</span>
+            <span className="px-1.5 py-0.5 bg-[#99f6e4] text-black font-bold text-[9px] border border-black rounded">READS</span>
+          </div>
+          <p className="text-[11px] text-[#475569]">Every read receives the most recent write or an error.</p>
+        </div>
+
+        <div className="flex flex-col gap-2 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-[#ca8a04]">Availability (A)</span>
+            <span className="px-1.5 py-0.5 bg-[#fef08a] text-black font-bold text-[9px] border border-black rounded">UPTIME</span>
+          </div>
+          <p className="text-[11px] text-[#475569]">Every non-failing node returns a non-error response.</p>
+        </div>
+
+        <div className="flex flex-col gap-2 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-[#4f46e5]">Partition Tolerance (P)</span>
+            <span className="px-1.5 py-0.5 bg-[#c7d2fe] text-black font-bold text-[9px] border border-black rounded">NETWORK</span>
+          </div>
+          <p className="text-[11px] text-[#475569]">System functions despite network packet drops or splits.</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+        <div className="flex flex-col gap-2 p-4 bg-[#f1f5f9] border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_#000000]">
+          <span className="font-bold text-[#0f172a]">CP Systems (Consistency + Partition Tolerance)</span>
+          <p className="text-[11px] text-[#475569]">Sacrifices availability during partitions to prevent serving stale data.</p>
+          <div className="flex gap-2 mt-1">
+            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">MongoDB</span>
+            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">HBase</span>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2 p-4 bg-[#f1f5f9] border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_#000000]">
+          <span className="font-bold text-[#0f172a]">AP Systems (Availability + Partition Tolerance)</span>
+          <p className="text-[11px] text-[#475569]">Sacrifices strict consistency so every node can keep responding.</p>
+          <div className="flex gap-2 mt-1">
+            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">Cassandra</span>
+            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">DynamoDB</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
 const DiagramFrame = ({ children }) => (
   <div className="bg-emerald-50/60 border-2 border-black/80 rounded-xl px-3 sm:px-5 my-1">
     {children}
@@ -219,6 +351,7 @@ const units = [
             text: "there's rarely one 'correct' design — good system design means choosing the trade-off that fits the actual problem, not the fanciest architecture",
           },
         ],
+        diagram:<SysDiagram/>
       },
       {
         id: "u1-c2",
@@ -248,6 +381,7 @@ const units = [
             text: "HLD lets a whole team agree on the shape of a system before anyone writes a class; LLD lets one engineer build a component without holding the entire system in their head",
           },
         ],
+        diagram:<HLDvsLLDDiagram/>
       },
       {
         id: "u1-c3",
@@ -351,20 +485,55 @@ const units = [
     label: "Unit 2",
     title: "Core Concepts",
     chapters: [
-      {
-        id: "u2-c1",
-        label: "Chapter 1",
-        title: "Scalability",
-        hook:
-          "Scalability isn't a single trick — it's a property: can this system handle more load by adding resources, without falling over or needing a rewrite?",
-        points: [
-          { label: "Load scalability", text: "handling more requests or users over time without performance degrading" },
-          { label: "Scale up vs scale out", text: "vertical scaling makes one machine bigger; horizontal scaling adds more machines — most large systems lean on the latter" },
-          { label: "Stateless services", text: "servers that don't store session data locally scale horizontally far more easily, since any instance can handle any request" },
-          { label: "Database scalability", text: "read replicas spread out read traffic; sharding splits data across multiple databases so no single one holds everything" },
-          { label: "Caching", text: "storing frequently-requested results (e.g. in Redis) so the system doesn't repeat expensive work for every request" },
-        ],
-      },
+{
+  id: "u2-c1",
+  label: "Chapter 1",
+  title: "Scalability, Reliability, Availability",
+  hook:
+    "Every system is a balancing act between three properties: can it handle more load, can it be trusted to work, and can it stay up when things go wrong? These three — scalability, reliability, and availability — get confused constantly, but they answer different questions, and a system can excel at one while failing at another.",
+  topics: [
+    {
+      title: "Scalability",
+      hook:
+        "Scalability isn't a single trick — it's a property: can this system handle more load by adding resources, without falling over or needing a rewrite? A system that only works at today's traffic is a system with an expiration date.",
+      points: [
+        { label: "Load scalability", text: "handling more requests, users, or data volume over time without performance degrading — the core test of whether a system was built to grow or just to ship" },
+        { label: "Scale up vs scale out", text: "vertical scaling makes one machine bigger (more CPU, RAM); horizontal scaling adds more machines. Vertical scaling is simpler but hits a physical ceiling and creates a single point of failure — most large systems lean on horizontal scaling instead" },
+        { label: "Stateless services", text: "servers that don't store session data locally scale horizontally far more easily, since any instance can handle any request — a load balancer can route traffic anywhere without worrying about 'sticky' sessions" },
+        { label: "Database scalability", text: "read replicas spread out read traffic (copies of the data that serve queries but not writes); sharding splits data across multiple databases by key. as you know read queries are more often than writes" },
+        { label: "Caching", text: "storing frequently-requested results (e.g. in Redis or Memcached) so the system doesn't repeat expensive work for every request — often the single highest-leverage change for read-heavy systems" },
+        { label: "Load balancing", text: "distributing incoming traffic across multiple servers so no single instance becomes a bottleneck — the piece of infrastructure that makes horizontal scaling actually usable" },
+        { label: "Diminishing returns & bottlenecks", text: "scaling one layer (e.g. app servers) just shifts the pressure to the next weakest link (e.g. the database) — real scalability means finding and addressing the bottleneck, not just adding more of what you already have" },
+      ],
+    },
+    {
+      title: "Reliability",
+      hook:
+        "Reliability is about trust: can the system be counted on to do what it's supposed to, every time, even when things go wrong? A system can be up and still be unreliable — think of a server that responds instantly but returns corrupted data.",
+      points: [
+        { label: "Definition", text: "the probability that a system will perform its intended function correctly, without failure, over a specified period of time — it's about correctness under stress, not just uptime" },
+        { label: "Redundancy", text: "having multiple instances of critical components so if one fails, others can take over — redundancy without proper failover is just extra cost, so the two usually go together" },
+        { label: "Failover", text: "automatic switching to a standby system or component when the primary one fails, ideally fast enough and seamless enough that users never notice" },
+        { label: "Fault tolerance", text: "designing a system to keep functioning — even in a degraded mode — when a component fails, rather than cascading into a full outage" },
+        { label: "Monitoring and alerting", text: "keeping an eye on system health (error rates, latency, resource usage) and notifying engineers when something goes wrong, ideally before users notice" },
+        { label: "Testing for failure", text: "practices like chaos engineering deliberately inject failures into a system to verify it actually behaves reliably under real-world conditions, not just in the happy path" },
+      ],
+    },
+    {
+      title: "Availability",
+      hook:
+        "Availability is about uptime: how often is the system up and running, ready to serve requests? It's often confused with reliability, but a system can be highly available (always responding) while still being unreliable (responding with the wrong answer).",
+      points: [
+        { label: "Definition", text: "the proportion of time a system is operational and accessible when required for use" },
+        { label: "High availability (HA)", text: "designing systems to minimize downtime, often through redundancy and failover mechanisms across multiple servers, data centers, or regions" },
+        { label: "Service Level Agreement (SLA)", text: "a formal commitment between a service provider and a client regarding the expected level of service availability, often with financial penalties if it's not met" },
+        { label: "Measuring availability", text: "often expressed as a percentage (e.g., 99.9% uptime) over a specific time period — but each additional '9' represents a dramatically smaller allowed downtime" },
+        { label: "The 'nines' in practice", text: "99% uptime allows ~3.65 days of downtime a year; 99.9% allows ~8.76 hours; 99.99% ('four nines') allows just ~52 minutes — illustrating why chasing extra nines gets exponentially harder and costlier" },
+        { label: "Availability vs reliability", text: "a flaky system that crashes and restarts instantly can show high availability numbers while still being unreliable — the two metrics measure different failure modes and neither one alone tells the whole story" },
+      ],
+    },
+  ],
+},
       {
         id: "u2-c2",
         label: "Chapter 2",
