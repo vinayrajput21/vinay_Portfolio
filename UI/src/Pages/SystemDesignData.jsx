@@ -265,6 +265,115 @@ function CAPDiagram() {
     </div>
   );
 }
+
+function ConsistencyModelsDiagram() {
+  const size = 320;
+  const center = size / 2;
+  const radius = 100;
+
+  const nodes = [
+    { name: 'Node A', angle: 0, color: '#FF6B6B' },
+    { name: 'Node B', angle: 120, color: '#4DABF7' },
+    { name: 'Node C', angle: 240, color: '#51CF66' },
+  ];
+
+  return (
+    <div className="my-4 p-4 bg-white border-3 border-black shadow-[4px_4px_0px_0px_#000] flex flex-col items-center gap-3">
+      <div className="w-full flex justify-between items-center border-b-2 border-black pb-2">
+        <span className="text-xs font-black uppercase tracking-wider text-black bg-yellow-300 px-2 py-0.5 border border-black">
+          Consistency Sync Visualizer
+        </span>
+        <span className="text-[11px] font-bold text-gray-700">Replication State</span>
+      </div>
+
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="overflow-visible">
+        <circle cx={center} cy={center} r={radius} fill="none" stroke="#000" strokeWidth="4" strokeDasharray="6 6" />
+        
+        {nodes.map((node, index) => {
+          const radian = (node.angle * Math.PI) / 180;
+          const x = center + radius * Math.cos(radian);
+          const y = center + radius * Math.sin(radian);
+          return (
+            <g key={`node-${index}`}>
+              <circle cx={x} cy={y} r="16" fill={node.color} stroke="#000" strokeWidth="2.5" />
+              <text x={x} y={y + 32} textAnchor="middle" fill="#000" fontSize="10" fontWeight="900">{node.name}</text>
+            </g>
+          );
+        })}
+
+        <circle cx={center} cy={center} r="22" fill="#FACC15" stroke="#000" strokeWidth="2" />
+        <text x={center} y={center + 4} textAnchor="middle" fill="#000" fontSize="9" fontWeight="800">SYNC</text>
+      </svg>
+
+      <div className="w-full bg-amber-50 border-2 border-black p-2 text-center text-xs font-bold text-black">
+        Balancing strict synchronization against availability and performance.
+      </div>
+    </div>
+  );
+}
+
+
+function ConsistentHashingDiagram() {
+  const size = 320;
+  const center = size / 2;
+  const radius = 100;
+
+  const nodes = [
+    { name: 'Server A', angle: 0, color: '#FF6B6B' },
+    { name: 'Server B', angle: 120, color: '#4DABF7' },
+    { name: 'Server C', angle: 240, color: '#51CF66' },
+  ];
+
+  const keys = [
+    { name: 'Key 1', angle: 45 },
+    { name: 'Key 2', angle: 170 },
+    { name: 'Key 3', angle: 300 },
+  ];
+
+  return (
+    <div className="my-4 p-4 bg-white border-3 border-black shadow-[4px_4px_0px_0px_#000] flex flex-col items-center gap-3">
+      <div className="w-full flex justify-between items-center border-b-2 border-black pb-2">
+        <span className="text-xs font-black uppercase tracking-wider text-black bg-yellow-300 px-2 py-0.5 border border-black">
+          Hash Ring Visualizer
+        </span>
+        <span className="text-[11px] font-bold text-gray-700">Clockwise Routing</span>
+      </div>
+
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="overflow-visible">
+        <circle cx={center} cy={center} r={radius} fill="none" stroke="#000" strokeWidth="4" strokeDasharray="6 6" />
+        <circle cx={center} cy={center} r={radius + 20} fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" />
+
+        {nodes.map((node, index) => {
+          const radian = (node.angle * Math.PI) / 180;
+          const x = center + radius * Math.cos(radian);
+          const y = center + radius * Math.sin(radian);
+          return (
+            <g key={`node-${index}`}>
+              <circle cx={x} cy={y} r="16" fill={node.color} stroke="#000" strokeWidth="2.5" />
+              <text x={x} y={y + 32} textAnchor="middle" fill="#000" fontSize="10" fontWeight="900">{node.name}</text>
+            </g>
+          );
+        })}
+
+        {keys.map((k, index) => {
+          const radian = (k.angle * Math.PI) / 180;
+          const x = center + radius * Math.cos(radian);
+          const y = center + radius * Math.sin(radian);
+          return (
+            <g key={`key-${index}`}>
+              <circle cx={x} cy={y} r="6" fill="#FACC15" stroke="#000" strokeWidth="2" />
+              <text x={x} y={y - 12} textAnchor="middle" fill="#000" fontSize="9" fontWeight="800">{k.name}</text>
+            </g>
+          );
+        })}
+      </svg>
+
+      <div className="w-full bg-amber-50 border-2 border-black p-2 text-center text-xs font-bold text-black">
+        Adding/removing nodes only impacts adjacent keys on the ring.
+      </div>
+    </div>
+  );
+}
 const DiagramFrame = ({ children }) => (
   <div className="bg-emerald-50/60 border-2 border-black/80 rounded-xl px-3 sm:px-5 my-1">
     {children}
@@ -351,7 +460,7 @@ const units = [
             text: "there's rarely one 'correct' design — good system design means choosing the trade-off that fits the actual problem, not the fanciest architecture",
           },
         ],
-        diagram:<SysDiagram/>
+        diagram: <SysDiagram />
       },
       {
         id: "u1-c2",
@@ -381,7 +490,7 @@ const units = [
             text: "HLD lets a whole team agree on the shape of a system before anyone writes a class; LLD lets one engineer build a component without holding the entire system in their head",
           },
         ],
-        diagram:<HLDvsLLDDiagram/>
+        diagram: <HLDvsLLDDiagram />
       },
       {
         id: "u1-c3",
@@ -485,55 +594,55 @@ const units = [
     label: "Unit 2",
     title: "Core Concepts",
     chapters: [
-{
-  id: "u2-c1",
-  label: "Chapter 1",
-  title: "Scalability, Reliability, Availability",
-  hook:
-    "Every system is a balancing act between three properties: can it handle more load, can it be trusted to work, and can it stay up when things go wrong? These three — scalability, reliability, and availability — get confused constantly, but they answer different questions, and a system can excel at one while failing at another.",
-  topics: [
-    {
-      title: "Scalability",
-      hook:
-        "Scalability isn't a single trick — it's a property: can this system handle more load by adding resources, without falling over or needing a rewrite? A system that only works at today's traffic is a system with an expiration date.",
-      points: [
-        { label: "Load scalability", text: "handling more requests, users, or data volume over time without performance degrading — the core test of whether a system was built to grow or just to ship" },
-        { label: "Scale up vs scale out", text: "vertical scaling makes one machine bigger (more CPU, RAM); horizontal scaling adds more machines. Vertical scaling is simpler but hits a physical ceiling and creates a single point of failure — most large systems lean on horizontal scaling instead" },
-        { label: "Stateless services", text: "servers that don't store session data locally scale horizontally far more easily, since any instance can handle any request — a load balancer can route traffic anywhere without worrying about 'sticky' sessions" },
-        { label: "Database scalability", text: "read replicas spread out read traffic (copies of the data that serve queries but not writes); sharding splits data across multiple databases by key. as you know read queries are more often than writes" },
-        { label: "Caching", text: "storing frequently-requested results (e.g. in Redis or Memcached) so the system doesn't repeat expensive work for every request — often the single highest-leverage change for read-heavy systems" },
-        { label: "Load balancing", text: "distributing incoming traffic across multiple servers so no single instance becomes a bottleneck — the piece of infrastructure that makes horizontal scaling actually usable" },
-        { label: "Diminishing returns & bottlenecks", text: "scaling one layer (e.g. app servers) just shifts the pressure to the next weakest link (e.g. the database) — real scalability means finding and addressing the bottleneck, not just adding more of what you already have" },
-      ],
-    },
-    {
-      title: "Reliability",
-      hook:
-        "Reliability is about trust: can the system be counted on to do what it's supposed to, every time, even when things go wrong? A system can be up and still be unreliable — think of a server that responds instantly but returns corrupted data.",
-      points: [
-        { label: "Definition", text: "the probability that a system will perform its intended function correctly, without failure, over a specified period of time — it's about correctness under stress, not just uptime" },
-        { label: "Redundancy", text: "having multiple instances of critical components so if one fails, others can take over — redundancy without proper failover is just extra cost, so the two usually go together" },
-        { label: "Failover", text: "automatic switching to a standby system or component when the primary one fails, ideally fast enough and seamless enough that users never notice" },
-        { label: "Fault tolerance", text: "designing a system to keep functioning — even in a degraded mode — when a component fails, rather than cascading into a full outage" },
-        { label: "Monitoring and alerting", text: "keeping an eye on system health (error rates, latency, resource usage) and notifying engineers when something goes wrong, ideally before users notice" },
-        { label: "Testing for failure", text: "practices like chaos engineering deliberately inject failures into a system to verify it actually behaves reliably under real-world conditions, not just in the happy path" },
-      ],
-    },
-    {
-      title: "Availability",
-      hook:
-        "Availability is about uptime: how often is the system up and running, ready to serve requests? It's often confused with reliability, but a system can be highly available (always responding) while still being unreliable (responding with the wrong answer).",
-      points: [
-        { label: "Definition", text: "the proportion of time a system is operational and accessible when required for use" },
-        { label: "High availability (HA)", text: "designing systems to minimize downtime, often through redundancy and failover mechanisms across multiple servers, data centers, or regions" },
-        { label: "Service Level Agreement (SLA)", text: "a formal commitment between a service provider and a client regarding the expected level of service availability, often with financial penalties if it's not met" },
-        { label: "Measuring availability", text: "often expressed as a percentage (e.g., 99.9% uptime) over a specific time period — but each additional '9' represents a dramatically smaller allowed downtime" },
-        { label: "The 'nines' in practice", text: "99% uptime allows ~3.65 days of downtime a year; 99.9% allows ~8.76 hours; 99.99% ('four nines') allows just ~52 minutes — illustrating why chasing extra nines gets exponentially harder and costlier" },
-        { label: "Availability vs reliability", text: "a flaky system that crashes and restarts instantly can show high availability numbers while still being unreliable — the two metrics measure different failure modes and neither one alone tells the whole story" },
-      ],
-    },
-  ],
-},
+      {
+        id: "u2-c1",
+        label: "Chapter 1",
+        title: "Scalability, Reliability, Availability",
+        hook:
+          "Every system is a balancing act between three properties: can it handle more load, can it be trusted to work, and can it stay up when things go wrong? These three — scalability, reliability, and availability — get confused constantly, but they answer different questions, and a system can excel at one while failing at another.",
+        topics: [
+          {
+            title: "Scalability",
+            hook:
+              "Scalability isn't a single trick — it's a property: can this system handle more load by adding resources, without falling over or needing a rewrite? A system that only works at today's traffic is a system with an expiration date.",
+            points: [
+              { label: "Load scalability", text: "handling more requests, users, or data volume over time without performance degrading — the core test of whether a system was built to grow or just to ship" },
+              { label: "Scale up vs scale out", text: "vertical scaling makes one machine bigger (more CPU, RAM); horizontal scaling adds more machines. Vertical scaling is simpler but hits a physical ceiling and creates a single point of failure — most large systems lean on horizontal scaling instead" },
+              { label: "Stateless services", text: "servers that don't store session data locally scale horizontally far more easily, since any instance can handle any request — a load balancer can route traffic anywhere without worrying about 'sticky' sessions" },
+              { label: "Database scalability", text: "read replicas spread out read traffic (copies of the data that serve queries but not writes); sharding splits data across multiple databases by key. as you know read queries are more often than writes" },
+              { label: "Caching", text: "storing frequently-requested results (e.g. in Redis or Memcached) so the system doesn't repeat expensive work for every request — often the single highest-leverage change for read-heavy systems" },
+              { label: "Load balancing", text: "distributing incoming traffic across multiple servers so no single instance becomes a bottleneck — the piece of infrastructure that makes horizontal scaling actually usable" },
+              { label: "Diminishing returns & bottlenecks", text: "scaling one layer (e.g. app servers) just shifts the pressure to the next weakest link (e.g. the database) — real scalability means finding and addressing the bottleneck, not just adding more of what you already have" },
+            ],
+          },
+          {
+            title: "Reliability",
+            hook:
+              "Reliability is about trust: can the system be counted on to do what it's supposed to, every time, even when things go wrong? A system can be up and still be unreliable — think of a server that responds instantly but returns corrupted data.",
+            points: [
+              { label: "Definition", text: "the probability that a system will perform its intended function correctly, without failure, over a specified period of time — it's about correctness under stress, not just uptime" },
+              { label: "Redundancy", text: "having multiple instances of critical components so if one fails, others can take over — redundancy without proper failover is just extra cost, so the two usually go together" },
+              { label: "Failover", text: "automatic switching to a standby system or component when the primary one fails, ideally fast enough and seamless enough that users never notice" },
+              { label: "Fault tolerance", text: "designing a system to keep functioning — even in a degraded mode — when a component fails, rather than cascading into a full outage" },
+              { label: "Monitoring and alerting", text: "keeping an eye on system health (error rates, latency, resource usage) and notifying engineers when something goes wrong, ideally before users notice" },
+              { label: "Testing for failure", text: "practices like chaos engineering deliberately inject failures into a system to verify it actually behaves reliably under real-world conditions, not just in the happy path" },
+            ],
+          },
+          {
+            title: "Availability",
+            hook:
+              "Availability is about uptime: how often is the system up and running, ready to serve requests? It's often confused with reliability, but a system can be highly available (always responding) while still being unreliable (responding with the wrong answer).",
+            points: [
+              { label: "Definition", text: "the proportion of time a system is operational and accessible when required for use" },
+              { label: "High availability (HA)", text: "designing systems to minimize downtime, often through redundancy and failover mechanisms across multiple servers, data centers, or regions" },
+              { label: "Service Level Agreement (SLA)", text: "a formal commitment between a service provider and a client regarding the expected level of service availability, often with financial penalties if it's not met" },
+              { label: "Measuring availability", text: "often expressed as a percentage (e.g., 99.9% uptime) over a specific time period — but each additional '9' represents a dramatically smaller allowed downtime" },
+              { label: "The 'nines' in practice", text: "99% uptime allows ~3.65 days of downtime a year; 99.9% allows ~8.76 hours; 99.99% ('four nines') allows just ~52 minutes — illustrating why chasing extra nines gets exponentially harder and costlier" },
+              { label: "Availability vs reliability", text: "a flaky system that crashes and restarts instantly can show high availability numbers while still being unreliable — the two metrics measure different failure modes and neither one alone tells the whole story" },
+            ],
+          },
+        ],
+      },
       {
         id: "u2-c2",
         label: "Chapter 2",
@@ -541,7 +650,7 @@ const units = [
         hook:
           "In a distributed system, the network will eventually fail somewhere — a cable gets cut, a data center loses connectivity. CAP theorem is about what you're forced to sacrifice when that happens.",
         points: [
-          { label: "Consistency (C)", text: "every read gets the most recent write, or an error — no stale data slipping through" },
+          { label: "Consistency (C)", text: "every read gets the most recent write, or an error — no stale data slipping through. for example - " },
           { label: "Availability (A)", text: "every request gets a response, even if it isn't the most up-to-date one" },
           { label: "Partition tolerance (P)", text: "the system keeps working even when network communication between nodes breaks down" },
           { label: "The catch", text: "during an actual network partition, a distributed system can only keep one of Consistency or Availability — not both — since Partition tolerance is basically non-negotiable in real networks" },
@@ -563,6 +672,136 @@ const units = [
           { label: "A mindset, not a checklist", text: "hunting for SPOFs really means asking, again and again: what's the one thing that, if it goes down right now, takes everything else with it?" },
         ],
       },
+      {
+        id: "u2-c4",
+        label: "Chapter 4",
+        title: "Latency vs Throughput vs Bandwidth",
+        hook:
+          "Every network and system architecture discussion eventually collides with three metrics that sound interchangeable but measure entirely different dimensions of performance: time, capacity, and actual delivery.",
+        topics: [
+          {
+            title: "Latency",
+            hook:
+              "Latency is about speed and time: how long does it take for a single request to travel from sender to receiver and back? It's the silent killer of user experience, often felt long before a system runs out of capacity.",
+            points: [
+              { label: "Definition", text: "the time delay between the initiation of a request and the receipt of its response, usually measured in milliseconds" },
+              { label: "Components of latency", text: "includes propagation delay (physical travel time across space), transmission delay (time to push bits onto the wire), and queuing delay (time spent waiting in line because the system is busy)" },
+              { label: "Round Trip Time (RTT)", text: "the total time it takes for a data packet to go to a destination and return, serving as a primary metric for network responsiveness" },
+              { label: "Tail latency", text: "focusing on worst-case delays like the 99th percentile rather than averages, uncovering hidden performance spikes that degrade user experience" },
+              { label: "Human perception limits", text: "latencies under 100 milliseconds feel instantaneous to users, while delays exceeding 300 to 1000 milliseconds break cognitive flow and feel sluggish" }
+            ],
+          },
+          {
+            title: "Bandwidth",
+            hook:
+              "Bandwidth is about capacity and potential: how wide is the pipe? It defines the maximum theoretical volume of data that can pass through a network link over a given time, though a wide pipe doesn't guarantee fast delivery.",
+            points: [
+              { label: "Definition", text: "the maximum rate of data transfer across a given path, typically measured in bits per second" },
+              { label: "Bandwidth vs throughput", text: "bandwidth is the theoretical ceiling or maximum highway capacity; throughput is the actual volume of traffic moving down the road at any given moment" },
+              { label: "Physical limitations", text: "governed by the physics of the transmission medium—such as copper wire versus fiber optics—and hardware interface limits" },
+              { label: "The illusion of capacity", text: "high bandwidth cannot compensate for high latency or poor downstream processing; a massive pipe is useless if the server takes seconds to process each request" }
+            ],
+          },
+          {
+            title: "Throughput",
+            hook:
+              "Throughput is about actual delivery: how much work is the system successfully processing over a period of time? While bandwidth measures what's possible, throughput measures real-world productivity under load.",
+            points: [
+              { label: "Definition", text: "the actual number of successful requests, transactions, or data packets processed by a system per unit of time, such as requests per second" },
+              { label: "Limiting factors", text: "constrained by CPU speed, memory limits, disk I/O, database locks, and network congestion—meaning processing bottlenecks will cap throughput long before bandwidth runs out" },
+              { label: "Latency vs throughput trade-off", text: "batching multiple requests together can dramatically increase overall throughput, but it almost always increases the individual latency for each request" },
+              { label: "Goodput", text: "the useful data rate actually delivered to the application layer, excluding protocol overhead, packet retransmissions, and duplicate traffic" }
+            ],
+          },
+        ],
+      },
+      {
+        id: "u2-c5",
+        label: "Chapter 5",
+        title: "Consistent Hashing",
+        hook:
+          "In distributed systems, scaling out requires spreading data or requests across a cluster of servers, but adding or removing nodes typically triggers a massive data remapping disaster.",
+        topics: [
+          {
+            title: "The Problem with Traditional Hashing",
+            hook:
+              "The naive approach to routing requests relies on a simple modulo operation, creating a catastrophic domino effect whenever cluster size changes.",
+            points: [
+              { label: "The modulo bottleneck (hash(reqid)%M)", text: "maps every request or cache key to a specific server index based on the current server count, making the routing strictly dependent on M" },
+              { label: "The scaling disaster", text: "when a server is added or removed, M changes, causing almost every single key to hash to a completely different server index than before" },
+              { label: "Cache collapse and data storms", text: "changing M invalidates nearly 100% of existing cache mappings simultaneously, causing a massive cache stampede that floods primary databases" },
+              { label: "Why we need a better approach", text: "we need a routing mechanism where adding or removing a server only affects a tiny fraction of the total keys, leaving the rest untouched" },
+            ],
+          },
+          {
+            title: "Consistent Hashing & Uniform Load",
+            hook:
+              "Consistent hashing solves the remapping crisis by mapping both servers and data keys onto a shared, circular ring, ensuring scaling only redistributes a proportional slice of the load.",
+            points: [
+              { label: "Definition", text: "a distributed hashing scheme that operates independently of the number of servers by placing nodes and keys on a virtual ring range" },
+              { label: "How keys are routed", text: "a request key is hashed to a point on the ring, and the system travels clockwise until it finds the first available server node" },
+              { label: "Minimal remapping", text: "when a new server joins or an old one fails, only the keys immediately adjacent to the affected server need to be reassigned while the rest of the cluster remains untouched" },
+              { label: "Uniform load distribution", text: "designed to distribute keys evenly across the ring, preventing any single machine from absorbing a disproportionate share of incoming traffic" },
+            ],
+          },
+          {
+            title: "Virtual Nodes (Virtual Servers)",
+            hook:
+              "Even with a circular ring, random hash distributions often lead to uneven clustering where one physical server guards a massive section while another guards a tiny sliver.",
+            points: [
+              { label: "The physical node imbalance", text: "real-world servers placed randomly on a hash ring rarely distribute traffic uniformly, leading to uneven resource utilization" },
+              { label: "What virtual nodes are", text: "mapping a single physical server to multiple virtual points spread across the entire ring instead of a single point" },
+              { label: "Solving the hotspot problem", text: "interleaving multiple virtual tokens for every physical server thoroughly randomizes and averages out the workload across available hardware" },
+              { label: "Handling heterogeneous capacity", text: "allowing systems to assign more tokens to powerful servers and fewer to weaker ones to match hardware capacity" },
+            ],
+          },
+        ],
+        diagram: <ConsistentHashingDiagram />
+      },
+      {
+        id: "u2-c6",
+  label: "Chapter 6",
+  title: "Consistency Models in Distributed Systems",
+  hook:
+    "Consistency models define how data updates are shared and viewed across multiple nodes, setting the exact rules for synchronization while balancing reliability, availability, and performance.",
+  topics: [
+    {
+      title: "Strong & Sequential Consistency",
+      hook:
+        "Rigorous models that enforce strict global ordering or synchronized state updates across the entire cluster.",
+      points: [
+        { label: "Strong consistency", text: "all nodes agree on operation order and reads return the most recent version immediately, ensuring every server reflects changes instantly at the cost of speed and resource overhead" },
+        { label: "Sequential consistency", text: "ensures all operations across processes appear in a single, unified order, maintaining predictable sequencing even without global real-time synchronization" },
+        { label: "Critical use cases", text: "essential for systems where the absolute latest data is non-negotiable, such as financial banking ledgers or critical inventory counts" },
+      ],
+    },
+    {
+      title: "Causal & Weak Consistency",
+      hook:
+        "Trading absolute global lockstep for performance by only enforcing order where a logical relationship actually exists.",
+      points: [
+        { label: "Causal consistency", text: "ensures causally related actions are seen in the correct order by all users, while leaving unrelated operations unconstrained — ideal for social media feeds or message threads" },
+        { label: "Weak consistency", text: "provides zero guarantees about operation ordering or instant data states, allowing clients to see differing versions depending on the connected node to maximize availability and scalability" },
+      ],
+    },
+    {
+      title: "Session Consistency & Monotonic Guarantees",
+      hook:
+        "User-centric consistency models that guarantee predictable behaviors and state views during individual sessions or sequential read/write operations.",
+      points: [
+        { label: "Session consistency", text: "guarantees that actions a user engages with within a single session remain consistent and reliable, such as items remaining in an e-commerce shopping cart" },
+        { label: "Monotonic reads", text: "ensures that once a user reads a value, subsequent reads will never return an older value, preventing time from seemingly moving backward" },
+        { label: "Monotonic writes", text: "guarantees that a user's sequential updates follow the correct order without reversing or scrambling update sequences" },
+      ],
+    },
+  ],
+  diagram: <ConsistencyModelsDiagram /> 
+      },
+      {
+        id: "u2-c7",
+        label: "Chapter 7",
+        title: "Back of the envelope estimations",
+      }
     ],
   },
 ];
@@ -667,11 +906,10 @@ function SystemDesignData() {
                 <div key={unit.id} className="flex flex-col gap-2">
                   <button
                     onClick={() => selectUnit(uIdx)}
-                    className={`w-full text-left p-3 border-3 border-black font-black transition-all cursor-pointer mb-2 ${
-                      isActiveUnit
-                        ? "bg-yellow-300 text-black shadow-[4px_4px_0px_0px_#000] translate-x-1"
-                        : "bg-white text-black hover:bg-amber-100 shadow-[2px_2px_0px_0px_#000]"
-                    }`}
+                    className={`w-full text-left p-3 border-3 border-black font-black transition-all cursor-pointer mb-2 ${isActiveUnit
+                      ? "bg-yellow-300 text-black shadow-[4px_4px_0px_0px_#000] translate-x-1"
+                      : "bg-white text-black hover:bg-amber-100 shadow-[2px_2px_0px_0px_#000]"
+                      }`}
                   >
                     <span className="text-[10px] font-black uppercase tracking-wide text-emerald-700 block">
                       {unit.label}
@@ -687,11 +925,10 @@ function SystemDesignData() {
                           <button
                             key={chapter.id}
                             onClick={() => setActiveChapterIdx(cIdx)}
-                            className={`w-full flex items-center gap-2 text-left px-3 py-3 border-2 border-black text-sm font-bold transition-all cursor-pointer mb-1 ${
-                              isActiveChapter
-                                ? "bg-emerald-200 text-black shadow-[2px_2px_0px_0px_#000]"
-                                : "bg-white/80 text-black hover:bg-emerald-100"
-                            }`}
+                            className={`w-full flex items-center gap-2 text-left px-3 py-3 border-2 border-black text-sm font-bold transition-all cursor-pointer mb-1 ${isActiveChapter
+                              ? "bg-emerald-200 text-black shadow-[2px_2px_0px_0px_#000]"
+                              : "bg-white/80 text-black hover:bg-emerald-100"
+                              }`}
                           >
                             <span className="w-4 h-4 shrink-0 rounded-full bg-black text-white flex items-center justify-center text-[9px] font-bold">
                               {cIdx + 1}
