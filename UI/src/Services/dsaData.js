@@ -1,57 +1,60 @@
 export const topicOrder = [
-    "learnTheBasics",
-    "sorting",
-    "arrays",
-    "binarySearch",
-    "strings",
-    "linkedList",
-    "recursion",
-    "bitManipulation",
-    "stackAndQueues",
-    "slidingWindowTwoPointer",
-    "heaps",
-    "greedyAlgorithms",
-    "binaryTrees",
-    "binarySearchTrees",
-    "graphs",
-    "dynamicProgramming",
-    "tries",
+  "learnTheBasics",
+  "sorting",
+  "arrays",
+  "binarySearch",
+  "strings",
+  "linkedList",
+  "recursion",
+  "bitManipulation",
+  "stackAndQueues",
+  "slidingWindowTwoPointer",
+  "heaps",
+  "greedyAlgorithms",
+  "binaryTrees",
+  "binarySearchTrees",
+  "graphs",
+  "dynamicProgramming",
+  "tries",
 ];
 
 export const topicMeta = {
-    learnTheBasics: { label: "Pattern", number: "01" },
-    sorting: { label: "Sorting Techniques", number: "02" },
-    arrays: { label: "Arrays", number: "03" },
-    binarySearch: { label: "Binary Search", number: "04" },
-    strings: { label: "Strings", number: "05" },
-    linkedList: { label: "LinkedList", number: "06" },
-    recursion: { label: "Recursion", number: "07" },
-    bitManipulation: { label: "Bit Manipulation", number: "08" },
-    stackAndQueues: { label: "Stack and Queues", number: "09" },
-    slidingWindowTwoPointer: { label: "Sliding Window & Two Pointer Combined Problems", number: "10" },
-    heaps: { label: "Heaps", number: "11" },
-    greedyAlgorithms: { label: "Greedy Algorithms", number: "12" },
-    binaryTrees: { label: "Binary Trees", number: "13" },
-    binarySearchTrees: { label: "Binary Search Trees", number: "14" },
-    graphs: { label: "Graphs", number: "15" },
-    dynamicProgramming: { label: "Dynamic Programming", number: "16" },
-    tries: { label: "Tries", number: "17" },
+  learnTheBasics: { label: "Pattern", number: "01" },
+  sorting: { label: "Sorting Techniques", number: "02" },
+  arrays: { label: "Arrays", number: "03" },
+  binarySearch: { label: "Binary Search", number: "04" },
+  strings: { label: "Strings", number: "05" },
+  linkedList: { label: "LinkedList", number: "06" },
+  recursion: { label: "Recursion", number: "07" },
+  bitManipulation: { label: "Bit Manipulation", number: "08" },
+  stackAndQueues: { label: "Stack and Queues", number: "09" },
+  slidingWindowTwoPointer: {
+    label: "Sliding Window & Two Pointer Combined Problems",
+    number: "10",
+  },
+  heaps: { label: "Heaps", number: "11" },
+  greedyAlgorithms: { label: "Greedy Algorithms", number: "12" },
+  binaryTrees: { label: "Binary Trees", number: "13" },
+  binarySearchTrees: { label: "Binary Search Trees", number: "14" },
+  graphs: { label: "Graphs", number: "15" },
+  dynamicProgramming: { label: "Dynamic Programming", number: "16" },
+  tries: { label: "Tries", number: "17" },
 };
 
 export const dsaData = {
-    learnTheBasics: [
-        {
-            title: "Pyramid Pattern",
-            question:
-                "Given a number n, print a centered pyramid pattern of stars with n rows, where the i-th row (0-indexed) contains (2*i + 1) stars preceded by spaces.",
-            example: `    *
+  learnTheBasics: [
+    {
+      title: "Pyramid Pattern",
+      question:
+        "Given a number n, print a centered pyramid pattern of stars with n rows, where the i-th row (0-indexed) contains (2*i + 1) stars preceded by spaces.",
+      example: `    *
    ***
   *****
  *******
 *********`,
-            approach:
-                "Iterate row index i from 0 to n - 1. For each row, print (n - i - 1) leading spaces to center the stars, then run an inner loop to print (2 * i + 1) stars, followed by a newline.",
-            code: `class Main {
+      approach:
+        "Iterate row index i from 0 to n - 1. For each row, print (n - i - 1) leading spaces to center the stars, then run an inner loop to print (2 * i + 1) stars, followed by a newline.",
+      code: `class Main {
     public static void main(String[] args) {
         int n=5;
        for(int i=0;i<n;i++){
@@ -65,20 +68,20 @@ export const dsaData = {
        }
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Inverted Pyramid Pattern",
-            question:
-                "Given a number n, print an inverted pyramid pattern of stars with n rows, where the top row has the maximum number of stars and each subsequent row decreases symmetrically.",
-            example: `*********
+      language: "java",
+    },
+    {
+      title: "Inverted Pyramid Pattern",
+      question:
+        "Given a number n, print an inverted pyramid pattern of stars with n rows, where the top row has the maximum number of stars and each subsequent row decreases symmetrically.",
+      example: `*********
  *******
   *****
    ***
     *`,
-            approach:
-                "Iterate row index i from 0 to n - 1. Print i leading spaces to indent each subsequent line, followed by an inner loop printing the decreasing odd count of stars (2 * (n - i) - 1).",
-            code: `class Main {
+      approach:
+        "Iterate row index i from 0 to n - 1. Print i leading spaces to indent each subsequent line, followed by an inner loop printing the decreasing odd count of stars (2 * (n - i) - 1).",
+      code: `class Main {
     public static void main(String[] args) {
         int n=5;
        for(int i=0;i<n;i++){
@@ -93,13 +96,13 @@ export const dsaData = {
        }
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Diamond Pattern",
-            question:
-                "Given a number n, print a symmetric diamond shape made of stars consisting of an upper pyramid of (n - 1) rows and an inverted pyramid of n rows.",
-            example: `    *
+      language: "java",
+    },
+    {
+      title: "Diamond Pattern",
+      question:
+        "Given a number n, print a symmetric diamond shape made of stars consisting of an upper pyramid of (n - 1) rows and an inverted pyramid of n rows.",
+      example: `    *
    ***
   *****
  *******
@@ -108,9 +111,9 @@ export const dsaData = {
   *****
    ***
     *`,
-            approach:
-                "Divide the pattern into two sections. First, print an upright pyramid of n - 1 rows using leading spaces and odd star counts. Second, print an inverted pyramid of n rows with increasing leading spaces and decreasing star counts.",
-            code: `class Main {
+      approach:
+        "Divide the pattern into two sections. First, print an upright pyramid of n - 1 rows using leading spaces and odd star counts. Second, print an inverted pyramid of n rows with increasing leading spaces and decreasing star counts.",
+      code: `class Main {
     public static void main(String[] args) {
         int n=5;
        for(int i=0;i<n-1;i++){
@@ -134,20 +137,20 @@ export const dsaData = {
        }
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Hollow Square Pattern",
-            question:
-                "Given a number n, print an n x n hollow square where only the border positions contain stars and all internal positions contain spaces.",
-            example: `*****
+      language: "java",
+    },
+    {
+      title: "Hollow Square Pattern",
+      question:
+        "Given a number n, print an n x n hollow square where only the border positions contain stars and all internal positions contain spaces.",
+      example: `*****
 *   *
 *   *
 *   *
 *****`,
-            approach:
-                "Loop through rows from 0 to n - 1. For the first (i == 0) and last (i == n - 1) rows, fill all columns with stars. For intermediate rows, print a star at the boundary columns (j == 0 or j == n - 1) and spaces everywhere in between.",
-            code: `class Main {
+      approach:
+        "Loop through rows from 0 to n - 1. For the first (i == 0) and last (i == n - 1) rows, fill all columns with stars. For intermediate rows, print a star at the boundary columns (j == 0 or j == n - 1) and spaces everywhere in between.",
+      code: `class Main {
     public static void main(String[] args) {
         int n=5;
        for(int i=0;i<n;i++){
@@ -169,20 +172,20 @@ export const dsaData = {
        }
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Floyd's Triangle Pattern",
-            question:
-                "Given a number n, print Floyd's Triangle with n rows, filling consecutive natural numbers sequentially in a right-angled triangle format.",
-            example: `1 
+      language: "java",
+    },
+    {
+      title: "Floyd's Triangle Pattern",
+      question:
+        "Given a number n, print Floyd's Triangle with n rows, filling consecutive natural numbers sequentially in a right-angled triangle format.",
+      example: `1 
 2 3 
 4 5 6 
 7 8 9 10 
 11 12 13 14 15`,
-            approach:
-                "Maintain a running counter initialized to 1. Use an outer loop for the row number and an inner loop running up to the current row index, printing and incrementing the counter at each step.",
-            code: `class Main {
+      approach:
+        "Maintain a running counter initialized to 1. Use an outer loop for the row number and an inner loop running up to the current row index, printing and incrementing the counter at each step.",
+      code: `class Main {
     public static void main(String[] args) {
         int n=5;
         int num=1;
@@ -194,20 +197,20 @@ export const dsaData = {
         }
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "0-1 Alternating Triangle Pattern",
-            question:
-                "Given a number n, print a right-angled triangle where each cell alternates between 1 and 0 based on row and column index parity.",
-            example: `1
+      language: "java",
+    },
+    {
+      title: "0-1 Alternating Triangle Pattern",
+      question:
+        "Given a number n, print a right-angled triangle where each cell alternates between 1 and 0 based on row and column index parity.",
+      example: `1
 0 1
 1 0 1
 0 1 0 1
 1 0 1 0 1`,
-            approach:
-                "Iterate row index i from 0 to n - 1. For each row, iterate column index j from 0 to i. If the sum of indices (i + j) is even, print 1; otherwise, print 0.",
-            code: `class Main {
+      approach:
+        "Iterate row index i from 0 to n - 1. For each row, iterate column index j from 0 to i. If the sum of indices (i + j) is even, print 1; otherwise, print 0.",
+      code: `class Main {
     public static void main(String[] args) {
         int n = 5;
         for (int i = 0; i < n; i++) {
@@ -218,20 +221,20 @@ export const dsaData = {
         }
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Palindromic Number Pyramid Pattern",
-            question:
-                "Given a number n, print a centered pyramid where each row forms a numerical palindrome counting down to 1 and then back up to the row number.",
-            example: `    1
+      language: "java",
+    },
+    {
+      title: "Palindromic Number Pyramid Pattern",
+      question:
+        "Given a number n, print a centered pyramid where each row forms a numerical palindrome counting down to 1 and then back up to the row number.",
+      example: `    1
    212
   32123
  4321234
 543212345`,
-            approach:
-                "Iterate row i from 1 to n. Print (n - i) leading spaces, print numbers counting down from i to 1, and then print numbers counting up from 2 to i.",
-            code: `class Main {
+      approach:
+        "Iterate row i from 1 to n. Print (n - i) leading spaces, print numbers counting down from i to 1, and then print numbers counting up from 2 to i.",
+      code: `class Main {
     public static void main(String[] args) {
         int n=5;
         for(int i=1;i<=n;i++){
@@ -248,13 +251,13 @@ export const dsaData = {
         }
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Butterfly Pattern",
-            question:
-                "Given a number n, print a symmetric butterfly pattern of stars consisting of an expanding upper half and a contracting lower half separated by inner spacing.",
-            example: `*        *
+      language: "java",
+    },
+    {
+      title: "Butterfly Pattern",
+      question:
+        "Given a number n, print a symmetric butterfly pattern of stars consisting of an expanding upper half and a contracting lower half separated by inner spacing.",
+      example: `*        *
 **      **
 ***    ***
 ****  ****
@@ -264,9 +267,9 @@ export const dsaData = {
 ***    ***
 **      **
 *        *`,
-            approach:
-                "Split the pattern into upper and lower sections. In the top half, print increasing stars, decreasing middle spaces, and increasing stars. In the bottom half, print decreasing stars, increasing middle spaces, and decreasing stars.",
-            code: `class Main {
+      approach:
+        "Split the pattern into upper and lower sections. In the top half, print increasing stars, decreasing middle spaces, and increasing stars. In the bottom half, print decreasing stars, increasing middle spaces, and decreasing stars.",
+      code: `class Main {
     public static void main(String[] args) {
         int n=5;
         for(int i=0;i<n;i++){
@@ -295,19 +298,19 @@ export const dsaData = {
         }
     }
 }`,
-            language: "java",
-        }
-    ],
-    sorting: [
-        {
-            title: "Bubble Sort",
-            question:
-                "Given an array of integers, sort the array in ascending order using the Bubble Sort algorithm. Optimize the algorithm so that it terminates early if no swaps occur in a pass.",
-            example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+      language: "java",
+    },
+  ],
+  sorting: [
+    {
+      title: "Bubble Sort",
+      question:
+        "Given an array of integers, sort the array in ascending order using the Bubble Sort algorithm. Optimize the algorithm so that it terminates early if no swaps occur in a pass.",
+      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
 Output: [2, 3, 5, 8, 9, 23, 67]`,
-            approach:
-                "Iterate through the array multiple times, comparing adjacent elements and swapping them if they are out of order. Maintain a boolean flag to track if any swaps occurred during the iteration; if no elements were swapped, the array is already sorted and the loop breaks early.",
-            code: `import java.util.*;
+      approach:
+        "Iterate through the array multiple times, comparing adjacent elements and swapping them if they are out of order. Maintain a boolean flag to track if any swaps occurred during the iteration; if no elements were swapped, the array is already sorted and the loop breaks early.",
+      code: `import java.util.*;
 class Main {
     static int [] bubbleSort(int arr[]){
         int n = arr.length;
@@ -333,17 +336,17 @@ class Main {
         System.out.println(Arrays.toString(result));
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Selection Sort",
-            question:
-                "Given an array of integers, sort the array in ascending order using the Selection Sort technique by repeatedly locating the appropriate element and placing it into position.",
-            example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+      language: "java",
+    },
+    {
+      title: "Selection Sort",
+      question:
+        "Given an array of integers, sort the array in ascending order using the Selection Sort technique by repeatedly locating the appropriate element and placing it into position.",
+      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
 Output: [2, 3, 5, 8, 9, 23, 67]`,
-            approach:
-                "Iterate across the array indices. For each position, scan the remaining elements to identify the target value according to order, then swap the values into the active position.",
-            code: `import java.util.*;
+      approach:
+        "Iterate across the array indices. For each position, scan the remaining elements to identify the target value according to order, then swap the values into the active position.",
+      code: `import java.util.*;
 class Main {
     static int [] selectionSort(int arr[]){
         int n = arr.length;
@@ -365,17 +368,17 @@ class Main {
         System.out.println(Arrays.toString(result));
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Insertion Sort",
-            question:
-                "Given an array of integers, sort the array in ascending order using the Insertion Sort algorithm by building a sorted prefix one element at a time.",
-            example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+      language: "java",
+    },
+    {
+      title: "Insertion Sort",
+      question:
+        "Given an array of integers, sort the array in ascending order using the Insertion Sort algorithm by building a sorted prefix one element at a time.",
+      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
 Output: [2, 3, 5, 8, 9, 23, 67]`,
-            approach:
-                "Iterate from index 1 to the end of the array, picking the current element as a key. Compare the key with elements in the already sorted subarray to its left, shifting all elements greater than the key one position to the right, and then insert the key into its correct position.",
-            code: `import java.util.*;
+      approach:
+        "Iterate from index 1 to the end of the array, picking the current element as a key. Compare the key with elements in the already sorted subarray to its left, shifting all elements greater than the key one position to the right, and then insert the key into its correct position.",
+      code: `import java.util.*;
 class Main {
     static int [] insertionSort(int arr[]){
         int n = arr.length;
@@ -396,17 +399,17 @@ class Main {
         System.out.println(Arrays.toString(result));
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Merge Sort",
-            question:
-                "Given an array of integers, sort the array in ascending order using the Merge Sort divide-and-conquer algorithm.",
-            example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+      language: "java",
+    },
+    {
+      title: "Merge Sort",
+      question:
+        "Given an array of integers, sort the array in ascending order using the Merge Sort divide-and-conquer algorithm.",
+      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
 Output: [2, 3, 5, 8, 9, 23, 67]`,
-            approach:
-                "Divide the array recursively into two halves until single-element subarrays remain. Merge the halves back together by copying elements into temporary arrays, comparing elements sequentially, and placing the smaller value back into the original array.",
-            code: `import java.util.*;
+      approach:
+        "Divide the array recursively into two halves until single-element subarrays remain. Merge the halves back together by copying elements into temporary arrays, comparing elements sequentially, and placing the smaller value back into the original array.",
+      code: `import java.util.*;
 class Main {
     static void merge(int arr[],int l, int m, int r){
         int n1=m-l+1;
@@ -460,17 +463,17 @@ class Main {
         System.out.println(Arrays.toString(arr));
     }
 }`,
-            language: "java",
-        },
-        {
-            title: "Quick Sort",
-            question:
-                "Given an array of integers, sort the array in ascending order using the Quick Sort divide-and-conquer partitioning algorithm.",
-            example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
+      language: "java",
+    },
+    {
+      title: "Quick Sort",
+      question:
+        "Given an array of integers, sort the array in ascending order using the Quick Sort divide-and-conquer partitioning algorithm.",
+      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
 Output: 2 3 5 8 9 23 67`,
-            approach:
-                "Choose the last element as the pivot. Rearrange the array so that all elements smaller than the pivot are placed to its left and all greater elements to its right. Recursively apply the same partitioning strategy to the subarrays on either side of the pivot index.",
-            code: `import java.util.*;
+      approach:
+        "Choose the last element as the pivot. Rearrange the array so that all elements smaller than the pivot are placed to its left and all greater elements to its right. Recursively apply the same partitioning strategy to the subarrays on either side of the pivot index.",
+      code: `import java.util.*;
 
 class Main {
     static int partition(int[] arr, int low, int high) {
@@ -510,18 +513,19 @@ class Main {
         }
     }
 }`,
-            language: "java",
-        },
-    ],
-    arrays: [
-        {
-            title: 'Second largest element in an array',
-            question:
-                "Given an array of integers, find the second largest element in the array.",
-            example: `Input: [12, 35, 1, 10, 34, 1]`,
-            output: `Output: 34`,
-            approach: 'Initialize two variables, first and second, to the minimum integer value. Iterate through the array; if an element is greater than first, update second to first and first to the element. Otherwise, if the element is greater than second and not equal to first, update second to the element.',
-            code: `class Main {
+      language: "java",
+    },
+  ],
+  arrays: [
+    {
+      title: "Second largest element in an array",
+      question:
+        "Given an array of integers, find the second largest element in the array.",
+      example: `Input: [12, 35, 1, 10, 34, 1]`,
+      output: `Output: 34`,
+      approach:
+        "Initialize two variables, first and second, to the minimum integer value. Iterate through the array; if an element is greater than first, update second to first and first to the element. Otherwise, if the element is greater than second and not equal to first, update second to the element.",
+      code: `class Main {
         public static void main(String[] args) {
         int[] arr = {12, 35, 1, 10, 34, 1};
         int first = Integer.MIN_VALUE;
@@ -536,17 +540,18 @@ class Main {
             }
                 System.out.println(second);
             }
-        }`, language: "java",
-        },
-        {
-            title: 'Two sum problem',
-            question:
-                "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
-            example: `Nums: [2, 7, 11, 15], Target: 9`,
-            output: `Output: [0, 1]`,
-            approach:
-                "Iterate through the array and use a HashMap to store each number and its index. For each element, calculate its complement by subtracting it from the target. If the complement exists in the map, return its index along with the current index.",
-            code: `class Main {
+        }`,
+      language: "java",
+    },
+    {
+      title: "Two sum problem",
+      question:
+        "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+      example: `Nums: [2, 7, 11, 15], Target: 9`,
+      output: `Output: [0, 1]`,
+      approach:
+        "Iterate through the array and use a HashMap to store each number and its index. For each element, calculate its complement by subtracting it from the target. If the complement exists in the map, return its index along with the current index.",
+      code: `class Main {
         public static void main(String[] args) {
         int[] nums = {2, 7, 11, 15};
         int target = 9;
@@ -559,16 +564,17 @@ class Main {
             }
         }
     }`,
-            language: "java",
-        },
-        {
-    title: 'Check if an array is sorted and rotated',
-    question:
+      language: "java",
+    },
+    {
+      title: "Check if an array is sorted and rotated",
+      question:
         "Given an array of integers, check whether the array is sorted and then rotated.",
-    example: `Input: [3, 4, 5, 1, 2]`,
-    output: `Output: true`,
-    approach: 'Count the number of times an element is greater than the next element. Since a sorted and rotated array can have at most one such point, return true if the count is less than or equal to 1.',
-    code: `class Solution {
+      example: `Input: [3, 4, 5, 1, 2]`,
+      output: `Output: true`,
+      approach:
+        "Count the number of times an element is greater than the next element. Since a sorted and rotated array can have at most one such point, return true if the count is less than or equal to 1.",
+      code: `class Solution {
     public boolean check(int[] nums) {
         int n = nums.length;
         int count = 0;
@@ -582,16 +588,17 @@ class Main {
         return count <= 1;
     }
 }`,
-    language: "java",
-},
-{
-    title: 'Remove duplicates and return actual elements size',
-    question:
+      language: "java",
+    },
+    {
+      title: "Remove duplicates and return actual elements size",
+      question:
         "Given a sorted array, remove the duplicates in-place and return the number of unique elements.",
-    example: `Input: [1, 1, 2, 2, 3]`,
-    output: `Output: 3`,
-    approach: 'Use two pointers. Keep one pointer i at the position of the last unique element and another pointer j to scan the array. Whenever nums[j] is different from nums[i], move i forward and store nums[j] at that position. Finally, return i + 1 as the number of unique elements.',
-    code: `class Solution {
+      example: `Input: [1, 1, 2, 2, 3]`,
+      output: `Output: 3`,
+      approach:
+        "Use two pointers. Keep one pointer i at the position of the last unique element and another pointer j to scan the array. Whenever nums[j] is different from nums[i], move i forward and store nums[j] at that position. Finally, return i + 1 as the number of unique elements.",
+      code: `class Solution {
     public int removeDuplicates(int[] nums) {
         int i = 0;
 
@@ -605,16 +612,17 @@ class Main {
         return i + 1;
     }
 }`,
-    language: "java",
-},
-{
-    title: 'Rotate array',
-    question:
+      language: "java",
+    },
+    {
+      title: "Rotate array",
+      question:
         "Given an array of integers, rotate the array to the right by k positions.",
-    example: `Input: [1, 2, 3, 4, 5, 6, 7], k = 3`,
-    output: `Output: [5, 6, 7, 1, 2, 3, 4]`,
-    approach: 'First calculate k modulo the length of the array to handle cases where k is larger than the array size. Store the last k elements in a temporary array, shift the remaining elements to the right by k positions, and then place the stored elements at the beginning.',
-    code: `class Solution {
+      example: `Input: [1, 2, 3, 4, 5, 6, 7], k = 3`,
+      output: `Output: [5, 6, 7, 1, 2, 3, 4]`,
+      approach:
+        "First calculate k modulo the length of the array to handle cases where k is larger than the array size. Store the last k elements in a temporary array, shift the remaining elements to the right by k positions, and then place the stored elements at the beginning.",
+      code: `class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
         k = k % n;
@@ -636,16 +644,17 @@ class Main {
         }
     }
 }`,
-    language: "java",
-},
-{
-    title: 'Move zeroes to the end',
-    question:
+      language: "java",
+    },
+    {
+      title: "Move zeroes to the end",
+      question:
         "Given an array of integers, move all zeroes to the end while maintaining the relative order of the non-zero elements.",
-    example: `Input: [0, 1, 0, 3, 12]`,
-    output: `Output: [1, 3, 12, 0, 0]`,
-    approach: 'Use a pointer k to track the position where the next non-zero element should be placed. Iterate through the array and copy every non-zero element to nums[k]. After all non-zero elements are placed, fill the remaining positions with zeroes.',
-    code: `class Solution {
+      example: `Input: [0, 1, 0, 3, 12]`,
+      output: `Output: [1, 3, 12, 0, 0]`,
+      approach:
+        "Use a pointer k to track the position where the next non-zero element should be placed. Iterate through the array and copy every non-zero element to nums[k]. After all non-zero elements are placed, fill the remaining positions with zeroes.",
+      code: `class Solution {
     public void moveZeroes(int[] nums) {
         int k = 0;
 
@@ -660,16 +669,17 @@ class Main {
         }
     }
 }`,
-    language: "java",
-},
-{
-    title: 'Linear search',
-    question:
+      language: "java",
+    },
+    {
+      title: "Linear search",
+      question:
         "Given an array of integers and a target element, find the index of the target element using linear search.",
-    example: `Input: [10, 20, 30, 40, 50], target = 30`,
-    output: `Output: 2`,
-    approach: 'Iterate through the array from the beginning and compare each element with the target. If an element matches the target, return its index. If the target is not found after checking all elements, return -1.',
-    code: `class Solution {
+      example: `Input: [10, 20, 30, 40, 50], target = 30`,
+      output: `Output: 2`,
+      approach:
+        "Iterate through the array from the beginning and compare each element with the target. If an element matches the target, return its index. If the target is not found after checking all elements, return -1.",
+      code: `class Solution {
     public int linearSearch(int[] nums, int target) {
         for(int i = 0; i < nums.length; i++) {
             if(nums[i] == target) {
@@ -680,16 +690,17 @@ class Main {
         return -1;
     }
 }`,
-    language: "java",
-},
-{
-    title: 'Maximum consecutive ones',
-    question:
+      language: "java",
+    },
+    {
+      title: "Maximum consecutive ones",
+      question:
         "Given a binary array, find the maximum number of consecutive 1s in the array.",
-    example: `Input: [1, 1, 0, 1, 1, 1]`,
-    output: `Output: 3`,
-    approach: 'Maintain a count of consecutive 1s and a variable max to store the maximum count found so far. Increment count when the current element is 1. When a 0 is encountered, update max and reset count to 0. Finally, return the maximum of count and max to handle an array ending with 1s.',
-    code: `class Solution {
+      example: `Input: [1, 1, 0, 1, 1, 1]`,
+      output: `Output: 3`,
+      approach:
+        "Maintain a count of consecutive 1s and a variable max to store the maximum count found so far. Increment count when the current element is 1. When a 0 is encountered, update max and reset count to 0. Finally, return the maximum of count and max to handle an array ending with 1s.",
+      code: `class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
         int n = nums.length;
         int count = 0;
@@ -707,16 +718,17 @@ class Main {
         return Math.max(count, max);
     }
 }`,
-    language: "java",
-},
-{
-    title: 'Single number using XOR',
-    question:
+      language: "java",
+    },
+    {
+      title: "Single number using XOR",
+      question:
         "Given a non-empty array of integers where every element appears twice except for one element, find the element that appears only once.",
-    example: `Input: [4, 1, 2, 1, 2]`,
-    output: `Output: 4`,
-    approach: 'Use the XOR operation on every element. XOR has the property that a number XOR itself is 0 and a number XOR 0 is the number itself. Therefore, all duplicate elements cancel each other out, leaving only the element that appears once.',
-    code: `class Solution {
+      example: `Input: [4, 1, 2, 1, 2]`,
+      output: `Output: 4`,
+      approach:
+        "Use the XOR operation on every element. XOR has the property that a number XOR itself is 0 and a number XOR 0 is the number itself. Therefore, all duplicate elements cancel each other out, leaving only the element that appears once.",
+      code: `class Solution {
     public int singleNumber(int[] nums) {
         int result = 0;
 
@@ -727,9 +739,105 @@ class Main {
         return result;
     }
 }`,
-    language: "java",
+      language: "java",
+    },
+    {
+      title: "Majority Element using Hash Map",
+      question:
+        "Given an array of integers of size n, find the majority element. The majority element is the element that appears more than n/2 times.",
+      example: `Input: [2, 2, 1, 1, 1, 2, 2]`,
+      output: `Output: 2`,
+      approach:
+        "Use a Hash Map to store the frequency of each element in the array. Then, iterate through the map entries to find the element whose count is greater than n/2.",
+      code: `class Solution {
+    public int majorityElement(int[] nums) {
+        int n = nums.length;
+        Map<Integer, Integer> mpp = new HashMap<>();
+        for(int i = 0; i < n; i++){
+            mpp.put(nums[i], mpp.getOrDefault(nums[i], 0) + 1);
+        }
+        for(Map.Entry<Integer, Integer> entry : mpp.entrySet()){
+            if(entry.getValue() > n / 2){
+                return entry.getKey();
+            }
+        }
+        return -1;
+    }
+}`,
+      language: "java",
+    },
+    {
+      title: "Maximum Subarray Sum (Kadane's Algorithm)",
+      question:
+        "Given an integer array arr, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.",
+      example: `Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]`,
+      output: `Output: 6`,
+      approach:
+        "Use Kadane's Algorithm to iterate through the array while maintaining a running sum. If the running sum drops below zero, reset it to zero since a negative sum will only decrease the sum of any subsequent subarray. Track the maximum sum encountered throughout the iteration.",
+      code: `class Solution {
+    public long maxSubArray(int[] nums) {
+        int n = nums.length;
+        long max = Long.MIN_VALUE;
+        long sum = 0;
+        for(int i = 0; i < n; i++){
+            sum += nums[i];
+            if(sum > max){
+                max = sum;
+            }
+            if(sum < 0){
+                sum = 0;
+            }
+        }
+        return max;
+    }
+}`,
+      language: "java",
+    },
+    {
+      title: "Best Time to Buy and Sell Stock",
+      question:
+        "You are given an array prices where prices[i] is the price of a given stock on the ith day. Maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.",
+      example: `Input: [7, 1, 5, 3, 6, 4]`,
+      output: `Output: 5`,
+      approach:
+        "Iterate through the prices array while tracking the minimum price seen so far. At each step, calculate the profit if you sold on the current day, and update the maximum profit encountered.",
+      code: `class Solution {
+    public int maxProfit(int[] prices) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i < prices.length; i++){
+            min = Math.min(min, prices[i]);
+            max = Math.max(max, prices[i] - min);
+        }
+        return max;
+    }
+}`,
+      language: "java",
+    },
+    {
+  title: "Rearrange Array Elements by Sign",
+  question: "You are given a 0-indexed integer array nums of even length consisting of an equal number of positive and negative integers. Rearrange the array such that the modified array maintains alternate positive and negative integers while preserving the relative order of elements.",
+  example: `Input: [3, 1, -2, -5, 2, -4]`,
+  output: `Output: [3, -2, 1, -5, 2, -4]`,
+  approach: "Use two pointers to place positive numbers at even indices and negative numbers at odd indices in a new result array, allowing the rearrangement to be done in a single pass while preserving relative order.",
+  code: `class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int n = nums.length;
+        int[] ans = new int[n];
+        int posIndex = 0, negIndex = 1;
+        for(int i = 0; i < n; i++) {
+            if(nums[i] > 0) {
+                ans[posIndex] = nums[i];
+                posIndex += 2;
+            } else {
+                ans[negIndex] = nums[i];
+                negIndex += 2;
+            }
+        }
+        return ans;
+    }
+}`,
+  language: "java",
 },
-
-            
-    ]
+  ],
 };
