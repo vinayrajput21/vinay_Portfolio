@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 const Box = ({ children, className = "" }) => (
   <div
     className={`px-3 py-2 rounded-lg border-2 border-black bg-white text-[11px] sm:text-xs font-black text-center leading-tight shadow-[2px_2px_0px_0px_#000] ${className}`}
@@ -36,31 +35,45 @@ function SysDiagram() {
     <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 text-[#f8fafc] rounded-xl font-mono text-xs">
       <div className="flex flex-col items-center gap-2 p-4 border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
         <span className="text-black  font-bold">Client Layer</span>
-        <div className="px-4 py-2 bg-[#facc15] text-black border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">Web / Mobile App</div>
+        <div className="px-4 py-2 bg-[#facc15] text-black border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">
+          Web / Mobile App
+        </div>
       </div>
 
       <div className="flex items-center text-[#94a3b8]">
         <span className="w-6 h-[3px] bg-black"></span>
-        <span className="px-2 text-[10px] uppercase tracking-wider font-bold bg-[#1e293b] border-2 border-black text-white rounded">HTTPS</span>
+        <span className="px-2 text-[10px] uppercase tracking-wider font-bold bg-[#1e293b] border-2 border-black text-white rounded">
+          HTTPS
+        </span>
         <span className="w-6 h-[3px] bg-black"></span>
       </div>
 
       <div className="flex flex-col items-center gap-2 p-4 border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
         <span className="text-black font-bold">Routing</span>
-        <div className="px-4 py-2 bg-[#2dd4bf] text-black border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">API Gateway</div>
+        <div className="px-4 py-2 bg-[#2dd4bf] text-black border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">
+          API Gateway
+        </div>
       </div>
 
       <div className="flex items-center text-[#94a3b8]">
         <span className="w-6 h-[3px] bg-black"></span>
-        <span className="px-2 text-[10px] uppercase tracking-wider font-bold bg-[#1e293b] border-2 border-black text-white rounded">gRPC</span>
+        <span className="px-2 text-[10px] uppercase tracking-wider font-bold bg-[#1e293b] border-2 border-black text-white rounded">
+          gRPC
+        </span>
         <span className="w-6 h-[3px] bg-black"></span>
       </div>
 
       <div className="flex flex-col gap-2 p-4 border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
         <span className="text-black font-bold">Services</span>
-        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">Auth Service</div>
-        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">Core Service</div>
-        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">Notification Queue</div>
+        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">
+          Auth Service
+        </div>
+        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">
+          Core Service
+        </div>
+        <div className="px-3 py-1.5 bg-[#334155] border-2 border-black rounded text-center font-bold text-white shadow-[2px_2px_0px_0px_#000000]">
+          Notification Queue
+        </div>
       </div>
 
       <div className="flex items-center text-[#94a3b8]">
@@ -69,8 +82,12 @@ function SysDiagram() {
 
       <div className="flex flex-col gap-2 p-4 border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
         <span className="text-black font-bold">Databases</span>
-        <div className="px-3 py-1.5 bg-[#0ACF83] border-2 border-black text-black rounded text-center font-bold shadow-[2px_2px_0px_0px_#000000]">MongoDB/SQL</div>
-        <div className="px-3 py-1.5 bg-[#fca5a5] border-2 border-black text-black rounded text-center font-bold shadow-[2px_2px_0px_0px_#000000]">Redis Cache</div>
+        <div className="px-3 py-1.5 bg-[#0ACF83] border-2 border-black text-black rounded text-center font-bold shadow-[2px_2px_0px_0px_#000000]">
+          MongoDB/SQL
+        </div>
+        <div className="px-3 py-1.5 bg-[#fca5a5] border-2 border-black text-black rounded text-center font-bold shadow-[2px_2px_0px_0px_#000000]">
+          Redis Cache
+        </div>
       </div>
     </div>
   );
@@ -81,44 +98,76 @@ function HLDvsLLDDiagram() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-4 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
           <div className="flex items-center justify-between pb-2 border-b-2 border-black">
-            <span className="text-[#854d0e] font-bold text-sm">High-Level Design (HLD)</span>
-            <span className="px-2 py-0.5 bg-[#fef08a] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">MACRO</span>
+            <span className="text-[#854d0e] font-bold text-sm">
+              High-Level Design (HLD)
+            </span>
+            <span className="px-2 py-0.5 bg-[#fef08a] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">
+              MACRO
+            </span>
           </div>
-          <p className="text-[#475569] text-[11px]">Focuses on system architecture, tech stack, scalability, and component interactions.</p>
+          <p className="text-[#475569] text-[11px]">
+            Focuses on system architecture, tech stack, scalability, and
+            component interactions.
+          </p>
           <div className="flex flex-col gap-2 p-3 bg-[#f1f5f9] border-2 border-black rounded shadow-[2px_2px_0px_0px_#000000]">
             <div className="flex justify-between items-center bg-[#ffffff] p-2 border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">
               <span className="text-[#0f172a]">Client / UI</span>
               <span className="text-[#0d9488]">React / Next.js</span>
             </div>
-            <div className="text-center font-bold text-slate-600">↓ HTTPS / REST</div>
+            <div className="text-center font-bold text-slate-600">
+              ↓ HTTPS / REST
+            </div>
             <div className="flex justify-between items-center bg-[#ffffff] p-2 border-2 border-black rounded font-bold shadow-[2px_2px_0px_0px_#000000]">
               <span className="text-[#0f172a]">API Gateway</span>
               <span className="text-[#ca8a04]">Load Balancer</span>
             </div>
-            <div className="text-center font-bold text-slate-600">↓ Internal Network</div>
+            <div className="text-center font-bold text-slate-600">
+              ↓ Internal Network
+            </div>
             <div className="grid grid-cols-2 gap-2">
-              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">Auth Service</div>
-              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">Core Service</div>
+              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">
+                Auth Service
+              </div>
+              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">
+                Core Service
+              </div>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
           <div className="flex items-center justify-between pb-2 border-b-2 border-black">
-            <span className="text-[#0f766e] font-bold text-sm">Low-Level Design (LLD)</span>
-            <span className="px-2 py-0.5 bg-[#99f6e4] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">MICRO</span>
+            <span className="text-[#0f766e] font-bold text-sm">
+              Low-Level Design (LLD)
+            </span>
+            <span className="px-2 py-0.5 bg-[#99f6e4] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">
+              MICRO
+            </span>
           </div>
-          <p className="text-[#475569] text-[11px]">Focuses on class diagrams, design patterns, data structures, and logic implementation.</p>
+          <p className="text-[#475569] text-[11px]">
+            Focuses on class diagrams, design patterns, data structures, and
+            logic implementation.
+          </p>
           <div className="flex flex-col gap-2 p-3 bg-[#f1f5f9] border-2 border-black rounded shadow-[2px_2px_0px_0px_#000000]">
             <div className="bg-[#ffffff] p-2 border-2 border-black rounded font-bold flex flex-col gap-1 shadow-[2px_2px_0px_0px_#000000]">
               <span className="text-[#0d9488]">Class: UserService</span>
-              <span className="text-[10px] text-[#475569] font-normal">- repository: UserRepository</span>
-              <span className="text-[10px] text-[#475569] font-normal">+ authenticate(token: string): User</span>
+              <span className="text-[10px] text-[#475569] font-normal">
+                - repository: UserRepository
+              </span>
+              <span className="text-[10px] text-[#475569] font-normal">
+                + authenticate(token: string): User
+              </span>
             </div>
-            <div className="text-center font-bold text-slate-600">↓ Implements</div>
+            <div className="text-center font-bold text-slate-600">
+              ↓ Implements
+            </div>
             <div className="grid grid-cols-2 gap-2">
-              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-xs text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">Strategy Pattern</div>
-              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-xs text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">OOPS & Schema</div>
+              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-xs text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">
+                Strategy Pattern
+              </div>
+              <div className="bg-[#ffffff] p-2 border-2 border-black rounded text-center font-bold text-xs text-[#0f172a] shadow-[2px_2px_0px_0px_#000000]">
+                OOPS & Schema
+              </div>
             </div>
           </div>
         </div>
@@ -156,10 +205,7 @@ function LoadBalancerDiagram() {
     <div className="flex items-center justify-center gap-4 py-4">
       <Box className="w-16">Users</Box>
       <span className="font-black text-lg">→</span>
-      <Box className="w-24 bg-amber-100">
-        Load
-        Balancer
-      </Box>
+      <Box className="w-24 bg-amber-100">Load Balancer</Box>
       <div className="w-6" />
       <div className="flex flex-col gap-2">
         <Box className="w-20 lb-server-1">Server A</Box>
@@ -213,52 +259,87 @@ function CAPDiagram() {
   return (
     <div className="flex flex-col gap-6 p-6 bg-[#f8fafc] text-[#0f172a] rounded-xl font-mono text-xs ">
       <div className="flex items-center justify-between pb-3 border-b-2 border-black">
-        <span className="font-bold text-sm text-[#0f172a]">CAP Theorem Trade-offs</span>
-        <span className="px-2 py-0.5 bg-[#fef08a] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">DISTRIBUTED SYSTEMS</span>
+        <span className="font-bold text-sm text-[#0f172a]">
+          CAP Theorem Trade-offs
+        </span>
+        <span className="px-2 py-0.5 bg-[#fef08a] text-black font-bold text-[10px] border border-black rounded shadow-[1px_1px_0px_0px_#000000]">
+          DISTRIBUTED SYSTEMS
+        </span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-2 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
           <div className="flex items-center justify-between">
             <span className="font-bold text-[#0d9488]">Consistency (C)</span>
-            <span className="px-1.5 py-0.5 bg-[#99f6e4] text-black font-bold text-[9px] border border-black rounded">READS</span>
+            <span className="px-1.5 py-0.5 bg-[#99f6e4] text-black font-bold text-[9px] border border-black rounded">
+              READS
+            </span>
           </div>
-          <p className="text-[11px] text-[#475569]">Every read receives the most recent write or an error.</p>
+          <p className="text-[11px] text-[#475569]">
+            Every read receives the most recent write or an error.
+          </p>
         </div>
 
         <div className="flex flex-col gap-2 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
           <div className="flex items-center justify-between">
             <span className="font-bold text-[#ca8a04]">Availability (A)</span>
-            <span className="px-1.5 py-0.5 bg-[#fef08a] text-black font-bold text-[9px] border border-black rounded">UPTIME</span>
+            <span className="px-1.5 py-0.5 bg-[#fef08a] text-black font-bold text-[9px] border border-black rounded">
+              UPTIME
+            </span>
           </div>
-          <p className="text-[11px] text-[#475569]">Every non-failing node returns a non-error response.</p>
+          <p className="text-[11px] text-[#475569]">
+            Every non-failing node returns a non-error response.
+          </p>
         </div>
 
         <div className="flex flex-col gap-2 p-4 bg-[#ffffff] border-2 border-black rounded-lg shadow-[3px_3px_0px_0px_#000000]">
           <div className="flex items-center justify-between">
-            <span className="font-bold text-[#4f46e5]">Partition Tolerance (P)</span>
-            <span className="px-1.5 py-0.5 bg-[#c7d2fe] text-black font-bold text-[9px] border border-black rounded">NETWORK</span>
+            <span className="font-bold text-[#4f46e5]">
+              Partition Tolerance (P)
+            </span>
+            <span className="px-1.5 py-0.5 bg-[#c7d2fe] text-black font-bold text-[9px] border border-black rounded">
+              NETWORK
+            </span>
           </div>
-          <p className="text-[11px] text-[#475569]">System functions despite network packet drops or splits.</p>
+          <p className="text-[11px] text-[#475569]">
+            System functions despite network packet drops or splits.
+          </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
         <div className="flex flex-col gap-2 p-4 bg-[#f1f5f9] border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_#000000]">
-          <span className="font-bold text-[#0f172a]">CP Systems (Consistency + Partition Tolerance)</span>
-          <p className="text-[11px] text-[#475569]">Sacrifices availability during partitions to prevent serving stale data.</p>
+          <span className="font-bold text-[#0f172a]">
+            CP Systems (Consistency + Partition Tolerance)
+          </span>
+          <p className="text-[11px] text-[#475569]">
+            Sacrifices availability during partitions to prevent serving stale
+            data.
+          </p>
           <div className="flex gap-2 mt-1">
-            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">MongoDB</span>
-            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">HBase</span>
+            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">
+              MongoDB
+            </span>
+            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">
+              HBase
+            </span>
           </div>
         </div>
 
         <div className="flex flex-col gap-2 p-4 bg-[#f1f5f9] border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_#000000]">
-          <span className="font-bold text-[#0f172a]">AP Systems (Availability + Partition Tolerance)</span>
-          <p className="text-[11px] text-[#475569]">Sacrifices strict consistency so every node can keep responding.</p>
+          <span className="font-bold text-[#0f172a]">
+            AP Systems (Availability + Partition Tolerance)
+          </span>
+          <p className="text-[11px] text-[#475569]">
+            Sacrifices strict consistency so every node can keep responding.
+          </p>
           <div className="flex gap-2 mt-1">
-            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">Cassandra</span>
-            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">DynamoDB</span>
+            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">
+              Cassandra
+            </span>
+            <span className="px-2 py-1 bg-[#ffffff] border-2 border-black rounded font-bold text-xs shadow-[1px_1px_0px_0px_#000000]">
+              DynamoDB
+            </span>
           </div>
         </div>
       </div>
@@ -286,7 +367,8 @@ function ConsistencyModelsDiagram() {
         <span className="text-[11px] font-bold text-gray-700">Replication State</span>
       </div>
 
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="overflow-visible">
+      {/* Added w-[320px] h-[320px] here */}
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="overflow-visible w-[320px] h-[320px]">
         <circle cx={center} cy={center} r={radius} fill="none" stroke="#000" strokeWidth="4" strokeDasharray="6 6" />
         
         {nodes.map((node, index) => {
@@ -311,7 +393,6 @@ function ConsistencyModelsDiagram() {
     </div>
   );
 }
-
 
 function ConsistentHashingDiagram() {
   const size = 320;
@@ -339,7 +420,8 @@ function ConsistentHashingDiagram() {
         <span className="text-[11px] font-bold text-gray-700">Clockwise Routing</span>
       </div>
 
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="overflow-visible">
+      {/* Added w-[320px] h-[320px] here */}
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="overflow-visible w-[320px] h-[320px]">
         <circle cx={center} cy={center} r={radius} fill="none" stroke="#000" strokeWidth="4" strokeDasharray="6 6" />
         <circle cx={center} cy={center} r={radius + 20} fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" />
 
@@ -379,7 +461,6 @@ const DiagramFrame = ({ children }) => (
     {children}
   </div>
 );
-
 
 function ContentBlock({ title, badge, hook, points, diagram }) {
   return (
@@ -436,8 +517,7 @@ const units = [
         id: "u1-c1",
         label: "Chapter 1",
         title: "What is System Design",
-        hook:
-          "Before any server exists, before a single line of code is written, someone has to answer a simpler question: what exactly are we building, and how will its pieces fit together? That question is system design.",
+        hook: "Before any server exists, before a single line of code is written, someone has to answer a simpler question: what exactly are we building, and how will its pieces fit together? That question is system design.",
         points: [
           {
             label: "Definition",
@@ -460,14 +540,13 @@ const units = [
             text: "there's rarely one 'correct' design — good system design means choosing the trade-off that fits the actual problem, not the fanciest architecture",
           },
         ],
-        diagram: <SysDiagram />
+        diagram: <SysDiagram />,
       },
       {
         id: "u1-c2",
         label: "Chapter 2",
         title: "HLD vs LLD vs Machine Code",
-        hook:
-          "Design happens in layers, each one zooming in further than the last — from a sketch of an entire city, down to the wiring inside a single building, down to the electricity itself.",
+        hook: "Design happens in layers, each one zooming in further than the last — from a sketch of an entire city, down to the wiring inside a single building, down to the electricity itself.",
         points: [
           {
             label: "HLD (High-Level Design)",
@@ -490,99 +569,187 @@ const units = [
             text: "HLD lets a whole team agree on the shape of a system before anyone writes a class; LLD lets one engineer build a component without holding the entire system in their head",
           },
         ],
-        diagram: <HLDvsLLDDiagram />
+        diagram: <HLDvsLLDDiagram />,
       },
       {
         id: "u1-c3",
         label: "Chapter 3",
         title: "System Design Key Concepts",
-        hook:
-          "Every large system, no matter the domain, keeps returning to the same handful of building blocks. Here they are, one at a time.",
+        hook: "Every large system, no matter the domain, keeps returning to the same handful of building blocks. Here they are, one at a time.",
         topics: [
           {
             title: "DNS Resolution",
-            hook:
-              "Every website starts the same way: somewhere out there is a machine that never sleeps, waiting for someone to knock. We call it a server — and like any shop, it has an address.",
+            hook: "Every website starts the same way: somewhere out there is a machine that never sleeps, waiting for someone to knock. We call it a server — and like any shop, it has an address.",
             points: [
-              { label: "Server", text: "a machine that runs 24/7, reachable at a public IP address, e.g. 10.2.3.4" },
-              { label: "The problem", text: "nobody remembers a string of numbers to visit a website" },
-              { label: "DNS", text: "the Domain Name System — internet's phone book, mapping names like amazon.com to IP addresses" },
-              { label: "DNS resolution", text: "the step where a name goes in and an IP address comes out, before the request even reaches the server" },
+              {
+                label: "Server",
+                text: "a machine that runs 24/7, reachable at a public IP address, e.g. 10.2.3.4",
+              },
+              {
+                label: "The problem",
+                text: "nobody remembers a string of numbers to visit a website",
+              },
+              {
+                label: "DNS",
+                text: "the Domain Name System — internet's phone book, mapping names like amazon.com to IP addresses",
+              },
+              {
+                label: "DNS resolution",
+                text: "the step where a name goes in and an IP address comes out, before the request even reaches the server",
+              },
             ],
             diagram: <DNSDiagram />,
           },
           {
             title: "Scaling Servers",
-            hook:
-              "Picture a server with 2 CPUs and 4 GB of memory — enough for a quiet afternoon. Then a link goes viral, everyone shows up at once, and it runs out of memory and crashes.",
+            hook: "Picture a server with 2 CPUs and 4 GB of memory — enough for a quiet afternoon. Then a link goes viral, everyone shows up at once, and it runs out of memory and crashes.",
             points: [
-              { label: "Vertical scaling", text: "increasing a single machine's capacity — more CPU, RAM, disk" },
-              { label: "Cons", text: "gets costly past a point, and upgrading almost always means a restart — downtime while the shop is closed" },
-              { label: "Horizontal scaling", text: "adding more machines to share the workload, instead of making one machine bigger" },
-              { label: "Why it wins", text: "if one server struggles, the next request just goes to another — no restart, so downtime drops to zero" },
+              {
+                label: "Vertical scaling",
+                text: "increasing a single machine's capacity — more CPU, RAM, disk",
+              },
+              {
+                label: "Cons",
+                text: "gets costly past a point, and upgrading almost always means a restart — downtime while the shop is closed",
+              },
+              {
+                label: "Horizontal scaling",
+                text: "adding more machines to share the workload, instead of making one machine bigger",
+              },
+              {
+                label: "Why it wins",
+                text: "if one server struggles, the next request just goes to another — no restart, so downtime drops to zero",
+              },
             ],
             diagram: <ScalingDiagram />,
           },
           {
             title: "Handling the Crowd / Traffic",
-            hook:
-              "Here's the catch with horizontal scaling: if every server shares the same DNS entry, users keep landing on the same one, over and over.",
+            hook: "Here's the catch with horizontal scaling: if every server shares the same DNS entry, users keep landing on the same one, over and over.",
             points: [
-              { label: "Load balancer", text: "software (e.g. nginx) that sits in front of servers and decides, request by request, who handles it" },
-              { label: "How it's wired", text: "DNS now points to the load balancer, not to any one server directly" },
-              { label: "Round robin", text: "one common strategy — each new request goes to the next server in line" },
-              { label: "Sizing", text: "load balancers usually get more CPU/RAM than the servers behind them, since they see every request" },
-              { label: "On AWS", text: "Elastic Load Balancer (ELB) — built from many small workers so it can absorb sudden rushes" },
+              {
+                label: "Load balancer",
+                text: "software (e.g. nginx) that sits in front of servers and decides, request by request, who handles it",
+              },
+              {
+                label: "How it's wired",
+                text: "DNS now points to the load balancer, not to any one server directly",
+              },
+              {
+                label: "Round robin",
+                text: "one common strategy — each new request goes to the next server in line",
+              },
+              {
+                label: "Sizing",
+                text: "load balancers usually get more CPU/RAM than the servers behind them, since they see every request",
+              },
+              {
+                label: "On AWS",
+                text: "Elastic Load Balancer (ELB) — built from many small workers so it can absorb sudden rushes",
+              },
             ],
             diagram: <LoadBalancerDiagram />,
           },
           {
             title: "Routing with API Gateways",
-            hook:
-              "As a product grows, it rarely stays one big service. It splits into microservices — auth, orders, payments — each with its own fleet of servers.",
+            hook: "As a product grows, it rarely stays one big service. It splits into microservices — auth, orders, payments — each with its own fleet of servers.",
             points: [
-              { label: "Microservices", text: "independent services, each with its own servers and its own load balancer" },
-              { label: "The new problem", text: "a request for /auth must reach the auth service, not the order service" },
-              { label: "API gateway", text: "a single, centralized front door that routes each request to the correct backend service by path" },
-              { label: "Bonus", text: "authentication is commonly attached right at the gateway, turning away bad requests early" },
-              { label: "On AWS", text: "Amazon API Gateway routes traffic; the services themselves usually run on EC2 (Elastic Compute)" },
+              {
+                label: "Microservices",
+                text: "independent services, each with its own servers and its own load balancer",
+              },
+              {
+                label: "The new problem",
+                text: "a request for /auth must reach the auth service, not the order service",
+              },
+              {
+                label: "API gateway",
+                text: "a single, centralized front door that routes each request to the correct backend service by path",
+              },
+              {
+                label: "Bonus",
+                text: "authentication is commonly attached right at the gateway, turning away bad requests early",
+              },
+              {
+                label: "On AWS",
+                text: "Amazon API Gateway routes traffic; the services themselves usually run on EC2 (Elastic Compute)",
+              },
             ],
           },
           {
             title: "Scalable Systems with Queues",
-            hook:
-              "An event fires that should notify a million users by email. You can't loop through a million addresses inside the request that triggered it — the backend would freeze until the last one sent.",
+            hook: "An event fires that should notify a million users by email. You can't loop through a million addresses inside the request that triggered it — the backend would freeze until the last one sent.",
             points: [
-              { label: "The fix", text: "make it asynchronous — hand the job to a separate email worker instead of doing it inline" },
-              { label: "Real limit", text: "Gmail's API accepts roughly 10 emails/second; send faster and you get throttled" },
-              { label: "Queue", text: "sits between backend and worker — backend pushes the request and moves on immediately, no waiting" },
-              { label: "On AWS", text: "Amazon SQS (Simple Queue Service) is the queue that holds these messages" },
-              { label: "Pull / polling", text: "the worker asks the queue \"anything for me?\" — short polling asks every second, long polling waits up to ~10s and collects a batch" },
-              { label: "Push", text: "the alternative — the queue delivers events to the worker the moment they arrive" },
+              {
+                label: "The fix",
+                text: "make it asynchronous — hand the job to a separate email worker instead of doing it inline",
+              },
+              {
+                label: "Real limit",
+                text: "Gmail's API accepts roughly 10 emails/second; send faster and you get throttled",
+              },
+              {
+                label: "Queue",
+                text: "sits between backend and worker — backend pushes the request and moves on immediately, no waiting",
+              },
+              {
+                label: "On AWS",
+                text: "Amazon SQS (Simple Queue Service) is the queue that holds these messages",
+              },
+              {
+                label: "Pull / polling",
+                text: 'the worker asks the queue "anything for me?" — short polling asks every second, long polling waits up to ~10s and collects a batch',
+              },
+              {
+                label: "Push",
+                text: "the alternative — the queue delivers events to the worker the moment they arrive",
+              },
             ],
             diagram: <QueueDiagram />,
           },
           {
             title: "Fan-Out / Pub-Sub",
-            hook:
-              "Sometimes a single event needs more than one channel at once — a new order might need to email the customer, SMS them, and notify the vendor, all from the same trigger.",
+            hook: "Sometimes a single event needs more than one channel at once — a new order might need to email the customer, SMS them, and notify the vendor, all from the same trigger.",
             points: [
-              { label: "Pub/Sub", text: "publish/subscribe — one event is published once, every subscriber gets its own copy" },
-              { label: "On AWS", text: "SNS (Simple Notification Service) handles this fan-out" },
-              { label: "Fan-out", text: "the queue's cousin — instead of one message to one worker, it spreads to many at once" },
-              { label: "DLQ", text: "Dead Letter Queue — where messages land after repeated processing failures, to be retried once the service recovers" },
+              {
+                label: "Pub/Sub",
+                text: "publish/subscribe — one event is published once, every subscriber gets its own copy",
+              },
+              {
+                label: "On AWS",
+                text: "SNS (Simple Notification Service) handles this fan-out",
+              },
+              {
+                label: "Fan-out",
+                text: "the queue's cousin — instead of one message to one worker, it spreads to many at once",
+              },
+              {
+                label: "DLQ",
+                text: "Dead Letter Queue — where messages land after repeated processing failures, to be retried once the service recovers",
+              },
             ],
             diagram: <FanOutDiagram />,
           },
           {
             title: "Rate Limiting",
-            hook:
-              "The last problem here is a defensive one: what stops someone from hammering your server with requests until it falls over?",
+            hook: "The last problem here is a defensive one: what stops someone from hammering your server with requests until it falls over?",
             points: [
-              { label: "Rate limiting", text: "capping how many requests a client can make in a given window, to prevent denial-of-service" },
-              { label: "Leaky bucket", text: "requests come in at any pace but drain out at a fixed, steady rate — like a bucket with a small hole" },
-              { label: "Token bucket", text: "a fixed number of tokens refill over time; every request spends one token, and an empty bucket means waiting" },
-              { label: "Goal either way", text: "keep serving everyone fairly instead of collapsing under the loudest client" },
+              {
+                label: "Rate limiting",
+                text: "capping how many requests a client can make in a given window, to prevent denial-of-service",
+              },
+              {
+                label: "Leaky bucket",
+                text: "requests come in at any pace but drain out at a fixed, steady rate — like a bucket with a small hole",
+              },
+              {
+                label: "Token bucket",
+                text: "a fixed number of tokens refill over time; every request spends one token, and an empty bucket means waiting",
+              },
+              {
+                label: "Goal either way",
+                text: "keep serving everyone fairly instead of collapsing under the loudest client",
+              },
             ],
           },
         ],
@@ -598,47 +765,100 @@ const units = [
         id: "u2-c1",
         label: "Chapter 1",
         title: "Scalability, Reliability, Availability",
-        hook:
-          "Every system is a balancing act between three properties: can it handle more load, can it be trusted to work, and can it stay up when things go wrong? These three — scalability, reliability, and availability — get confused constantly, but they answer different questions, and a system can excel at one while failing at another.",
+        hook: "Every system is a balancing act between three properties: can it handle more load, can it be trusted to work, and can it stay up when things go wrong? These three — scalability, reliability, and availability — get confused constantly, but they answer different questions, and a system can excel at one while failing at another.",
         topics: [
           {
             title: "Scalability",
-            hook:
-              "Scalability isn't a single trick — it's a property: can this system handle more load by adding resources, without falling over or needing a rewrite? A system that only works at today's traffic is a system with an expiration date.",
+            hook: "Scalability isn't a single trick — it's a property: can this system handle more load by adding resources, without falling over or needing a rewrite? A system that only works at today's traffic is a system with an expiration date.",
             points: [
-              { label: "Load scalability", text: "handling more requests, users, or data volume over time without performance degrading — the core test of whether a system was built to grow or just to ship" },
-              { label: "Scale up vs scale out", text: "vertical scaling makes one machine bigger (more CPU, RAM); horizontal scaling adds more machines. Vertical scaling is simpler but hits a physical ceiling and creates a single point of failure — most large systems lean on horizontal scaling instead" },
-              { label: "Stateless services", text: "servers that don't store session data locally scale horizontally far more easily, since any instance can handle any request — a load balancer can route traffic anywhere without worrying about 'sticky' sessions" },
-              { label: "Database scalability", text: "read replicas spread out read traffic (copies of the data that serve queries but not writes); sharding splits data across multiple databases by key. as you know read queries are more often than writes" },
-              { label: "Caching", text: "storing frequently-requested results (e.g. in Redis or Memcached) so the system doesn't repeat expensive work for every request — often the single highest-leverage change for read-heavy systems" },
-              { label: "Load balancing", text: "distributing incoming traffic across multiple servers so no single instance becomes a bottleneck — the piece of infrastructure that makes horizontal scaling actually usable" },
-              { label: "Diminishing returns & bottlenecks", text: "scaling one layer (e.g. app servers) just shifts the pressure to the next weakest link (e.g. the database) — real scalability means finding and addressing the bottleneck, not just adding more of what you already have" },
+              {
+                label: "Load scalability",
+                text: "handling more requests, users, or data volume over time without performance degrading — the core test of whether a system was built to grow or just to ship",
+              },
+              {
+                label: "Scale up vs scale out",
+                text: "vertical scaling makes one machine bigger (more CPU, RAM); horizontal scaling adds more machines. Vertical scaling is simpler but hits a physical ceiling and creates a single point of failure — most large systems lean on horizontal scaling instead",
+              },
+              {
+                label: "Stateless services",
+                text: "servers that don't store session data locally scale horizontally far more easily, since any instance can handle any request — a load balancer can route traffic anywhere without worrying about 'sticky' sessions",
+              },
+              {
+                label: "Database scalability",
+                text: "read replicas spread out read traffic (copies of the data that serve queries but not writes); sharding splits data across multiple databases by key. as you know read queries are more often than writes",
+              },
+              {
+                label: "Caching",
+                text: "storing frequently-requested results (e.g. in Redis or Memcached) so the system doesn't repeat expensive work for every request — often the single highest-leverage change for read-heavy systems",
+              },
+              {
+                label: "Load balancing",
+                text: "distributing incoming traffic across multiple servers so no single instance becomes a bottleneck — the piece of infrastructure that makes horizontal scaling actually usable",
+              },
+              {
+                label: "Diminishing returns & bottlenecks",
+                text: "scaling one layer (e.g. app servers) just shifts the pressure to the next weakest link (e.g. the database) — real scalability means finding and addressing the bottleneck, not just adding more of what you already have",
+              },
             ],
           },
           {
             title: "Reliability",
-            hook:
-              "Reliability is about trust: can the system be counted on to do what it's supposed to, every time, even when things go wrong? A system can be up and still be unreliable — think of a server that responds instantly but returns corrupted data.",
+            hook: "Reliability is about trust: can the system be counted on to do what it's supposed to, every time, even when things go wrong? A system can be up and still be unreliable — think of a server that responds instantly but returns corrupted data.",
             points: [
-              { label: "Definition", text: "the probability that a system will perform its intended function correctly, without failure, over a specified period of time — it's about correctness under stress, not just uptime" },
-              { label: "Redundancy", text: "having multiple instances of critical components so if one fails, others can take over — redundancy without proper failover is just extra cost, so the two usually go together" },
-              { label: "Failover", text: "automatic switching to a standby system or component when the primary one fails, ideally fast enough and seamless enough that users never notice" },
-              { label: "Fault tolerance", text: "designing a system to keep functioning — even in a degraded mode — when a component fails, rather than cascading into a full outage" },
-              { label: "Monitoring and alerting", text: "keeping an eye on system health (error rates, latency, resource usage) and notifying engineers when something goes wrong, ideally before users notice" },
-              { label: "Testing for failure", text: "practices like chaos engineering deliberately inject failures into a system to verify it actually behaves reliably under real-world conditions, not just in the happy path" },
+              {
+                label: "Definition",
+                text: "the probability that a system will perform its intended function correctly, without failure, over a specified period of time — it's about correctness under stress, not just uptime",
+              },
+              {
+                label: "Redundancy",
+                text: "having multiple instances of critical components so if one fails, others can take over — redundancy without proper failover is just extra cost, so the two usually go together",
+              },
+              {
+                label: "Failover",
+                text: "automatic switching to a standby system or component when the primary one fails, ideally fast enough and seamless enough that users never notice",
+              },
+              {
+                label: "Fault tolerance",
+                text: "designing a system to keep functioning — even in a degraded mode — when a component fails, rather than cascading into a full outage",
+              },
+              {
+                label: "Monitoring and alerting",
+                text: "keeping an eye on system health (error rates, latency, resource usage) and notifying engineers when something goes wrong, ideally before users notice",
+              },
+              {
+                label: "Testing for failure",
+                text: "practices like chaos engineering deliberately inject failures into a system to verify it actually behaves reliably under real-world conditions, not just in the happy path",
+              },
             ],
           },
           {
             title: "Availability",
-            hook:
-              "Availability is about uptime: how often is the system up and running, ready to serve requests? It's often confused with reliability, but a system can be highly available (always responding) while still being unreliable (responding with the wrong answer).",
+            hook: "Availability is about uptime: how often is the system up and running, ready to serve requests? It's often confused with reliability, but a system can be highly available (always responding) while still being unreliable (responding with the wrong answer).",
             points: [
-              { label: "Definition", text: "the proportion of time a system is operational and accessible when required for use" },
-              { label: "High availability (HA)", text: "designing systems to minimize downtime, often through redundancy and failover mechanisms across multiple servers, data centers, or regions" },
-              { label: "Service Level Agreement (SLA)", text: "a formal commitment between a service provider and a client regarding the expected level of service availability, often with financial penalties if it's not met" },
-              { label: "Measuring availability", text: "often expressed as a percentage (e.g., 99.9% uptime) over a specific time period — but each additional '9' represents a dramatically smaller allowed downtime" },
-              { label: "The 'nines' in practice", text: "99% uptime allows ~3.65 days of downtime a year; 99.9% allows ~8.76 hours; 99.99% ('four nines') allows just ~52 minutes — illustrating why chasing extra nines gets exponentially harder and costlier" },
-              { label: "Availability vs reliability", text: "a flaky system that crashes and restarts instantly can show high availability numbers while still being unreliable — the two metrics measure different failure modes and neither one alone tells the whole story" },
+              {
+                label: "Definition",
+                text: "the proportion of time a system is operational and accessible when required for use",
+              },
+              {
+                label: "High availability (HA)",
+                text: "designing systems to minimize downtime, often through redundancy and failover mechanisms across multiple servers, data centers, or regions",
+              },
+              {
+                label: "Service Level Agreement (SLA)",
+                text: "a formal commitment between a service provider and a client regarding the expected level of service availability, often with financial penalties if it's not met",
+              },
+              {
+                label: "Measuring availability",
+                text: "often expressed as a percentage (e.g., 99.9% uptime) over a specific time period — but each additional '9' represents a dramatically smaller allowed downtime",
+              },
+              {
+                label: "The 'nines' in practice",
+                text: "99% uptime allows ~3.65 days of downtime a year; 99.9% allows ~8.76 hours; 99.99% ('four nines') allows just ~52 minutes — illustrating why chasing extra nines gets exponentially harder and costlier",
+              },
+              {
+                label: "Availability vs reliability",
+                text: "a flaky system that crashes and restarts instantly can show high availability numbers while still being unreliable — the two metrics measure different failure modes and neither one alone tells the whole story",
+              },
             ],
           },
         ],
@@ -647,14 +867,28 @@ const units = [
         id: "u2-c2",
         label: "Chapter 2",
         title: "CAP Theorem",
-        hook:
-          "In a distributed system, the network will eventually fail somewhere — a cable gets cut, a data center loses connectivity. CAP theorem is about what you're forced to sacrifice when that happens.",
+        hook: "In a distributed system, the network will eventually fail somewhere — a cable gets cut, a data center loses connectivity. CAP theorem is about what you're forced to sacrifice when that happens.",
         points: [
-          { label: "Consistency (C)", text: "every read gets the most recent write, or an error — no stale data slipping through. for example - " },
-          { label: "Availability (A)", text: "every request gets a response, even if it isn't the most up-to-date one" },
-          { label: "Partition tolerance (P)", text: "the system keeps working even when network communication between nodes breaks down" },
-          { label: "The catch", text: "during an actual network partition, a distributed system can only keep one of Consistency or Availability — not both — since Partition tolerance is basically non-negotiable in real networks" },
-          { label: "In practice", text: "systems like MongoDB and HBase typically lean CP; DynamoDB and Cassandra typically lean AP — the right choice depends on whether stale data or a failed request hurts the product more" },
+          {
+            label: "Consistency (C)",
+            text: "every read gets the most recent write, or an error — no stale data slipping through. for example - ",
+          },
+          {
+            label: "Availability (A)",
+            text: "every request gets a response, even if it isn't the most up-to-date one",
+          },
+          {
+            label: "Partition tolerance (P)",
+            text: "the system keeps working even when network communication between nodes breaks down",
+          },
+          {
+            label: "The catch",
+            text: "during an actual network partition, a distributed system can only keep one of Consistency or Availability — not both — since Partition tolerance is basically non-negotiable in real networks",
+          },
+          {
+            label: "In practice",
+            text: "systems like MongoDB and HBase typically lean CP; DynamoDB and Cassandra typically lean AP — the right choice depends on whether stale data or a failed request hurts the product more",
+          },
         ],
         diagram: <CAPDiagram />,
       },
@@ -662,55 +896,104 @@ const units = [
         id: "u2-c3",
         label: "Chapter 3",
         title: "Single Point of Failure (SPOF)",
-        hook:
-          "The most dangerous part of any system is often the one piece nobody thought to duplicate.",
+        hook: "The most dangerous part of any system is often the one piece nobody thought to duplicate.",
         points: [
-          { label: "Definition", text: "any component whose failure alone can bring down the whole system" },
-          { label: "Common examples", text: "a single database with no replica, a single load balancer, a single server handling a critical service" },
-          { label: "Why it's dangerous", text: "even a system built from thousands of resilient parts is only as strong as its weakest, un-duplicated link" },
-          { label: "The fix", text: "redundancy — database replicas, multiple load balancer instances, services spread across multiple availability zones or regions" },
-          { label: "A mindset, not a checklist", text: "hunting for SPOFs really means asking, again and again: what's the one thing that, if it goes down right now, takes everything else with it?" },
+          {
+            label: "Definition",
+            text: "any component whose failure alone can bring down the whole system",
+          },
+          {
+            label: "Common examples",
+            text: "a single database with no replica, a single load balancer, a single server handling a critical service",
+          },
+          {
+            label: "Why it's dangerous",
+            text: "even a system built from thousands of resilient parts is only as strong as its weakest, un-duplicated link",
+          },
+          {
+            label: "The fix",
+            text: "redundancy — database replicas, multiple load balancer instances, services spread across multiple availability zones or regions",
+          },
+          {
+            label: "A mindset, not a checklist",
+            text: "hunting for SPOFs really means asking, again and again: what's the one thing that, if it goes down right now, takes everything else with it?",
+          },
         ],
       },
       {
         id: "u2-c4",
         label: "Chapter 4",
         title: "Latency vs Throughput vs Bandwidth",
-        hook:
-          "Every network and system architecture discussion eventually collides with three metrics that sound interchangeable but measure entirely different dimensions of performance: time, capacity, and actual delivery.",
+        hook: "Every network and system architecture discussion eventually collides with three metrics that sound interchangeable but measure entirely different dimensions of performance: time, capacity, and actual delivery.",
         topics: [
           {
             title: "Latency",
-            hook:
-              "Latency is about speed and time: how long does it take for a single request to travel from sender to receiver and back? It's the silent killer of user experience, often felt long before a system runs out of capacity.",
+            hook: "Latency is about speed and time: how long does it take for a single request to travel from sender to receiver and back? It's the silent killer of user experience, often felt long before a system runs out of capacity.",
             points: [
-              { label: "Definition", text: "the time delay between the initiation of a request and the receipt of its response, usually measured in milliseconds" },
-              { label: "Components of latency", text: "includes propagation delay (physical travel time across space), transmission delay (time to push bits onto the wire), and queuing delay (time spent waiting in line because the system is busy)" },
-              { label: "Round Trip Time (RTT)", text: "the total time it takes for a data packet to go to a destination and return, serving as a primary metric for network responsiveness" },
-              { label: "Tail latency", text: "focusing on worst-case delays like the 99th percentile rather than averages, uncovering hidden performance spikes that degrade user experience" },
-              { label: "Human perception limits", text: "latencies under 100 milliseconds feel instantaneous to users, while delays exceeding 300 to 1000 milliseconds break cognitive flow and feel sluggish" }
+              {
+                label: "Definition",
+                text: "the time delay between the initiation of a request and the receipt of its response, usually measured in milliseconds",
+              },
+              {
+                label: "Components of latency",
+                text: "includes propagation delay (physical travel time across space), transmission delay (time to push bits onto the wire), and queuing delay (time spent waiting in line because the system is busy)",
+              },
+              {
+                label: "Round Trip Time (RTT)",
+                text: "the total time it takes for a data packet to go to a destination and return, serving as a primary metric for network responsiveness",
+              },
+              {
+                label: "Tail latency",
+                text: "focusing on worst-case delays like the 99th percentile rather than averages, uncovering hidden performance spikes that degrade user experience",
+              },
+              {
+                label: "Human perception limits",
+                text: "latencies under 100 milliseconds feel instantaneous to users, while delays exceeding 300 to 1000 milliseconds break cognitive flow and feel sluggish",
+              },
             ],
           },
           {
             title: "Bandwidth",
-            hook:
-              "Bandwidth is about capacity and potential: how wide is the pipe? It defines the maximum theoretical volume of data that can pass through a network link over a given time, though a wide pipe doesn't guarantee fast delivery.",
+            hook: "Bandwidth is about capacity and potential: how wide is the pipe? It defines the maximum theoretical volume of data that can pass through a network link over a given time, though a wide pipe doesn't guarantee fast delivery.",
             points: [
-              { label: "Definition", text: "the maximum rate of data transfer across a given path, typically measured in bits per second" },
-              { label: "Bandwidth vs throughput", text: "bandwidth is the theoretical ceiling or maximum highway capacity; throughput is the actual volume of traffic moving down the road at any given moment" },
-              { label: "Physical limitations", text: "governed by the physics of the transmission medium—such as copper wire versus fiber optics—and hardware interface limits" },
-              { label: "The illusion of capacity", text: "high bandwidth cannot compensate for high latency or poor downstream processing; a massive pipe is useless if the server takes seconds to process each request" }
+              {
+                label: "Definition",
+                text: "the maximum rate of data transfer across a given path, typically measured in bits per second",
+              },
+              {
+                label: "Bandwidth vs throughput",
+                text: "bandwidth is the theoretical ceiling or maximum highway capacity; throughput is the actual volume of traffic moving down the road at any given moment",
+              },
+              {
+                label: "Physical limitations",
+                text: "governed by the physics of the transmission medium—such as copper wire versus fiber optics—and hardware interface limits",
+              },
+              {
+                label: "The illusion of capacity",
+                text: "high bandwidth cannot compensate for high latency or poor downstream processing; a massive pipe is useless if the server takes seconds to process each request",
+              },
             ],
           },
           {
             title: "Throughput",
-            hook:
-              "Throughput is about actual delivery: how much work is the system successfully processing over a period of time? While bandwidth measures what's possible, throughput measures real-world productivity under load.",
+            hook: "Throughput is about actual delivery: how much work is the system successfully processing over a period of time? While bandwidth measures what's possible, throughput measures real-world productivity under load.",
             points: [
-              { label: "Definition", text: "the actual number of successful requests, transactions, or data packets processed by a system per unit of time, such as requests per second" },
-              { label: "Limiting factors", text: "constrained by CPU speed, memory limits, disk I/O, database locks, and network congestion—meaning processing bottlenecks will cap throughput long before bandwidth runs out" },
-              { label: "Latency vs throughput trade-off", text: "batching multiple requests together can dramatically increase overall throughput, but it almost always increases the individual latency for each request" },
-              { label: "Goodput", text: "the useful data rate actually delivered to the application layer, excluding protocol overhead, packet retransmissions, and duplicate traffic" }
+              {
+                label: "Definition",
+                text: "the actual number of successful requests, transactions, or data packets processed by a system per unit of time, such as requests per second",
+              },
+              {
+                label: "Limiting factors",
+                text: "constrained by CPU speed, memory limits, disk I/O, database locks, and network congestion—meaning processing bottlenecks will cap throughput long before bandwidth runs out",
+              },
+              {
+                label: "Latency vs throughput trade-off",
+                text: "batching multiple requests together can dramatically increase overall throughput, but it almost always increases the individual latency for each request",
+              },
+              {
+                label: "Goodput",
+                text: "the useful data rate actually delivered to the application layer, excluding protocol overhead, packet retransmissions, and duplicate traffic",
+              },
             ],
           },
         ],
@@ -719,89 +1002,141 @@ const units = [
         id: "u2-c5",
         label: "Chapter 5",
         title: "Consistent Hashing",
-        hook:
-          "In distributed systems, scaling out requires spreading data or requests across a cluster of servers, but adding or removing nodes typically triggers a massive data remapping disaster.",
+        hook: "In distributed systems, scaling out requires spreading data or requests across a cluster of servers, but adding or removing nodes typically triggers a massive data remapping disaster.",
         topics: [
           {
             title: "The Problem with Traditional Hashing",
-            hook:
-              "The naive approach to routing requests relies on a simple modulo operation, creating a catastrophic domino effect whenever cluster size changes.",
+            hook: "The naive approach to routing requests relies on a simple modulo operation, creating a catastrophic domino effect whenever cluster size changes.",
             points: [
-              { label: "The modulo bottleneck (hash(reqid)%M)", text: "maps every request or cache key to a specific server index based on the current server count, making the routing strictly dependent on M" },
-              { label: "The scaling disaster", text: "when a server is added or removed, M changes, causing almost every single key to hash to a completely different server index than before" },
-              { label: "Cache collapse and data storms", text: "changing M invalidates nearly 100% of existing cache mappings simultaneously, causing a massive cache stampede that floods primary databases" },
-              { label: "Why we need a better approach", text: "we need a routing mechanism where adding or removing a server only affects a tiny fraction of the total keys, leaving the rest untouched" },
+              {
+                label: "The modulo bottleneck (hash(reqid)%M)",
+                text: "maps every request or cache key to a specific server index based on the current server count, making the routing strictly dependent on M",
+              },
+              {
+                label: "The scaling disaster",
+                text: "when a server is added or removed, M changes, causing almost every single key to hash to a completely different server index than before",
+              },
+              {
+                label: "Cache collapse and data storms",
+                text: "changing M invalidates nearly 100% of existing cache mappings simultaneously, causing a massive cache stampede that floods primary databases",
+              },
+              {
+                label: "Why we need a better approach",
+                text: "we need a routing mechanism where adding or removing a server only affects a tiny fraction of the total keys, leaving the rest untouched",
+              },
             ],
           },
           {
             title: "Consistent Hashing & Uniform Load",
-            hook:
-              "Consistent hashing solves the remapping crisis by mapping both servers and data keys onto a shared, circular ring, ensuring scaling only redistributes a proportional slice of the load.",
+            hook: "Consistent hashing solves the remapping crisis by mapping both servers and data keys onto a shared, circular ring, ensuring scaling only redistributes a proportional slice of the load.",
             points: [
-              { label: "Definition", text: "a distributed hashing scheme that operates independently of the number of servers by placing nodes and keys on a virtual ring range" },
-              { label: "How keys are routed", text: "a request key is hashed to a point on the ring, and the system travels clockwise until it finds the first available server node" },
-              { label: "Minimal remapping", text: "when a new server joins or an old one fails, only the keys immediately adjacent to the affected server need to be reassigned while the rest of the cluster remains untouched" },
-              { label: "Uniform load distribution", text: "designed to distribute keys evenly across the ring, preventing any single machine from absorbing a disproportionate share of incoming traffic" },
+              {
+                label: "Definition",
+                text: "a distributed hashing scheme that operates independently of the number of servers by placing nodes and keys on a virtual ring range",
+              },
+              {
+                label: "How keys are routed",
+                text: "a request key is hashed to a point on the ring, and the system travels clockwise until it finds the first available server node",
+              },
+              {
+                label: "Minimal remapping",
+                text: "when a new server joins or an old one fails, only the keys immediately adjacent to the affected server need to be reassigned while the rest of the cluster remains untouched",
+              },
+              {
+                label: "Uniform load distribution",
+                text: "designed to distribute keys evenly across the ring, preventing any single machine from absorbing a disproportionate share of incoming traffic",
+              },
             ],
           },
           {
             title: "Virtual Nodes (Virtual Servers)",
-            hook:
-              "Even with a circular ring, random hash distributions often lead to uneven clustering where one physical server guards a massive section while another guards a tiny sliver.",
+            hook: "Even with a circular ring, random hash distributions often lead to uneven clustering where one physical server guards a massive section while another guards a tiny sliver.",
             points: [
-              { label: "The physical node imbalance", text: "real-world servers placed randomly on a hash ring rarely distribute traffic uniformly, leading to uneven resource utilization" },
-              { label: "What virtual nodes are", text: "mapping a single physical server to multiple virtual points spread across the entire ring instead of a single point" },
-              { label: "Solving the hotspot problem", text: "interleaving multiple virtual tokens for every physical server thoroughly randomizes and averages out the workload across available hardware" },
-              { label: "Handling heterogeneous capacity", text: "allowing systems to assign more tokens to powerful servers and fewer to weaker ones to match hardware capacity" },
+              {
+                label: "The physical node imbalance",
+                text: "real-world servers placed randomly on a hash ring rarely distribute traffic uniformly, leading to uneven resource utilization",
+              },
+              {
+                label: "What virtual nodes are",
+                text: "mapping a single physical server to multiple virtual points spread across the entire ring instead of a single point",
+              },
+              {
+                label: "Solving the hotspot problem",
+                text: "interleaving multiple virtual tokens for every physical server thoroughly randomizes and averages out the workload across available hardware",
+              },
+              {
+                label: "Handling heterogeneous capacity",
+                text: "allowing systems to assign more tokens to powerful servers and fewer to weaker ones to match hardware capacity",
+              },
             ],
           },
         ],
-        diagram: <ConsistentHashingDiagram />
+        diagram: <ConsistentHashingDiagram />,
       },
       {
         id: "u2-c6",
-  label: "Chapter 6",
-  title: "Consistency Models in Distributed Systems",
-  hook:
-    "Consistency models define how data updates are shared and viewed across multiple nodes, setting the exact rules for synchronization while balancing reliability, availability, and performance.",
-  topics: [
-    {
-      title: "Strong & Sequential Consistency",
-      hook:
-        "Rigorous models that enforce strict global ordering or synchronized state updates across the entire cluster.",
-      points: [
-        { label: "Strong consistency", text: "all nodes agree on operation order and reads return the most recent version immediately, ensuring every server reflects changes instantly at the cost of speed and resource overhead" },
-        { label: "Sequential consistency", text: "ensures all operations across processes appear in a single, unified order, maintaining predictable sequencing even without global real-time synchronization" },
-        { label: "Critical use cases", text: "essential for systems where the absolute latest data is non-negotiable, such as financial banking ledgers or critical inventory counts" },
-      ],
-    },
-    {
-      title: "Causal & Weak Consistency",
-      hook:
-        "Trading absolute global lockstep for performance by only enforcing order where a logical relationship actually exists.",
-      points: [
-        { label: "Causal consistency", text: "ensures causally related actions are seen in the correct order by all users, while leaving unrelated operations unconstrained — ideal for social media feeds or message threads" },
-        { label: "Weak consistency", text: "provides zero guarantees about operation ordering or instant data states, allowing clients to see differing versions depending on the connected node to maximize availability and scalability" },
-      ],
-    },
-    {
-      title: "Session Consistency & Monotonic Guarantees",
-      hook:
-        "User-centric consistency models that guarantee predictable behaviors and state views during individual sessions or sequential read/write operations.",
-      points: [
-        { label: "Session consistency", text: "guarantees that actions a user engages with within a single session remain consistent and reliable, such as items remaining in an e-commerce shopping cart" },
-        { label: "Monotonic reads", text: "ensures that once a user reads a value, subsequent reads will never return an older value, preventing time from seemingly moving backward" },
-        { label: "Monotonic writes", text: "guarantees that a user's sequential updates follow the correct order without reversing or scrambling update sequences" },
-      ],
-    },
-  ],
-  diagram: <ConsistencyModelsDiagram /> 
+        label: "Chapter 6",
+        title: "Consistency Models in Distributed Systems",
+        hook: "Consistency models define how data updates are shared and viewed across multiple nodes, setting the exact rules for synchronization while balancing reliability, availability, and performance.",
+        topics: [
+          {
+            title: "Strong & Sequential Consistency",
+            hook: "Rigorous models that enforce strict global ordering or synchronized state updates across the entire cluster.",
+            points: [
+              {
+                label: "Strong consistency",
+                text: "all nodes agree on operation order and reads return the most recent version immediately, ensuring every server reflects changes instantly at the cost of speed and resource overhead",
+              },
+              {
+                label: "Sequential consistency",
+                text: "ensures all operations across processes appear in a single, unified order, maintaining predictable sequencing even without global real-time synchronization",
+              },
+              {
+                label: "Critical use cases",
+                text: "essential for systems where the absolute latest data is non-negotiable, such as financial banking ledgers or critical inventory counts",
+              },
+            ],
+          },
+          {
+            title: "Causal & Weak Consistency",
+            hook: "Trading absolute global lockstep for performance by only enforcing order where a logical relationship actually exists.",
+            points: [
+              {
+                label: "Causal consistency",
+                text: "ensures causally related actions are seen in the correct order by all users, while leaving unrelated operations unconstrained — ideal for social media feeds or message threads",
+              },
+              {
+                label: "Weak consistency",
+                text: "provides zero guarantees about operation ordering or instant data states, allowing clients to see differing versions depending on the connected node to maximize availability and scalability",
+              },
+            ],
+          },
+          {
+            title: "Session Consistency & Monotonic Guarantees",
+            hook: "User-centric consistency models that guarantee predictable behaviors and state views during individual sessions or sequential read/write operations.",
+            points: [
+              {
+                label: "Session consistency",
+                text: "guarantees that actions a user engages with within a single session remain consistent and reliable, such as items remaining in an e-commerce shopping cart",
+              },
+              {
+                label: "Monotonic reads",
+                text: "ensures that once a user reads a value, subsequent reads will never return an older value, preventing time from seemingly moving backward",
+              },
+              {
+                label: "Monotonic writes",
+                text: "guarantees that a user's sequential updates follow the correct order without reversing or scrambling update sequences",
+              },
+            ],
+          },
+        ],
+        diagram: <ConsistencyModelsDiagram />,
       },
       {
         id: "u2-c7",
         label: "Chapter 7",
         title: "Back of the envelope estimations",
-      }
+      },
     ],
   },
 ];
@@ -898,7 +1233,7 @@ function SystemDesignData() {
 
       <div className="w-full flex flex-col md:flex-row gap-6 items-start">
         {/* ---------------- Sidebar: Units + Chapters ---------------- */}
-        <div className="w-full md:w-80 md:sticky md:top-8 bg-[#0ACF83] border-4 border-black shadow-[4px_4px_0px_0px_#000] p-5 flex flex-col gap-4">
+        <div className="w-full md:w-80 md:sticky md:top-8 self-start bg-[#0ACF83] border-4 border-black shadow-[4px_4px_0px_0px_#000] p-5 flex flex-col gap-4">
           <div className="flex flex-col gap-4">
             {units.map((unit, uIdx) => {
               const isActiveUnit = uIdx === activeUnitIdx;
@@ -906,10 +1241,11 @@ function SystemDesignData() {
                 <div key={unit.id} className="flex flex-col gap-2">
                   <button
                     onClick={() => selectUnit(uIdx)}
-                    className={`w-full text-left p-3 border-3 border-black font-black transition-all cursor-pointer mb-2 ${isActiveUnit
-                      ? "bg-yellow-300 text-black shadow-[4px_4px_0px_0px_#000] translate-x-1"
-                      : "bg-white text-black hover:bg-amber-100 shadow-[2px_2px_0px_0px_#000]"
-                      }`}
+                    className={`w-full text-left p-3 border-3 border-black font-black transition-all cursor-pointer mb-2 ${
+                      isActiveUnit
+                        ? "bg-yellow-300 text-black shadow-[4px_4px_0px_0px_#000] translate-x-1"
+                        : "bg-white text-black hover:bg-amber-100 shadow-[2px_2px_0px_0px_#000]"
+                    }`}
                   >
                     <span className="text-[10px] font-black uppercase tracking-wide text-emerald-700 block">
                       {unit.label}
@@ -925,10 +1261,11 @@ function SystemDesignData() {
                           <button
                             key={chapter.id}
                             onClick={() => setActiveChapterIdx(cIdx)}
-                            className={`w-full flex items-center gap-2 text-left px-3 py-3 border-2 border-black text-sm font-bold transition-all cursor-pointer mb-1 ${isActiveChapter
-                              ? "bg-emerald-200 text-black shadow-[2px_2px_0px_0px_#000]"
-                              : "bg-white/80 text-black hover:bg-emerald-100"
-                              }`}
+                            className={`w-full flex items-center gap-2 text-left px-3 py-3 border-2 border-black text-sm font-bold transition-all cursor-pointer mb-1 ${
+                              isActiveChapter
+                                ? "bg-emerald-200 text-black shadow-[2px_2px_0px_0px_#000]"
+                                : "bg-white/80 text-black hover:bg-emerald-100"
+                            }`}
                           >
                             <span className="w-4 h-4 shrink-0 rounded-full bg-black text-white flex items-center justify-center text-[9px] font-bold">
                               {cIdx + 1}
@@ -983,6 +1320,7 @@ function SystemDesignData() {
                   diagram={topic.diagram}
                 />
               ))}
+               {activeChapter.diagram && <DiagramFrame>{activeChapter.diagram}</DiagramFrame>}
             </div>
           )}
         </div>
