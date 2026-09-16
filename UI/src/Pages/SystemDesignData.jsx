@@ -1133,10 +1133,91 @@ const units = [
         diagram: <ConsistencyModelsDiagram />,
       },
       {
-        id: "u2-c7",
-        label: "Chapter 7",
-        title: "Back of the envelope estimations",
-      },
+  id: "u2-c7",
+  label: "Chapter 7",
+  title: "Back of the Envelope Estimations",
+  hook: "Before you write a single line of code, an interviewer wants to know: do you actually understand the scale of what you're building? Back-of-the-envelope estimation is the skill of turning a vague requirement into rough, defensible numbers — QPS, storage, bandwidth, server count — using nothing but arithmetic and a few memorized reference points.",
+  topics: [
+    {
+      title: "Power of Two — Data Volume Units",
+      hook: "Distributed systems deal in enormous data volumes, but every calculation still boils down to knowing your units. Get the power-of-two table wrong and every estimate downstream is wrong too.",
+      points: [
+        { label: "1 KB", text: "2^10 bytes, roughly 1 thousand bytes" },
+        { label: "1 MB", text: "2^20 bytes, roughly 1 million bytes" },
+        { label: "1 GB", text: "2^30 bytes, roughly 1 billion bytes" },
+        { label: "1 TB", text: "2^40 bytes, roughly 1 trillion bytes" },
+        { label: "1 PB", text: "2^50 bytes, roughly 1 quadrillion bytes" },
+        { label: "Why it matters", text: "a single wrong power-of-two conversion can throw a storage estimate off by 3 orders of magnitude — always sanity-check units first" },
+      ],
+    },
+    {
+      title: "Latency Numbers Every Programmer Should Know",
+      hook: "Jeff Dean's classic table (Google, 2010) still shapes how engineers reason about speed today — memory is fast, disks are slow, and the network is slower still.",
+      points: [
+        { label: "L1 cache reference", text: "~0.5 ns — essentially free" },
+        { label: "Main memory reference", text: "~100 ns — about 200x slower than L1 cache" },
+        { label: "Compress 1 KB with Zippy", text: "~10 µs — cheap, which is why you compress before sending over a network" },
+        { label: "Round trip within the same datacenter", text: "~500 µs — fast, but not free at high volume" },
+        { label: "Disk seek", text: "~10 ms — avoid disk seeks wherever possible" },
+        { label: "Read 1 MB sequentially from disk", text: "~30 ms — three times slower than reading the same 1 MB from the network" },
+        { label: "Packet CA → Netherlands → CA", text: "~150 ms — cross-region round trips dominate latency budgets, which is why data centers are placed close to users" },
+      ],
+    },
+    {
+      title: "Availability Numbers & the 'Nines'",
+      hook: "High availability is usually promised as a Service Level Agreement (SLA) — a percentage that sounds abstract until you convert it into actual downtime.",
+      points: [
+        { label: "Definition", text: "the percentage of time a system is operational and accessible when required for use" },
+        { label: "SLA", text: "a formal agreement between provider and customer defining the guaranteed uptime — AWS, GCP, and Azure typically commit to 99.9% or higher" },
+        { label: "99% uptime", text: "allows ~3.65 days of downtime per year — surprisingly generous" },
+        { label: "99.99% uptime ('four nines')", text: "allows only ~52.6 minutes of downtime per year" },
+        { label: "99.999% uptime ('five nines')", text: "allows just ~5.26 minutes per year — each extra nine costs exponentially more engineering effort" },
+      ],
+    },
+    {
+      title: "Worked Example: Estimating QPS (Twitter-style)",
+      hook: "Numbers mean nothing without a worked example. Here's how a handful of stated assumptions turn into a concrete queries-per-second figure — the number every capacity decision downstream depends on.",
+      points: [
+        { label: "Assumptions", text: "300 million monthly active users, 50% daily active, 2 tweets/user/day, 10% of tweets contain media, 5-year data retention" },
+        { label: "Step 1 — Daily Active Users", text: "300M × 50% = 150 million DAU" },
+        { label: "Step 2 — Average QPS", text: "150M users × 2 tweets ÷ 24 hours ÷ 3,600 seconds ≈ 3,500 QPS" },
+        { label: "Step 3 — Peak QPS", text: "traffic isn't flat across the day — a common rule of thumb is 2× the average, so 2 × 3,500 ≈ 7,000 QPS at peak" },
+        { label: "Step 4 — Media storage per day", text: "150M × 2 tweets × 10% media × 1 MB ≈ 30 TB/day" },
+        { label: "Step 5 — 5-year media storage", text: "30 TB × 365 days × 5 years ≈ 55 PB total" },
+      ],
+    },
+    {
+      title: "From Peak QPS to Server Count",
+      hook: "Once you have a Peak QPS figure — 7,000 in our example — the next question an interviewer asks is: so how many servers does that actually take? This is where estimation turns into a hardware sizing decision.",
+      points: [
+        {
+          label: "Step 1 — QPS capacity per core",
+          text: "API and app servers handling text tweets, auth, and metadata routing are typically I/O-bound, not CPU-bound — but JSON serialization, validation, and routing still cost CPU cycles. A reasonable assumption for a well-optimized service is ~500 QPS per core; a heavier, less-optimized stack might land closer to ~100–200 QPS per core",
+        },
+        {
+          label: "Step 2 — Total cores required",
+          text: "Peak QPS ÷ QPS-per-core = 7,000 ÷ 500 ≈ 14 cores needed to serve peak load with zero headroom",
+        },
+        {
+          label: "Step 3 — Servers required",
+          text: "assuming a common 16-core server instance, 14 cores ÷ 16 cores/server rounds up to just 1 server — but running peak traffic at 100% utilization on a single box is a Single Point of Failure and leaves no room for spikes",
+        },
+        {
+          label: "Step 4 — Add a safety buffer",
+          text: "a typical rule of thumb is provisioning for 40–50% average utilization at peak, not 100% — so the true core requirement becomes roughly 14 ÷ 0.5 ≈ 28 cores, or about 2 servers at 16 cores each",
+        },
+        {
+          label: "Step 5 — Add redundancy (N+1)",
+          text: "production systems add at least one extra instance beyond the calculated minimum so a single server failure doesn't take down the service — bringing the realistic estimate to 3 servers minimum, often spread across multiple availability zones",
+        },
+        {
+          label: "The takeaway",
+          text: "the raw math says 1 server; real-world safety margins and failover requirements push that to 3+ — this gap between theoretical minimum and practical minimum is exactly what interviewers are listening for",
+        },
+      ],
+    },
+  ],
+},
     ],
   },
 ];
