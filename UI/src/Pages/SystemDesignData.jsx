@@ -456,6 +456,74 @@ function ConsistentHashingDiagram() {
     </div>
   );
 }
+function OSImodelDiagram() {
+  const layers = [
+    { num: 7, name: "Application", desc: "HTTP, DNS, FTP" },
+    { num: 6, name: "Presentation", desc: "TLS, Encoding, Compression" },
+    { num: 5, name: "Session", desc: "Session establishment" },
+    { num: 4, name: "Transport", desc: "TCP, UDP, Ports" },
+    { num: 3, name: "Network", desc: "IP, Routing" },
+    { num: 2, name: "Data Link", desc: "MAC, Frames, Switches" },
+    { num: 1, name: "Physical", desc: "Cables, Signals, Bits" },
+  ];
+
+  return (
+    <div className="my-4 p-4 bg-white border-3 border-black shadow-[4px_4px_0px_0px_#000] flex flex-col items-center gap-3">
+      <div className="w-full flex justify-between items-center border-b-2 border-black pb-2">
+        <span className="text-xs font-black uppercase tracking-wider text-black bg-yellow-300 px-2 py-0.5 border border-black">
+          OSI Model
+        </span>
+        <span className="text-[11px] font-bold text-gray-700">
+          7 Layers — Application to Physical
+        </span>
+      </div>
+
+      <div className="w-full flex gap-3">
+        {/* Down arrow column: sending side */}
+        <div className="flex flex-col items-center justify-between py-1">
+          <span className="text-[9px] font-black text-slate-500 mb-1 rotate-0">TX</span>
+          <div className="flex-1 w-[2px] bg-black/70 relative">
+            <span className="absolute -bottom-1 -left-[5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-black/70" />
+          </div>
+        </div>
+
+        {/* Layer stack */}
+        <div className="flex-1 flex flex-col gap-1.5">
+          {layers.map((layer, i) => (
+            <div
+              key={layer.num}
+              className={`flex items-center gap-3 border-2 border-black rounded-md px-3 py-2 shadow-[2px_2px_0px_0px_#000] ${
+                i % 2 === 0 ? "bg-white" : "bg-emerald-50"
+              }`}
+            >
+              <span className="w-6 h-6 shrink-0 rounded-full bg-[#00A896] text-white border-2 border-black flex items-center justify-center font-black text-[11px]">
+                {layer.num}
+              </span>
+              <span className="font-black text-xs sm:text-sm text-black w-24 sm:w-28 shrink-0">
+                {layer.name}
+              </span>
+              <span className="text-[10px] sm:text-[11px] font-bold text-black/60 truncate">
+                {layer.desc}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Up arrow column: receiving side */}
+        <div className="flex flex-col items-center justify-between py-1">
+          <div className="flex-1 w-[2px] bg-black/70 relative">
+            <span className="absolute -top-1 -left-[5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] border-b-black/70" />
+          </div>
+          <span className="text-[9px] font-black text-slate-500 mt-1">RX</span>
+        </div>
+      </div>
+
+      <div className="w-full bg-amber-50 border-2 border-black p-2 text-center text-xs font-bold text-black">
+        Sender: data flows down, Layer 7 → 1 (encapsulation). Receiver: flows up, Layer 1 → 7 (decapsulation).
+      </div>
+    </div>
+  );
+}
 const DiagramFrame = ({ children }) => (
   <div className="bg-emerald-50/60 border-2 border-black/80 rounded-xl px-3 sm:px-5 my-1">
     {children}
@@ -1220,6 +1288,114 @@ const units = [
 },
     ],
   },
+  {
+    id: "unit-3",
+    label: "Unit 3",
+    title: "Networking Fundamentals",
+    chapters: [
+ {
+  id: "u3-c1",
+  label: "Chapter 1",
+  title: "OSI Model",
+  hook: "When two machines talk to each other — a browser and a server, say — a mountain of work happens between 'user clicks a link' and 'page loads': signals become bits, bits become packets, packets find a route, and the receiving machine reassembles it all back into something meaningful. The OSI Model is the standard way of breaking that mountain into seven manageable, independent layers.",
+  topics: [
+    {
+      title: "What the OSI Model Is",
+      hook: "OSI stands for Open Systems Interconnection — a conceptual framework, not actual code, that describes how data travels from one device to another across a network.",
+      points: [
+        {
+          label: "Definition",
+          text: "a 7-layer reference model, published by ISO, that standardizes how different networking systems communicate regardless of their underlying hardware or software",
+        },
+        {
+          label: "Why layers at all",
+          text: "splitting networking into layers means each one can be built, debugged, and replaced independently — a web developer never needs to think about voltage levels, and a hardware engineer never needs to think about HTTP",
+        },
+        {
+          label: "Direction of data flow",
+          text: "on the sending side data flows down from Layer 7 to Layer 1 (encapsulation); on the receiving side it flows back up from Layer 1 to Layer 7 (decapsulation)",
+        },
+        {
+          label: "The mnemonic",
+          text: "'Please Do Not Throw Sausage Pizza Away' — Physical, Data Link, Network, Transport, Session, Presentation, Application, from bottom to top",
+        },
+      ],
+    },
+    {
+      title: "The Lower Layers — Physical, Data Link, Network (1–3)",
+      hook: "The bottom three layers are about getting raw bits from one physical point to another, and finding a path across a network of many possible routes.",
+      points: [
+        {
+          label: "Layer 1 — Physical",
+          text: "transmits raw, unstructured bits (0s and 1s) as electrical signals, light pulses, or radio waves over cables, fiber, or air — concerned purely with hardware: voltages, pins, cabling, radio frequencies",
+        },
+        {
+          label: "Layer 2 — Data Link",
+          text: "organizes raw bits into frames and handles node-to-node delivery on the same local network, using MAC addresses to identify devices — switches operate here",
+        },
+        {
+          label: "Layer 2 — Error detection",
+          text: "adds checksums (like CRC) so a receiving device can detect a corrupted frame, though not necessarily fix it",
+        },
+        {
+          label: "Layer 3 — Network",
+          text: "responsible for routing — determining the best path for a packet to travel across multiple networks, using IP addresses rather than MAC addresses — routers operate here",
+        },
+        {
+          label: "Layer 3 — Packets",
+          text: "data at this layer is called a packet; the layer also handles logical addressing and fragmentation when a packet is too large for a link",
+        },
+      ],
+    },
+    {
+      title: "The Middle Layer — Transport (4)",
+      hook: "Transport is the layer most backend engineers actually think about day to day, because it decides whether your data arrives reliably or just arrives fast.",
+      points: [
+        {
+          label: "Layer 4 — Transport",
+          text: "manages end-to-end communication between two hosts, breaking data into segments and ensuring they arrive in order and without errors (or choosing not to, deliberately)",
+        },
+        {
+          label: "TCP (Transmission Control Protocol)",
+          text: "connection-oriented — guarantees delivery, ordering, and error-checking via handshakes and acknowledgments, at the cost of extra overhead and latency",
+        },
+        {
+          label: "UDP (User Datagram Protocol)",
+          text: "connectionless — sends data without guarantees of delivery or order, trading reliability for speed; used for video streaming, gaming, and DNS lookups",
+        },
+        {
+          label: "Ports",
+          text: "Transport layer also handles port numbers (e.g. 443 for HTTPS, 22 for SSH), letting a single IP address serve many simultaneous connections",
+        },
+      ],
+    },
+    {
+      title: "The Upper Layers — Session, Presentation, Application (5–7)",
+      hook: "The top three layers are closest to the actual user and application — less about wires and routing, more about meaning, formatting, and the conversation itself.",
+      points: [
+        {
+          label: "Layer 5 — Session",
+          text: "establishes, manages, and terminates the connection ('session') between two applications — keeping track of which packets belong to which ongoing conversation",
+        },
+        {
+          label: "Layer 6 — Presentation",
+          text: "translates data between the application format and the network format — handling encryption/decryption (TLS/SSL), compression, and character encoding so both ends understand the same 'language'",
+        },
+        {
+          label: "Layer 7 — Application",
+          text: "the layer users and developers interact with most directly — protocols like HTTP, HTTPS, FTP, and DNS live here, and this is where your actual API requests and responses live",
+        },
+        {
+          label: "A common confusion",
+          text: "'Application layer' doesn't mean your app's code — it means the network protocol your app's code talks over (HTTP, WebSocket, gRPC), which then gets wrapped by every layer below it",
+        },
+      ],
+    },
+  ],
+  diagram: <OSImodelDiagram />,
+},
+    ]
+  }
 ];
 
 function SystemDesignData() {
