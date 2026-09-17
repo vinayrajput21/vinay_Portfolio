@@ -92,8 +92,8 @@ function Dsa({ topicKey }) {
           {meta.label}
         </h2>
         <p className="text-gray-700 font-semibold text-xs sm:text-sm">
-          {problems.length}{" "}
-          {problems.length === 1 ? "problem" : "problems"} solved so far
+          {problems.length} {problems.length === 1 ? "problem" : "problems"}{" "}
+          solved so far
         </p>
       </div>
 
@@ -127,8 +127,9 @@ function Dsa({ topicKey }) {
                     <span className="text-xs font-bold text-gray-600 block mb-1">
                       Example:
                     </span>
-                    <pre className="bg-[#f5f5f5] text-black font-mono text-xs sm:text-sm p-3 border-2 border-black rounded-md whitespace-pre overflow-x-auto leading-tight">
-                      {problem.example}
+                    <pre className="bg-[#f5f5f5] text-black font-mono text-xs sm:text-sm p-3 border-2 border-black rounded-md whitespace-pre overflow-x-auto leading-tight space-y-3">
+                      <div>{problem.example}</div>
+                      <div>{problem.output}</div>
                     </pre>
                   </div>
                 )}

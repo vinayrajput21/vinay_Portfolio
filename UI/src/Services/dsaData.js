@@ -306,8 +306,8 @@ export const dsaData = {
       title: "Bubble Sort",
       question:
         "Given an array of integers, sort the array in ascending order using the Bubble Sort algorithm. Optimize the algorithm so that it terminates early if no swaps occur in a pass.",
-      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
-Output: [2, 3, 5, 8, 9, 23, 67]`,
+      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]`,
+output: `Output:[2, 3, 5, 8, 9, 23, 67]`,
       approach:
         "Iterate through the array multiple times, comparing adjacent elements and swapping them if they are out of order. Maintain a boolean flag to track if any swaps occurred during the iteration; if no elements were swapped, the array is already sorted and the loop breaks early.",
       code: `import java.util.*;
@@ -342,8 +342,8 @@ class Main {
       title: "Selection Sort",
       question:
         "Given an array of integers, sort the array in ascending order using the Selection Sort technique by repeatedly locating the appropriate element and placing it into position.",
-      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]
-Output: [2, 3, 5, 8, 9, 23, 67]`,
+      example: `Input: arr = [23, 2, 5, 67, 9, 3, 8]`,
+output:`Output: [2, 3, 5, 8, 9, 23, 67]`,
       approach:
         "Iterate across the array indices. For each position, scan the remaining elements to identify the target value according to order, then swap the values into the active position.",
       code: `import java.util.*;
@@ -839,5 +839,90 @@ class Main {
 }`,
   language: "java",
 },
+{
+  title: "Next Permutation",
+  question: "Given an array of integers representing a permutation, rearrange the numbers into the lexicographically next greater permutation. If no such permutation exists, rearrange it into the lowest possible order (sorted in ascending order).",
+  example: `Input: [1, 2, 5, 4, 3]`,
+  output: `Output: [1, 3, 2, 4, 5]`,
+  approach: "Find the pivot where the sequence stops increasing from the right. Swap it with the next greater element on its right, then reverse the suffix to obtain the next lexicographical permutation.",
+  code: `class Solution {
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        int pivot = -1;
+
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                pivot = i;
+                break;
+            }
+        }
+
+        if (pivot == -1) {
+            reverse(nums, 0, n - 1);
+            return;
+        }
+
+        int right = n - 1;
+        while (right > pivot) {
+            if (nums[right] > nums[pivot]) {
+                swap(nums, pivot, right);
+                break;
+            }
+            right--;
+        }
+
+        reverse(nums, pivot + 1, n - 1);
+    }
+
+    private void reverse(int[] nums, int left, int right) {
+        while (left < right) {
+            swap(nums, left, right);
+            left++;
+            right--;
+        }
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Merge Sorted Array",
+  question: "You are given two sorted integer arrays nums1 and nums2, where nums1 has a size of m + n with the last n elements set to 0 and reserved for nums2. Merge nums2 into nums1 as one sorted array in non-decreasing order.",
+  example: `Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3`,
+  output: `Output: [1,2,2,3,5,6]`,
+  approach: "Start from the end of both arrays and compare the largest remaining elements. Place the larger element at the end of nums1, moving backwards until all elements from nums2 are merged.",
+  code: `class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1;
+        int j = n - 1;
+        int k = m + n - 1;
+
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k] = nums1[i];
+                i--;
+            } else {
+                nums1[k] = nums2[j];
+                j--;
+            }
+            k--;
+        }
+
+        while (j >= 0) {
+            nums1[k] = nums2[j];
+            j--;
+            k--;
+        }
+    }
+}`,
+  language: "java",
+},
+
+
   ],
 };
