@@ -563,7 +563,26 @@ class Main {
                 }
             }
         }
-    }`,
+    }
+        
+    OR
+
+    import java.util.HashMap;
+    import java.util.Map;
+
+    public class TwoSum {
+    public static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(nums[i], i);
+        }
+        return new int[0];
+    }
+}`,
       language: "java",
     },
     {
@@ -922,7 +941,148 @@ class Main {
 }`,
   language: "java",
 },
+{
+  title: "Longest Consecutive Sequence",
+  question: "Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.",
+  example: "Input: [100, 4, 200, 1, 3, 2]",
+  output: "Output: 4",
+  approach: "Store all elements in a HashSet for O(1) lookups. Iterate through the set, and for each element that is the start of a sequence (i.e., num - 1 is not in the set), count the length of the consecutive sequence and track the maximum.",
+  code: `import java.util.*;
+class Main{
+    public static void main(String[]args){
+      int arr[]={100,4,200,1,3,2};
+        int max=Integer.MIN_VALUE;
+        Set<Integer>set=new HashSet<>();
+        for(int num : arr){
+            set.add(num);
+        }
+        for(int i=0;i<arr.length-1;i++){
+            int val = arr[i];
+            int count=0;
+            int temp=val;
+            while(set.contains(--temp)){
+                count++;
+                set.remove(temp);
+            }
+            while(set.contains(++temp)){
+                count++;
+                set.remove(temp);
+            }
+            max=Math.max(max,count+1);
+        }
+        System.out.println(max);
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Set Matrix Zeroes",
+  question: "Given an m x n integer matrix, if an element is 0, set its entire row and column to 0's.",
+  example: "Input: [[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]]",
+  output: "Output: [[0, 0, 0, 0], [0, 4, 5, 0], [0, 3, 1, 0]]",
+  approach: "Use separate row and column tracking arrays to record which rows and columns contain a zero during the first pass, then iterate through the matrix a second time to set elements to zero where necessary.",
+  code: `class Solution {
+    public void setZeroes(int[][] arr) {
+        int row[] = new int[arr.length];
+        int col[] = new int[arr[0].length];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                if (arr[i][j] == 0) {
+                    row[i] = -1;
+                    col[j] = -1;
+                }
+            }
+        }
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                if (row[i] == -1 || col[j] == -1) {
+                    arr[i][j] = 0;
+                }
+            }
+        }
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Check if Array Elements are Consecutive",
+  question: "Given an array of integers, determine whether the array contains consecutive numbers by checking if each adjacent element differs by 1 when sorted.",
+  example: "Input: [5, 2, 3, 1, 4]",
+  output: "Output: true",
+  approach: "Sort the array in ascending order, then iterate through the elements to check if each adjacent pair satisfies nums[i] + 1 == nums[i + 1]. If any pair fails, return false.",
+  code: `class Solution {
+    public boolean isConsecutive(int[] nums) {
+        Arrays.sort(nums);
+        boolean flag = true;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] + 1 != nums[i + 1]) {
+                flag = false;
+            }
+        }
+        return flag;
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Pascal's Triangle Element",
+  question: "Given the row and column indices (r and c), generate Pascal's triangle up to row r and return the element at the specified position.",
+  example: "Input: r = 4, c = 2",
+  output: "Output: 3",
+  approach: "Use dynamic programming to construct Pascal's triangle row by row, where each interior element is the sum of the two elements directly above it, then retrieve the value at the target row and column.",
+  code: `class Main {
+    public static void main(String[] args) {
+        int r = 4;
+        int c = 2;
+        int pas[][] = new int[r][r];
+        pas[0][0] = 1;
+        for (int i = 1; i < r; i++) {
+            for (int j = 0; j <= i; j++) {
+                if (j == 0 || j == i) {
+                    pas[i][j] = 1;
+                } else {
+                    pas[i][j] = pas[i - 1][j - 1] + pas[i - 1][j];                    
+                }
+            }
+        }
+        System.out.println(pas[r - 1][c - 1]);
+    }
+}`,
+  language: "java",
+},
 
 
+  ],
+  strings:[
+{
+  title: "Count Prefix Occurrences",
+  question: "Given a string s of length n, the task is to count the number of occurrences of each prefix of the string in the entire string. For a prefix defined as s[0...i] (where i ranges from 0 to n-1), determine how many times this prefix appears as a substring within s.",
+  example: "Input: s = \"abab\"",
+  output: "Output: [2, 2, 1, 1]",
+  approach: "For each prefix of the string, find its occurrences within the string by repeatedly searching using indexOf and advancing the index, then store the total count for each prefix.",
+  code: `class Solution {
+    public List<Integer> countPrefixOccurrences(String s) {
+        List<Integer> ans = new ArrayList<>();
+        int n = s.length();
+        
+        for (int i = 0; i < n; i++) {
+            String prefix = s.substring(0, i + 1);
+            
+            int count = 0;
+            int index = 0;
+            
+            while ((index = s.indexOf(prefix, index)) != -1) {
+                count++;
+                index++;
+            }
+            
+            ans.add(count);
+        }
+        
+        return ans;
+    }
+}`,
+  language: "java",
+},
   ],
 };
