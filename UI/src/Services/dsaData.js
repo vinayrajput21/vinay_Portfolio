@@ -1050,6 +1050,35 @@ class Main{
 }`,
   language: "java",
 },
+{
+  title: "Intersection of Two Sorted Arrays",
+  question: "Given two sorted arrays nums1 and nums2, return an array containing their intersection.",
+  example: "Input: nums1 = [1, 2, 2, 1], nums2 = [2, 2]",
+  output: "Output: [2, 2]",
+  approach: "Use a two-pointer approach to traverse both sorted arrays simultaneously, comparing elements and adding matches to a result list while advancing the pointers accordingly.",
+  code: `class Solution {
+    public int[] intersectionArray(int[] nums1, int[] nums2) {
+        int i = 0;
+        int j = 0;
+        List<Integer> result = new ArrayList<>();
+
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                i++;
+            } else if (nums1[i] > nums2[j]) {
+                j++;
+            } else {
+                result.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+}`,
+  language: "java",
+}
 
 
   ],
