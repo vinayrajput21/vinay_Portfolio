@@ -1078,10 +1078,40 @@ class Main{
     }
 }`,
   language: "java",
-}
+},
 
 
   ],
+
+binarySearch:[
+    {
+  title: "Find a Peak Grid",
+  question: "A peak element in a 2D grid is an element that is strictly greater than all of its adjacent neighbors to the left, right, top, and bottom. Given a 0-indexed m x n matrix mat where no two adjacent cells are equal, find any peak element and return its coordinates [i, j].",
+  example: "Input: mat = [[1, 4], [3, 2]]",
+  output: "Output: [0, 1]",
+  approach: "Iterate through every cell in the 2D matrix, checking if the current element is greater than its valid top, bottom, left, and right neighbors to identify and return the coordinates of a peak element.",
+  code: `class Solution {
+    public int[] findPeakGrid(int[][] mat) {
+     for(int i=0;i<mat.length;i++){
+        for(int j=0;j<mat[0].length;j++){
+            if(i==0||mat[i][j]>mat[i-1][j]){
+                if(i==mat.length-1||mat[i][j]>mat[i+1][j]){
+                    if(j==0||mat[i][j]>mat[i][j-1]){
+                        if(j==mat[0].length-1||mat[i][j]>mat[i][j+1]){
+                            return new int[]{i,j};
+                        }
+                    }
+                }
+            }
+        }
+     }
+        return new int[]{-1,-1};
+    }
+}`,
+  language: "java",
+},
+
+],
   strings:[
 {
   title: "Count Prefix Occurrences",
@@ -1113,5 +1143,6 @@ class Main{
 }`,
   language: "java",
 },
+
   ],
 };
