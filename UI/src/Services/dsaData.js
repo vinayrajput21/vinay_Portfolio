@@ -1143,6 +1143,30 @@ binarySearch:[
 }`,
   language: "java",
 },
+{
+  title: "Capitalize First and Last Character of Each Word",
+  question: "Given a string, capitalize the first and last characters of each word in the string.",
+  example: "Input: s = \"hello world\"",
+  output: "Output: \"HellO WorlD\"",
+  approach: "Iterate through each character of the string, using adjacent spaces and string boundaries to identify the first and last characters of each word, and capitalize them using a StringBuilder.",
+  code: `class Solution {
+    public String capitalizeFirstLast(String s) {
+        StringBuilder str = new StringBuilder();
+        for(int i=0;i<s.length();i++){
+            char ch = s.charAt(i);
+            if(i==0||i==s.length()-1){
+                str.append(Character.toUpperCase(ch));
+            }else if(s.charAt(i-1)==' '||(i+1<s.length() && s.charAt(i+1)==' ')){
+                str.append(Character.toUpperCase(ch));
+            }else{
+                str.append(ch);
+            }
+        }
+        return str.toString();
+    }
+}`,
+  language: "java",
+}
 
   ],
 };
