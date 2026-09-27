@@ -1169,4 +1169,102 @@ binarySearch:[
 }
 
   ],
+  linkedList:[ 
+    {
+  title: "Reverse Linked List",
+  question: "Given the head of a singly linked list, reverse the list, and return the reversed list.",
+  example: "Input: head = [1, 2, 3, 4]",
+  output: "Output: [4, 3, 2, 1]",
+  approach: "Use an iterative approach with pointers (prev, curr, next) to reverse the links of the linked list in-place, alongside a recursive alternative.",
+  code: `class ListNode {
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+class Main {
+    public static ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
+    public static ListNode reverseListRecursive(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = reverseListRecursive(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+
+    public static void printList(ListNode head) {
+        ListNode curr = head;
+        while (curr != null) {
+            System.out.print(curr.val + (curr.next != null ? " -> " : ""));
+            curr = curr.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+
+        System.out.print("Original: ");
+        printList(head);
+
+        head = reverseList(head);
+
+        System.out.print("Reversed: ");
+        printList(head);
+    }
+}`,
+  language: "java",
+},
+    {
+  title: "Remove Duplicates from an Unsorted Linked List",
+  question: "Given the head of a linked list, find all the duplicate elements and remove them such that only distinct elements remain in the linked list. Return the linked list head.",
+  example: "Input: head = [1, 2, 3, 2]",
+  output: "Output: [1, 3]",
+  approach: "Use a HashMap to count the frequencies of each node's value in a first pass, then iterate through the linked list a second time to build a new result list containing only elements that appear exactly once.",
+  code: `class Solution {
+    public ListNode deleteDuplicatesUnsorted(ListNode head) {
+        ListNode current = head;
+        HashMap<Integer, Integer> mpp = new HashMap<>();
+        while (current != null) {
+            mpp.put(current.val, mpp.getOrDefault(current.val, 0) + 1);
+            current = current.next;
+        }
+        ListNode ans = new ListNode(0);
+        current = head;
+        ListNode tail = ans;
+        while (current != null) {
+            if (mpp.get(current.val) == 1) {
+                tail.next = current;
+                tail = tail.next;
+            }
+            current = current.next;
+        }
+        tail.next = null;
+        return ans.next;
+    }
+}`,
+  language: "java",
+}
+  ],
+
 };
