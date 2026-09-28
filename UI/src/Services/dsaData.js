@@ -1166,7 +1166,32 @@ binarySearch:[
     }
 }`,
   language: "java",
-}
+},
+{
+  title: "Output Contest Matches",
+  question: "During the NBA playoffs, we want to predict the sequential tournament matchups between teams based on their initial rankings. Given n teams, form pairs such that the first team plays the last team, the second plays the second to last, and so on, repeating the process recursively until only one pair remains.",
+  example: "Input: n = 4",
+  output: "Output: \"((1,4),(2,3))\"",
+  approach: "Initialize an array of strings representing team numbers, then iteratively pair up elements from the outside in using a two-pointer approach until a single combined string match structure remains.",
+  code: `class Solution {
+    public String findContestMatch(int n) {
+        String[] matches = new String[n];
+        for (int i = 0; i < n; i++) {
+            matches[i] = String.valueOf(i + 1);
+        }
+
+        while (n > 1) {
+            for (int i = 0; i < n / 2; i++) {
+                matches[i] = "(" + matches[i] + "," + matches[n - 1 - i] + ")";
+            }
+            n /= 2;
+        }
+
+        return matches[0];
+    }
+}`,
+  language: "java",
+},
 
   ],
   linkedList:[ 
@@ -1261,6 +1286,51 @@ class Main {
         }
         tail.next = null;
         return ans.next;
+    }
+}`,
+  language: "java",
+}
+  ],
+  recursion:[
+    {
+  title: "Pow(x, n)",
+  question: "Implement pow(x, n), which calculates x raised to the power n (i.e., x^n).",
+  example: "Input: x = 2.0000, n = 10",
+  output: "Output: 1024.000000",
+  approach: "Use recursive binary exponentiation to efficiently compute x raised to the power n in logarithmic time complexity, handling negative exponents by using reciprocal values.",
+  code: `import java.util.Locale;
+
+public class Solution {
+    public static double myPow(double x, int n) {
+        long exp = n;
+        if (exp < 0) {
+            return 1.0 / power(x, -exp);
+        }
+        return power(x, exp);
+    }
+
+    private static double power(double x, long exp) {
+        if (exp == 0) {
+            return 1.0;
+        }
+
+        double half = power(x, exp / 2);
+
+        if (exp % 2 == 0) {
+            return half * half;
+        } else {
+            return half * half * x;
+        }
+    }
+
+    public static void main(String[] args) {
+        double x1 = 2.0000;
+        int n1 = 10;
+        System.out.printf(Locale.US, "%.6f%n", myPow(x1, n1));
+
+        double x2 = 2.0000;
+        int n2 = -2;
+        System.out.printf(Locale.US, "%.6f%n", myPow(x2, n2));
     }
 }`,
   language: "java",
