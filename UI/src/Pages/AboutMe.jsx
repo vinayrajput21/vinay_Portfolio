@@ -122,7 +122,7 @@ function AboutMe() {
                   <h3 className="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold">
                     Blockcube/Teledgers
                   </h3>
-                  <p className="text-teal-600 font-medium text-sm sm:text-base">React/Angular Developer • Present</p>
+                  <p className="text-teal-600 font-medium text-sm sm:text-base">Software Developer • Present</p>
                   <p className="text-gray-600 text-sm sm:text-base">
                     Developing modern web solutions and scalable applications using the MEAN and MERN stack.
                   </p>
