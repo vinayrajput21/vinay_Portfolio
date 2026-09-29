@@ -1336,5 +1336,37 @@ public class Solution {
   language: "java",
 }
   ],
+  bitManipulation:[
+    {
+  title: "Check if ith Bit is Set",
+  question: "Given two integers n and i, return true if the ith bit in the binary representation of n (counting from the least significant bit, 0-indexed) is set (i.e., equal to 1). Otherwise, return false.",
+  example: "Input: n = 5, i = 0",
+  output: "Output: true",
+  approach: "Use the bitwise AND operator combined with a left-shifted mask (1 << i) to isolate and check whether the i-th bit from the least significant bit is set.",
+  code: `class Solution {
+    public boolean checkIthBit(int n, int i) {
+        return (n & (1 << i)) != 0;
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Bitwise OR of Adjacent Elements",
+  question: "Given an array nums of length n, return an array answer of length n - 1 such that answer[i] = nums[i] | nums[i + 1] where | is the bitwise OR operation.",
+  example: "Input: nums = [1, 3, 7, 15]",
+  output: "Output: [3, 7, 15]",
+  approach: "Iterate through the list up to the second-to-last element, compute the bitwise OR operation between each adjacent pair of elements, and add the result to a new list.",
+  code: `class Solution {
+    public List<Integer> orArray(List<Integer> A) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        for (int i = 0; i < A.size() - 1; i++) {
+            ans.add(A.get(i) | A.get(i + 1));
+        }
+        return ans;
+    }
+}`,
+  language: "java",
+}
+  ],
 
 };
