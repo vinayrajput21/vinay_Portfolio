@@ -1079,6 +1079,60 @@ class Main{
 }`,
   language: "java",
 },
+{
+  title: "Design Hit Counter",
+  question: "Design a hit counter which counts the number of hits received in the past 5 minutes (i.e., the past 300 seconds). Your system should accept a timestamp parameter and return the number of hits in the past 300 seconds.",
+  example: "Input: hitCounter.hit(1), hitCounter.hit(2), hitCounter.hit(3), hitCounter.getHits(4)",
+  output: "Output: 3",
+  approach: "Use two fixed-size arrays of length 300 (one for timestamps and one for hit counts) mapped via modulo arithmetic to record hits in O(1) time, and sum the valid hits within a 300-second window during retrieval.",
+  code: `public class Main {
+    public static void main(String[] args) {
+        HitCounter hitCounter = new HitCounter();
+        
+        hitCounter.hit(1);
+        hitCounter.hit(2);
+        hitCounter.hit(3);
+        
+        System.out.println(hitCounter.getHits(4));
+        
+        hitCounter.hit(300);
+        
+        System.out.println(hitCounter.getHits(300));
+        System.out.println(hitCounter.getHits(301));
+    }
+}
+
+class HitCounter {
+    private int[] times;
+    private int[] hits;
+
+    public HitCounter() {
+        times = new int[300];
+        hits = new int[300];
+    }
+    
+    public void hit(int timestamp) {
+        int idx = timestamp % 300;
+        if (times[idx] != timestamp) {
+            times[idx] = timestamp;
+            hits[idx] = 1;
+        } else {
+            hits[idx]++;
+        }
+    }
+    
+    public int getHits(int timestamp) {
+        int totalHits = 0;
+        for (int i = 0; i < 300; i++) {
+            if (timestamp - times[i] < 300) {
+                totalHits += hits[i];
+            }
+        }
+        return totalHits;
+    }
+}`,
+  language: "java",
+},
 
 
   ],
