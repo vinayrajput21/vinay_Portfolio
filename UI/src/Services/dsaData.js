@@ -1423,4 +1423,162 @@ public class Solution {
 }
   ],
 
+  binaryTrees:[
+    {
+  title: "Binary Tree Inorder Traversal",
+  question: "Given the root of a binary tree, return the inorder traversal of its nodes' values.",
+  example: "Input: root = [1, 2, 3, 4, 5, null, 6]",
+  output: "Output: 4 2 5 1 3 6",
+  approach: "Use a recursive depth-first search approach to perform an in-order traversal of the binary tree by visiting the left subtree, the root, and then the right subtree, collecting node values into a list.",
+  code: `class TreeNode {
+    int data;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) {
+        data = x;
+        left = right = null;
+    }
+}
+
+class Main {
+    public static void inOrder(ArrayList<Integer> ans, TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inOrder(ans, root.left);
+        ans.add(root.data);
+        inOrder(ans, root.right);
+    }
+    
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+
+        ArrayList<Integer> res = new ArrayList<>();
+        inOrder(res, root);
+        for (int num : res) {
+            System.out.print(num + " ");
+        }
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Binary Tree Preorder Traversal",
+  question: "Given the root of a binary tree, return the preorder traversal of its nodes' values.",
+  example: "Input: root = [1, 2, 3, 4, 5, null, 6]",
+  output: "Output: 1 2 4 5 3 6",
+  approach: "Use a recursive depth-first search approach to perform a pre-order traversal of the binary tree by visiting the root first, followed by the left subtree and then the right subtree, collecting node values into a list.",
+  code: `import java.util.*;
+class TreeNode {
+    int data;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) {
+        data = x;
+        left = right = null;
+    }
+}
+class Main {
+    public static void preOrder(ArrayList<Integer> ans, TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        ans.add(root.data);
+        preOrder(ans, root.left);
+        preOrder(ans, root.right);
+    }
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+
+        ArrayList<Integer> res = new ArrayList<>();
+        preOrder(res, root);
+        for (int num : res) {
+            System.out.print(num + " ");
+        }
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Binary Tree Postorder Traversal",
+  question: "Given the root of a binary tree, return the postorder traversal of its nodes' values.",
+  example: "Input: root = [1, 2, 3, 4, 5, null, 6]",
+  output: "Output: 4 5 2 6 3 1",
+  approach: "Use a recursive depth-first search approach to perform a post-order traversal of the binary tree by visiting the left subtree first, then the right subtree, and finally the root, collecting node values into a list.",
+  code: `import java.util.*;
+class TreeNode {
+    int data;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) {
+        data = x;
+        left = right = null;
+    }
+}
+class Main {
+    public static void postOrder(ArrayList<Integer> ans, TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        postOrder(ans, root.left);
+        postOrder(ans, root.right);
+        ans.add(root.data);
+    }
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+
+        ArrayList<Integer> res = new ArrayList<>();
+        postOrder(res, root);
+        for (int num : res) {
+            System.out.print(num + " ");
+        }
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Binary Tree Level Order Traversal",
+  question: "Given the root of a binary tree, return the level order traversal of its nodes' values (i.e., from left to right, level by level).",
+  example: "Input: root = [1, 2, 3, 4, 5, null, 6]",
+  output: "Output: [[1], [2, 3], [4, 5, 6]]",
+  approach: "Use a recursive depth-first search approach passing the current level index, creating a new sublist in the result list when encountering a new level for the first time, and adding node values accordingly.",
+  code: `class Solution {
+    public static void traversal(TreeNode root, int level, List<List<Integer>> ans) {
+        if (root == null) {
+            return;
+        }
+        if (ans.size() <= level) {
+            ans.add(new ArrayList<>());
+        }
+
+        ans.get(level).add(root.data);
+        traversal(root.left, level + 1, ans);
+        traversal(root.right, level + 1, ans);
+    }
+    
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        traversal(root, 0, ans);
+        return ans;
+    }
+}`,
+  language: "java",
+}
+  ],
+
 };
