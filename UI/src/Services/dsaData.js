@@ -1422,7 +1422,62 @@ public class Solution {
   language: "java",
 }
   ],
+  greedyAlgorithms:[
+    {
+  title: "Minimum Coins (Greedy Approach)",
+  question: "Given a list of coin denominations and a target amount, find the minimum number of coins needed to make up that amount using a greedy strategy.",
+  example: "Input: coins = [1, 5, 2, 10], amount = 39",
+  output: "Output: 6",
+  approach: "Sort the coin denominations in descending order and iteratively take the maximum possible count of each coin from the remaining amount until the target amount is reduced to zero.",
+  code: `import java.util.*;
 
+class Main {
+    public static int minCoins(int[] coins, int amount) {
+        int n = coins.length;
+        Arrays.sort(coins);
+        int res = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            if (amount >= coins[i]) {
+                int count = amount / coins[i];
+                res += count;
+                amount -= count * coins[i];
+            }
+            if (amount == 0) {
+                break;
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int coins[] = {1, 5, 2, 10};
+        int amount = 39;
+        System.out.println(minCoins(coins, amount));
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Meeting Rooms",
+  question: "Given an array of meeting time intervals where intervals[i] = [start_i, end_i], determine if a person could attend all meetings.",
+  example: "Input: intervals = [[0, 30], [5, 10], [15, 20]]",
+  output: "Output: false",
+  approach: "Sort the meeting intervals by their start times, then iterate through the sorted intervals to check if any meeting starts before the previous meeting ends. If an overlap is found, return false.",
+  code: `class Solution {
+    public boolean canAttendMeetings(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] < intervals[i - 1][1]) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}`,
+  language: "java",
+}
+  ],
   binaryTrees:[
     {
   title: "Binary Tree Inorder Traversal",
