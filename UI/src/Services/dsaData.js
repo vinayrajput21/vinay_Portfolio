@@ -1653,6 +1653,46 @@ class Main {
     }
 }`,
   language: "java",
+},
+{
+  title: "Binary Tree Longest Consecutive Sequence",
+  question: "Given the root of a binary tree, return the length of the longest consecutive sequence path. A path is consecutive if each node in the path has a value equal to the parent node's value plus 1.",
+  example: "Input: root = [1, null, 3, 2, 4, null, null, null, 5]",
+  output: "Output: 3",
+  approach: "Use a depth-first search (DFS) traversal where each node checks its children to see if their values continue an incrementing sequence of +1, updating and tracking the maximum consecutive length found globally.",
+  code: `class Solution {
+    private int maxLen = 0; 
+
+    public int longestConsecutive(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        
+        dfs(root);
+        return maxLen;
+    }
+
+    private int dfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftLen = dfs(root.left);
+        int rightLen = dfs(root.right);
+
+        int currentLen = 1;
+        if (root.left != null && root.left.val == root.val + 1) {
+            currentLen = Math.max(currentLen, leftLen + 1);
+        }
+
+        if (root.right != null && root.right.val == root.val + 1) {
+            currentLen = Math.max(currentLen, rightLen + 1);
+        }
+
+        maxLen = Math.max(maxLen, currentLen);
+        return currentLen;
+    }
+}`,
+  language: "java",
 }
   ],
 
