@@ -1693,6 +1693,51 @@ class Main {
     }
 }`,
   language: "java",
+},
+{
+  title: "Binary Search Tree Iterator",
+  question: "Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST), supporting both forward and backward traversal operations (hasNext, next, hasPrev, prev).",
+  example: "Input: root = [7, 3, 15, null, null, 9, 20]",
+  output: "Output: Iterator initialized with flattened in-order elements for bidirectional traversal.",
+  approach: "Flatten the binary search tree using an in-order traversal into a list during initialization, and maintain an internal pointer to support bidirectional iteration in O(1) time per step.",
+  code: `class BSTIterator {
+    private List<Integer> list;
+    private int ptr;
+
+    public BSTIterator(TreeNode root) {
+        list = new ArrayList<>();
+        inorder(root);
+        ptr = -1;
+    }
+
+    private void inorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        list.add(root.data);
+        inorder(root.right);
+    }
+
+    public boolean hasNext() {
+        return ptr + 1 < list.size();
+    }
+
+    public int next() {
+        ptr++;
+        return list.get(ptr);
+    }
+
+    public boolean hasPrev() {
+        return ptr - 1 >= 0;
+    }
+
+    public int prev() {
+        ptr--;
+        return list.get(ptr);
+    }
+}`,
+  language: "java",
 }
   ],
 
