@@ -1580,5 +1580,54 @@ class Main {
   language: "java",
 }
   ],
+  dynamicProgramming:[
+    {
+  title: "Minimum Cost to Form Target String",
+  question: "Given a string target, an array of strings words, and an array of integer costs, find the minimum cost to form the target string by concatenating words from the given array. If it is impossible, return -1.",
+  example: "Input: target = \"abcdef\", words = [\"ab\", \"def\"], costs = [1, 2]",
+  output: "Output: 3",
+  approach: "Store all words and their minimum associated costs in a Trie for efficient prefix lookup, then use a dynamic programming array to compute the minimum cost to form each prefix of the target string in O(n * L) time.",
+  code: `class Solution {
+    static class Node {
+        Node[] next = new Node[26];
+        int cost = Integer.MAX_VALUE; 
+    }
+
+    public int minimumCost(String target, List<String> words, List<Integer> costs) {
+        Node root = new Node();
+        for (int k = 0; k < words.size(); k++) {
+            Node cur = root;
+            for (char ch : words.get(k).toCharArray()) {
+                int c = ch - 'a';
+                if (cur.next[c] == null) cur.next[c] = new Node();
+                cur = cur.next[c];
+            }
+            cur.cost = Math.min(cur.cost, costs.get(k));
+        }
+
+        int n = target.length();
+        long INF = Long.MAX_VALUE / 2;
+        long[] dp = new long[n + 1];
+        Arrays.fill(dp, INF);
+        dp[0] = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (dp[i] >= INF) continue;
+            Node cur = root;
+            for (int j = i; j < n; j++) {
+                cur = cur.next[target.charAt(j) - 'a'];
+                if (cur == null) break;
+                if (cur.cost != Integer.MAX_VALUE) {
+                    dp[j + 1] = Math.min(dp[j + 1], dp[i] + cur.cost);
+                }
+            }
+        }
+
+        return dp[n] >= INF ? -1 : (int) dp[n];
+    }
+}`,
+  language: "java",
+}
+  ]
 
 };
