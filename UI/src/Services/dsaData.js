@@ -1655,6 +1655,63 @@ class Main {
   language: "java",
 },
 {
+  title: "Same Tree",
+  question: "Given the roots of two binary trees p and q, write a function to check if they are the same or not. Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.",
+  example: "Input: p = [1, 2, 3], q = [1, 2, 3]",
+  output: "Output: true",
+  approach: "Use a recursive depth-first search approach to compare both trees simultaneously, verifying that their structural null states and node values match at every corresponding position.",
+  code: `class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        }
+        if (p == null || q == null) {
+            return false;
+        }
+        if (p.data != q.data) {
+            return false;
+        }
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Balanced Binary Tree",
+  question: "Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is defined as a binary tree in which the left and right subtrees of every node differ in height by no more than 1.",
+  example: "Input: root = [3, 9, 20, null, null, 15, 7]",
+  output: "Output: true",
+  approach: "Use a bottom-up recursive DFS approach to compute the height of each subtree while simultaneously checking for balance, propagating a sentinel value (-1) upward immediately if any subtree violates the height-difference condition.",
+  code: `class Solution {
+    public boolean isBalanced(TreeNode root) {
+        return checkHeight(root) != -1;
+    }
+
+    private int checkHeight(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int leftHeight = checkHeight(node.left);
+        if (leftHeight == -1) {
+            return -1;
+        }
+
+        int rightHeight = checkHeight(node.right);
+        if (rightHeight == -1) {
+            return -1;
+        }
+
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+}`,
+  language: "java",
+},
+{
   title: "Binary Tree Longest Consecutive Sequence",
   question: "Given the root of a binary tree, return the length of the longest consecutive sequence path. A path is consecutive if each node in the path has a value equal to the parent node's value plus 1.",
   example: "Input: root = [1, null, 3, 2, 4, null, null, null, 5]",
@@ -1700,8 +1757,10 @@ binarySearchTrees:[
 {
   title: "Binary Search Tree Iterator",
   question: "Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST), supporting both forward and backward traversal operations (hasNext, next, hasPrev, prev).",
-  example: "Input: root = [7, 3, 15, null, null, 9, 20]",
-  output: "Output: Iterator initialized with flattened in-order elements for bidirectional traversal.",
+  example: `operations: ["BSTIterator", "next", "next", "prev", "next", "hasNext", "next", "next", "next", "hasNext", "hasPrev", "prev", "prev"]
+
+root : 7 3 15 null null 9 20`,
+  output: "Output: [null, 3, 7, 3, 7, true, 9, 15, 20, false, true, 15, 9]",
   approach: "Flatten the binary search tree using an in-order traversal into a list during initialization, and maintain an internal pointer to support bidirectional iteration in O(1) time per step.",
   code: `class BSTIterator {
     private List<Integer> list;
