@@ -524,6 +524,184 @@ function OSImodelDiagram() {
     </div>
   );
 }
+const IPAddressDiagram = () => {
+  const bit = (x, y, on) => (
+    <rect key={`${x}-${y}`} x={x} y={y} width="12" height="14" rx="2"
+      fill="currentColor" opacity={on ? 0.55 : 0.12} />
+  );
+ 
+  // 192.168.1.10 /24 -> first 3 octets = network, last = host
+  const octets = [
+    { v: "192", net: true },
+    { v: "168", net: true },
+    { v: "1", net: true },
+    { v: "10", net: false },
+  ];
+ 
+  return (
+    <svg viewBox="0 0 720 760" xmlns="http://www.w3.org/2000/svg"
+      style={{ width: "100%", height: "auto", color: "inherit", fontFamily: "inherit" }}
+      role="img" aria-label="IP address structure, types, and how packets travel">
+ 
+      {/* ---------- SECTION 1: ANATOMY ---------- */}
+      <text x="360" y="28" textAnchor="middle" fontSize="16" fontWeight="600" fill="currentColor">
+        Anatomy of an IPv4 address (192.168.1.10 / 255.255.255.0)
+      </text>
+ 
+      {octets.map((o, i) => {
+        const x = 70 + i * 150;
+        return (
+          <g key={i}>
+            <rect x={x} y="46" width="120" height="54" rx="8"
+              fill="currentColor" opacity={o.net ? 0.14 : 0.3} />
+            <rect x={x} y="46" width="120" height="54" rx="8"
+              fill="none" stroke="currentColor" strokeWidth="1.2" opacity="0.6" />
+            <text x={x + 60} y="82" textAnchor="middle" fontSize="24" fontWeight="600" fill="currentColor">
+              {o.v}
+            </text>
+            <text x={x + 60} y="116" textAnchor="middle" fontSize="11" fill="currentColor" opacity="0.7">
+              octet {i + 1} · 8 bits
+            </text>
+            {i < 3 && (
+              <text x={x + 135} y="82" textAnchor="middle" fontSize="24" fill="currentColor">.</text>
+            )}
+          </g>
+        );
+      })}
+ 
+      {/* brackets for network / host */}
+      <path d="M70 128 H520 V134 H70 Z" fill="currentColor" opacity="0.35" />
+      <text x="295" y="152" textAnchor="middle" fontSize="13" fontWeight="600" fill="currentColor">
+        Network portion → 192.168.1.0 (Network ID)
+      </text>
+      <path d="M520 128 H670 V134 H520 Z" fill="currentColor" opacity="0.7" />
+      <text x="595" y="152" textAnchor="middle" fontSize="13" fontWeight="600" fill="currentColor">
+        Host → 10
+      </text>
+ 
+      {/* ---------- SECTION 2: TYPES ---------- */}
+      <text x="360" y="198" textAnchor="middle" fontSize="16" fontWeight="600" fill="currentColor">
+        Ways to classify IP addresses
+      </text>
+ 
+      {[
+        { t: "By scope", a: "Public", b: "Private (NAT)" },
+        { t: "By version", a: "IPv4 · 32-bit", b: "IPv6 · 128-bit" },
+        { t: "By assignment", a: "Static", b: "Dynamic (DHCP)" },
+        { t: "By function", a: "Unicast · Broadcast", b: "Multicast · Anycast" },
+      ].map((c, i) => {
+        const x = 20 + i * 175;
+        return (
+          <g key={c.t}>
+            <rect x={x} y="214" width="165" height="104" rx="10" fill="currentColor" opacity="0.07" />
+            <rect x={x} y="214" width="165" height="104" rx="10" fill="none"
+              stroke="currentColor" strokeWidth="1" opacity="0.5" />
+            <text x={x + 82} y="238" textAnchor="middle" fontSize="13" fontWeight="600" fill="currentColor">
+              {c.t}
+            </text>
+            <line x1={x + 16} y1="248" x2={x + 149} y2="248" stroke="currentColor" opacity="0.3" />
+            <text x={x + 82} y="278" textAnchor="middle" fontSize="12" fill="currentColor">{c.a}</text>
+            <text x={x + 82} y="302" textAnchor="middle" fontSize="12" fill="currentColor">{c.b}</text>
+          </g>
+        );
+      })}
+ 
+      {/* ---------- SECTION 3: CAST TYPES ---------- */}
+      <text x="360" y="354" textAnchor="middle" fontSize="16" fontWeight="600" fill="currentColor">
+        Unicast vs Broadcast vs Multicast vs Anycast
+      </text>
+ 
+      {[
+        { name: "Unicast", sub: "one → one", recv: [1, 0, 0, 0] },
+        { name: "Broadcast", sub: "one → all", recv: [1, 1, 1, 1] },
+        { name: "Multicast", sub: "one → group", recv: [1, 0, 1, 1] },
+        { name: "Anycast", sub: "one → nearest", recv: [0, 1, 0, 0] },
+      ].map((c, i) => {
+        const x = 20 + i * 175;
+        const cx = x + 82;
+        const pts = [
+          [x + 25, 440],
+          [x + 70, 470],
+          [x + 112, 470],
+          [x + 145, 440],
+        ];
+        return (
+          <g key={c.name}>
+            <text x={cx} y="380" textAnchor="middle" fontSize="13" fontWeight="600" fill="currentColor">
+              {c.name}
+            </text>
+            <text x={cx} y="396" textAnchor="middle" fontSize="11" fill="currentColor" opacity="0.7">
+              {c.sub}
+            </text>
+            {pts.map(([px, py], j) =>
+              c.recv[j] ? (
+                <line key={j} x1={cx} y1="418" x2={px} y2={py - 10}
+                  stroke="currentColor" strokeWidth="1.6" opacity="0.8" />
+              ) : null
+            )}
+            <circle cx={cx} cy="414" r="9" fill="currentColor" />
+            {pts.map(([px, py], j) => (
+              <circle key={j} cx={px} cy={py} r="9"
+                fill="currentColor" opacity={c.recv[j] ? 0.65 : 0.15} />
+            ))}
+          </g>
+        );
+      })}
+ 
+      {/* ---------- SECTION 4: PACKET JOURNEY ---------- */}
+      <text x="360" y="528" textAnchor="middle" fontSize="16" fontWeight="600" fill="currentColor">
+        How a packet travels: Alice (New York) → Bob (Tokyo)
+      </text>
+ 
+      {[
+        { x: 20, l1: "Alice's laptop", l2: "192.168.1.5" },
+        { x: 155, l1: "Home router", l2: "NAT → public IP" },
+        { x: 290, l1: "ISP routers", l2: "pick best path" },
+        { x: 425, l1: "Tokyo ISP", l2: "forwards packet" },
+        { x: 560, l1: "Bob's mail server", l2: "reassembles" },
+      ].map((n, i, arr) => (
+        <g key={n.l1}>
+          <rect x={n.x} y="548" width="130" height="62" rx="10" fill="currentColor" opacity="0.1" />
+          <rect x={n.x} y="548" width="130" height="62" rx="10" fill="none"
+            stroke="currentColor" strokeWidth="1.2" opacity="0.6" />
+          <text x={n.x + 65} y="574" textAnchor="middle" fontSize="12" fontWeight="600" fill="currentColor">
+            {n.l1}
+          </text>
+          <text x={n.x + 65} y="593" textAnchor="middle" fontSize="11" fill="currentColor" opacity="0.75">
+            {n.l2}
+          </text>
+          {i < arr.length - 1 && (
+            <path d={`M${n.x + 132} 579 H${n.x + 153}`} stroke="currentColor" strokeWidth="1.6"
+              markerEnd="url(#arrow)" />
+          )}
+        </g>
+      ))}
+ 
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7"
+          orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        </marker>
+      </defs>
+ 
+      {/* packet */}
+      <rect x="20" y="632" width="680" height="46" rx="8" fill="currentColor" opacity="0.07" />
+      <rect x="30" y="642" width="170" height="26" rx="5" fill="currentColor" opacity="0.3" />
+      <text x="115" y="660" textAnchor="middle" fontSize="12" fill="currentColor">Source IP</text>
+      <rect x="210" y="642" width="170" height="26" rx="5" fill="currentColor" opacity="0.45" />
+      <text x="295" y="660" textAnchor="middle" fontSize="12" fill="currentColor">Destination IP</text>
+      <rect x="390" y="642" width="300" height="26" rx="5" fill="currentColor" opacity="0.18" />
+      <text x="540" y="660" textAnchor="middle" fontSize="12" fill="currentColor">Data (part of the email)</text>
+ 
+      <text x="360" y="708" textAnchor="middle" fontSize="12" fill="currentColor" opacity="0.8">
+        Every packet carries source + destination IP; routers read the destination to choose the next hop.
+      </text>
+      <text x="360" y="728" textAnchor="middle" fontSize="12" fill="currentColor" opacity="0.8">
+        Packets may take different routes and are reassembled at the destination.
+      </text>
+    </svg>
+  );
+};
 const DiagramFrame = ({ children }) => (
   <div className="bg-emerald-50/60 border-2 border-black/80 rounded-xl px-3 sm:px-5 my-1">
     {children}
@@ -1393,6 +1571,185 @@ const units = [
     },
   ],
   diagram: <OSImodelDiagram />,
+},
+{
+  id: "u3-c2",
+  label: "Chapter 2",
+  title: "IP Address",
+  hook: "Once you know how a network is layered, the next question is: how does a packet know where to go? Every device that talks over a network needs a unique label, the same way every house needs an address for mail to arrive. That label is the IP address, and almost everything at Layer 3 of the OSI model depends on it.",
+  topics: [
+    {
+      title: "What an IP Address Is",
+      hook: "An IP (Internet Protocol) address is a unique numerical label assigned to every device on a network that uses the Internet Protocol, a digital home address that lets data be sent and received correctly.",
+      points: [
+        {
+          label: "Definition",
+          text: "a unique numerical label given to each device connected to an IP-based network, used for two jobs: identifying the device and locating it so other devices can communicate with it",
+        },
+        {
+          label: "Network portion",
+          text: "identifies which network the device belongs to; every device on the same network shares it",
+        },
+        {
+          label: "Host portion",
+          text: "identifies the individual device inside that network",
+        },
+        {
+          label: "Subnet mask (IPv4)",
+          text: "defines which bits of the address are network and which are host — for 192.168.1.10 with mask 255.255.255.0, the Network ID is 192.168.1.0 and the Host ID is 10",
+        },
+      ],
+    },
+    {
+      title: "IPv4 vs IPv6",
+      hook: "The same idea exists in two formats, because the original format ran out of room.",
+      points: [
+        {
+          label: "IPv4",
+          text: "32 bits written as four octets separated by dots (e.g. 192.168.1.1); each octet is 8 bits with a value from 0 to 255 (2⁸ = 256 combinations); supports roughly 4.3 billion addresses",
+        },
+        {
+          label: "IPv6",
+          text: "128 bits written as eight groups of four hexadecimal digits separated by colons (e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334); each group is a 16-bit block",
+        },
+        {
+          label: "Why IPv6 exists",
+          text: "created to solve the shortage of IPv4 addresses by offering a vastly larger address space",
+        },
+        {
+          label: "Broadcast difference",
+          text: "IPv4 supports broadcast, but IPv6 does not — it uses multicast instead",
+        },
+      ],
+    },
+    {
+      title: "Public, Private, Static and Dynamic",
+      hook: "Addresses are also classified by who can reach them and how they are handed out.",
+      points: [
+        {
+          label: "Public IP",
+          text: "assigned by your ISP to a device or router that directly accesses the internet; unique across the entire internet, and can be static or dynamic",
+        },
+        {
+          label: "Private IP",
+          text: "used inside a private network, only needs to be unique within that network, and is not routable on the internet without NAT",
+        },
+        {
+          label: "Private IPv4 ranges",
+          text: "10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, and 192.168.0.0–192.168.255.255 (IPv6 private addresses start with FC or FD)",
+        },
+        {
+          label: "Static IP",
+          text: "permanently assigned to a device; ideal for servers, websites, and remote management that need a constant address",
+        },
+        {
+          label: "Dynamic IP",
+          text: "temporarily leased from a pool by DHCP; cheaper and more efficient for providers, so it suits ordinary consumer devices",
+        },
+      ],
+    },
+    {
+      title: "Unicast, Broadcast, Multicast, Anycast",
+      hook: "Addresses can also be classified by how many receivers a message is meant for.",
+      points: [
+        {
+          label: "Unicast",
+          text: "one sender to one specific receiver; the most common type, used for web browsing, email, and file transfer",
+        },
+        {
+          label: "Broadcast",
+          text: "one sender to every device on the same network segment; used by ARP queries and DHCP requests (e.g. 192.168.1.255 for the 192.168.1.0/24 network)",
+        },
+        {
+          label: "Multicast",
+          text: "one sender to a selected group that has joined it; used for IPTV, video conferencing, and live streaming — IPv4 range 224.0.0.0 to 239.255.255.255, IPv6 prefix FF00::/8",
+        },
+        {
+          label: "Anycast",
+          text: "one sender to the nearest member of a group sharing the same IP, chosen by routers based on network distance; used by DNS servers and CDNs",
+        },
+      ],
+    },
+    {
+      title: "Classes of IPv4 and Special Addresses",
+      hook: "To make roughly 4.3 billion addresses manageable, IPv4 was divided into five classes, with a few reserved addresses that behave differently.",
+      points: [
+        {
+          label: "Class A (1–126)",
+          text: "very large networks; up to about 16 million hosts per network",
+        },
+        {
+          label: "Class B (128–191)",
+          text: "medium to large organizations; up to about 65,000 hosts per network",
+        },
+        {
+          label: "Class C (192–223)",
+          text: "small businesses and home networks; up to 254 hosts per network",
+        },
+        {
+          label: "Class D and E",
+          text: "Class D (224–239) is reserved for multicast; Class E (240–255) is reserved for experimental use",
+        },
+        {
+          label: "Loopback",
+          text: "127.0.0.1 ('localhost') sends data back to the same device, which is useful for testing the network stack",
+        },
+      ],
+    },
+    {
+      title: "How IP Addresses Work",
+      hook: "Addressing is only useful because routers read it on every packet to move data across the world.",
+      points: [
+        {
+          label: "Packets",
+          text: "data is split into packets, and each packet carries a source IP and a destination IP",
+        },
+        {
+          label: "Routing",
+          text: "routers read the destination IP, choose the best next hop, and share routing tables with each other; packets may take different routes and are reassembled at the destination",
+        },
+        {
+          label: "LAN vs WAN",
+          text: "inside a LAN, devices talk directly using private IPs assigned statically or by DHCP; across a WAN, packets pass through many routers, each deciding the next hop independently",
+        },
+        {
+          label: "NAT",
+          text: "lets many devices with private IPs share one public IP; the router translates addresses on the way out, which also hides the internal network structure",
+        },
+        {
+          label: "Example",
+          text: "Alice (192.168.1.5, New York) emails Bob (192.168.2.4, Tokyo): her router uses its public IP, the packets cross several ISP routers, and Bob's mail server reassembles them into the email",
+        },
+      ],
+    },
+    {
+      title: "Looking Up, Threats, and Protection",
+      hook: "Because an IP address reveals where you are on the network, it is both easy to find and worth protecting.",
+      points: [
+        {
+          label: "Find your IP",
+          text: "Windows: run ipconfig in Command Prompt; Mac: System Preferences > Network; iPhone: Settings > Wi-Fi > (i) icon",
+        },
+        {
+          label: "IP spoofing",
+          text: "an attacker fakes a trusted IP address to bypass security",
+        },
+        {
+          label: "DDoS",
+          text: "many infected systems flood a target with traffic until it slows or crashes",
+        },
+        {
+          label: "Man-in-the-Middle and port scanning",
+          text: "MitM intercepts or alters traffic between two parties; port scanning probes for open ports to find weaknesses",
+        },
+        {
+          label: "Protection",
+          text: "use a VPN, a proxy server, or Tor to mask your IP, and enable a firewall to filter suspicious inbound and outbound traffic",
+        },
+      ],
+    },
+  ],
+  diagram: <IPAddressDiagram />,
 },
     ]
   }
