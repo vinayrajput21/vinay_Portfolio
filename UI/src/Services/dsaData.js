@@ -1422,7 +1422,62 @@ public class Solution {
   language: "java",
 }
   ],
+  greedyAlgorithms:[
+    {
+  title: "Minimum Coins (Greedy Approach)",
+  question: "Given a list of coin denominations and a target amount, find the minimum number of coins needed to make up that amount using a greedy strategy.",
+  example: "Input: coins = [1, 5, 2, 10], amount = 39",
+  output: "Output: 6",
+  approach: "Sort the coin denominations in descending order and iteratively take the maximum possible count of each coin from the remaining amount until the target amount is reduced to zero.",
+  code: `import java.util.*;
 
+class Main {
+    public static int minCoins(int[] coins, int amount) {
+        int n = coins.length;
+        Arrays.sort(coins);
+        int res = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            if (amount >= coins[i]) {
+                int count = amount / coins[i];
+                res += count;
+                amount -= count * coins[i];
+            }
+            if (amount == 0) {
+                break;
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int coins[] = {1, 5, 2, 10};
+        int amount = 39;
+        System.out.println(minCoins(coins, amount));
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Meeting Rooms",
+  question: "Given an array of meeting time intervals where intervals[i] = [start_i, end_i], determine if a person could attend all meetings.",
+  example: "Input: intervals = [[0, 30], [5, 10], [15, 20]]",
+  output: "Output: false",
+  approach: "Sort the meeting intervals by their start times, then iterate through the sorted intervals to check if any meeting starts before the previous meeting ends. If an overlap is found, return false.",
+  code: `class Solution {
+    public boolean canAttendMeetings(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] < intervals[i - 1][1]) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}`,
+  language: "java",
+}
+  ],
   binaryTrees:[
     {
   title: "Binary Tree Inorder Traversal",
@@ -1575,6 +1630,111 @@ class Main {
         List<List<Integer>> ans = new ArrayList<>();
         traversal(root, 0, ans);
         return ans;
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Maximum Depth of Binary Tree",
+  question: "Given the root of a binary tree, return its maximum depth. A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
+  example: "Input: root = [3, 9, 20, null, null, 15, 7]",
+  output: "Output: 3",
+  approach: "Use a recursive depth-first search approach to find the maximum depth of the left and right subtrees, then return the greater depth plus one for the current root node.",
+  code: `class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int lheight = maxDepth(root.left);
+        int rheight = maxDepth(root.right);
+
+        return Math.max(lheight, rheight) + 1;
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Binary Tree Longest Consecutive Sequence",
+  question: "Given the root of a binary tree, return the length of the longest consecutive sequence path. A path is consecutive if each node in the path has a value equal to the parent node's value plus 1.",
+  example: "Input: root = [1, null, 3, 2, 4, null, null, null, 5]",
+  output: "Output: 3",
+  approach: "Use a depth-first search (DFS) traversal where each node checks its children to see if their values continue an incrementing sequence of +1, updating and tracking the maximum consecutive length found globally.",
+  code: `class Solution {
+    private int maxLen = 0; 
+
+    public int longestConsecutive(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        
+        dfs(root);
+        return maxLen;
+    }
+
+    private int dfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftLen = dfs(root.left);
+        int rightLen = dfs(root.right);
+
+        int currentLen = 1;
+        if (root.left != null && root.left.val == root.val + 1) {
+            currentLen = Math.max(currentLen, leftLen + 1);
+        }
+
+        if (root.right != null && root.right.val == root.val + 1) {
+            currentLen = Math.max(currentLen, rightLen + 1);
+        }
+
+        maxLen = Math.max(maxLen, currentLen);
+        return currentLen;
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Binary Search Tree Iterator",
+  question: "Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST), supporting both forward and backward traversal operations (hasNext, next, hasPrev, prev).",
+  example: "Input: root = [7, 3, 15, null, null, 9, 20]",
+  output: "Output: Iterator initialized with flattened in-order elements for bidirectional traversal.",
+  approach: "Flatten the binary search tree using an in-order traversal into a list during initialization, and maintain an internal pointer to support bidirectional iteration in O(1) time per step.",
+  code: `class BSTIterator {
+    private List<Integer> list;
+    private int ptr;
+
+    public BSTIterator(TreeNode root) {
+        list = new ArrayList<>();
+        inorder(root);
+        ptr = -1;
+    }
+
+    private void inorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        list.add(root.data);
+        inorder(root.right);
+    }
+
+    public boolean hasNext() {
+        return ptr + 1 < list.size();
+    }
+
+    public int next() {
+        ptr++;
+        return list.get(ptr);
+    }
+
+    public boolean hasPrev() {
+        return ptr - 1 >= 0;
+    }
+
+    public int prev() {
+        ptr--;
+        return list.get(ptr);
     }
 }`,
   language: "java",
