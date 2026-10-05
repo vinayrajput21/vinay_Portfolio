@@ -1694,6 +1694,9 @@ class Main {
 }`,
   language: "java",
 },
+
+  ],
+binarySearchTrees:[
 {
   title: "Binary Search Tree Iterator",
   question: "Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST), supporting both forward and backward traversal operations (hasNext, next, hasPrev, prev).",
@@ -1739,6 +1742,5 @@ class Main {
 }`,
   language: "java",
 },
-  ],
-
+]
 };
