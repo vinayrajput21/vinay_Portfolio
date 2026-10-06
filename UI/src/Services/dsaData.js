@@ -1850,6 +1850,52 @@ root : 7 3 15 null null 9 20`,
 }`,
   language: "java",
 }
+  ],
+  graphs:[
+    {
+  title: "All Paths from Source Lead to Destination",
+  question: "Given the edges of a directed graph, and two nodes source and destination, determine whether or not all paths starting from source eventually end at destination, and that no path leads to a dead end or an infinite loop.",
+  example: "Input: n = 3, edges = [[0, 1], [0, 2], [1, 3], [2, 3]], source = 0, destination = 3",
+  output: "Output: true",
+  approach: "Use a depth-first search (DFS) with a three-state node coloring technique (unvisited, visiting, visited) to detect cycles and verify that all paths successfully terminate exclusively at the destination node.",
+  code: `class Solution {
+    private List<Integer>[] graph;
+    private int[] states;
+    private int dest;
+
+    public boolean leadsToDestination(int n, int[][] edges, int source, int destination) {
+        this.dest = destination;
+        graph = new ArrayList[n];
+        Arrays.setAll(graph, i -> new ArrayList<>());
+        for (int[] edge : edges) {
+            graph[edge[0]].add(edge[1]);
+        }
+        if (!graph[destination].isEmpty()) {
+            return false;
+        }
+        states = new int[n];
+        return dfs(source);
+    }
+
+    private boolean dfs(int node) {
+        if (states[node] != 0) {
+            return states[node] == 2;
+        }
+        if (graph[node].isEmpty()) {
+            return node == dest;
+        }
+        states[node] = 1;
+        for (int neighbor : graph[node]) {
+            if (!dfs(neighbor)) {
+                return false;
+            }
+        }
+        states[node] = 2;
+        return true;
+    }
+}`,
+  language: "java",
+}
   ]
 
 };
