@@ -739,27 +739,7 @@ class Main {
 }`,
       language: "java",
     },
-    {
-      title: "Single number using XOR",
-      question:
-        "Given a non-empty array of integers where every element appears twice except for one element, find the element that appears only once.",
-      example: `Input: [4, 1, 2, 1, 2]`,
-      output: `Output: 4`,
-      approach:
-        "Use the XOR operation on every element. XOR has the property that a number XOR itself is 0 and a number XOR 0 is the number itself. Therefore, all duplicate elements cancel each other out, leaving only the element that appears once.",
-      code: `class Solution {
-    public int singleNumber(int[] nums) {
-        int result = 0;
-
-        for(int num : nums) {
-            result ^= num;
-        }
-
-        return result;
-    }
-}`,
-      language: "java",
-    },
+   
     {
       title: "Majority Element using Hash Map",
       question:
@@ -1388,6 +1368,96 @@ public class Solution {
     }
 }`,
   language: "java",
+},
+{
+  title: "Generate Parentheses",
+  question: "Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.",
+  example: "Input: n = 3",
+  output: "Output: [\"((()))\", \"(()())\", \"(())()\", \"()(())\", \"()()()\"]",
+  approach: "Use a backtracking recursive strategy with a StringBuilder to build valid combinations of parentheses by tracking the counts of open and close brackets, ensuring open brackets never exceed n and close brackets never exceed the current count of open brackets.",
+  code: `class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> ans = new ArrayList<>();
+        backtrack(ans, new StringBuilder(), 0, 0, n);
+        return ans;
+    }
+
+    private void backtrack(List<String> ans, StringBuilder current, int open, int close, int max) {
+        if (current.length() == max * 2) {
+            ans.add(current.toString());
+            return;
+        }
+
+        if (open < max) {
+            current.append('(');
+            backtrack(ans, current, open + 1, close, max);
+            current.deleteCharAt(current.length() - 1);
+        }
+
+        if (close < open) {
+            current.append(')');
+            backtrack(ans, current, open, close + 1, max);
+            current.deleteCharAt(current.length() - 1);
+        }
+    }
+}`,
+  language: "java",
+},{
+  title: "Subsets (Power Set)",
+  question: "Given an integer array nums of unique elements, return all possible subsets (the power set). The solution set must not contain duplicate subsets. Return the solution in any order.",
+  example: "Input: nums = [1, 2, 3]",
+  output: "Output: [[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]",
+  approach: "Use a backtracking recursive strategy to explore all inclusion and exclusion choices for each element, generating every possible subset combination systematically.",
+  code: `class Solution {
+    public List<List<Integer>> powerSet(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        backtrack(nums, 0, new ArrayList<>(), ans);
+        return ans;
+    }
+    
+    private void backtrack(int[] nums, int index, List<Integer> current, List<List<Integer>> ans) {
+        ans.add(new ArrayList<>(current));
+        
+        for (int i = index; i < nums.length; i++) {
+            current.add(nums[i]);
+            backtrack(nums, i + 1, current, ans);
+            current.remove(current.size() - 1);
+        }
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Count Good Numbers",
+  question: "A digit string is good if the digits (0-indexed) at even indices are even numbers (0, 2, 4, 6, 8) and the digits at odd indices are prime numbers (2, 3, 5, 7). Given an integer n, return the total number of good digit strings of length n modulo 10^9 + 7.",
+  example: "Input: n = 1",
+  output: "Output: 5",
+  approach: "Calculate the counts of even and odd indices for a length n string, then use modular exponentiation to compute 5^(evenCount) * 4^(oddCount) % (10^9 + 7) efficiently in logarithmic time.",
+  code: `class Solution {
+    private static final long MOD = 1000000007;
+
+    public int countGoodNumbers(long n) {
+        long evenCount = (n + 1) / 2;
+        long oddCount = n / 2;
+        long evenResult = power(5, evenCount);
+        long oddResult = power(4, oddCount);
+        return (int) ((evenResult * oddResult) % MOD);
+    }
+
+    private long power(long base, long exp) {
+        long res = 1;
+        base %= MOD;
+        while (exp > 0) {
+            if ((exp & 1) == 1) {
+                res = (res * base) % MOD;
+            }
+            base = (base * base) % MOD;
+            exp >>= 1;
+        }
+        return res;
+    }
+}`,
+  language: "java",
 }
   ],
   bitManipulation:[
@@ -1420,7 +1490,28 @@ public class Solution {
     }
 }`,
   language: "java",
-}
+},
+ {
+      title: "Single number using XOR",
+      question:
+        "Given a non-empty array of integers where every element appears twice except for one element, find the element that appears only once.",
+      example: `Input: [4, 1, 2, 1, 2]`,
+      output: `Output: 4`,
+      approach:
+        "Use the XOR operation on every element. XOR has the property that a number XOR itself is 0 and a number XOR 0 is the number itself. Therefore, all duplicate elements cancel each other out, leaving only the element that appears once.",
+      code: `class Solution {
+    public int singleNumber(int[] nums) {
+        int result = 0;
+
+        for(int num : nums) {
+            result ^= num;
+        }
+
+        return result;
+    }
+}`,
+      language: "java",
+    },
   ],
   greedyAlgorithms:[
     {
