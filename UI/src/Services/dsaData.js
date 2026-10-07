@@ -1896,6 +1896,69 @@ root : 7 3 15 null null 9 20`,
 }`,
   language: "java",
 }
-  ]
+  ],
+  tries:[
+    {
+  title: "Implement Trie II (Prefix Tree)",
+  question: "Implement a Trie data structure supporting insert, countWordsEqualTo, countWordsStartingWith, and erase operations to efficiently manage word frequencies and prefix counts.",
+  example: "Input: Trie trie = new Trie(); trie.insert(\"apple\"); trie.countWordsEqualTo(\"apple\");",
+  output: "Output: 1",
+  approach: "Use a Trie node structure containing a map of children, a prefix count (cp) tracking how many times a prefix has been traversed, and a word end count (ew) tracking exact word insertions, allowing efficient insertion, searching, counting, and deletion in O(L) time where L is the length of the word.",
+  code: `class TrieNode {
+    Map<Character, TrieNode> children = new HashMap<>();
+    int cp = 0;
+    int ew = 0;
+}
 
+class Trie {
+    private TrieNode root;
+
+    public Trie() {
+        root = new TrieNode();
+    }
+
+    public void insert(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            node.children.putIfAbsent(ch, new TrieNode());
+            node = node.children.get(ch);
+            node.cp++;
+        }
+        node.ew++;
+    }
+
+    public int countWordsEqualTo(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            if (!node.children.containsKey(ch)) {
+                return 0;
+            }
+            node = node.children.get(ch);
+        }
+        return node.ew;
+    }
+
+    public int countWordsStartingWith(String prefix) {
+        TrieNode node = root;
+        for (char ch : prefix.toCharArray()) {
+            if (!node.children.containsKey(ch)) {
+                return 0;
+            }
+            node = node.children.get(ch);
+        }
+        return node.cp;
+    }
+
+    public void erase(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            node = node.children.get(ch);
+            node.cp--;
+        }
+        node.ew--;
+    }
+}`,
+  language: "java",
+}
+  ]
 };
