@@ -1113,6 +1113,23 @@ class HitCounter {
 }`,
   language: "java",
 },
+{
+  title: "Check Divisibility by 9",
+  question: "Given a string representing a large positive integer, return true if the number is divisible by 9. Otherwise, return false.",
+  example: "Input: s = \"234567876799333\"",
+  output: "Output: true",
+  approach: "Iterate through each character of the string, sum up the individual numeric digit values based on ASCII values, and check whether the total sum is evenly divisible by 9.",
+  code: `class Solution {
+    public boolean isDivisibleBy9(String s) {
+        int sum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            sum += (s.charAt(i) - '0');
+        }
+        return sum % 9 == 0;
+    }
+}`,
+  language: "java",
+},
 
 
   ],
@@ -2039,6 +2056,69 @@ root : 7 3 15 null null 9 20`,
 }`,
   language: "java",
 }
-  ]
+  ],
+  tries:[
+    {
+  title: "Implement Trie II (Prefix Tree)",
+  question: "Implement a Trie data structure supporting insert, countWordsEqualTo, countWordsStartingWith, and erase operations to efficiently manage word frequencies and prefix counts.",
+  example: "Input: Trie trie = new Trie(); trie.insert(\"apple\"); trie.countWordsEqualTo(\"apple\");",
+  output: "Output: 1",
+  approach: "Use a Trie node structure containing a map of children, a prefix count (cp) tracking how many times a prefix has been traversed, and a word end count (ew) tracking exact word insertions, allowing efficient insertion, searching, counting, and deletion in O(L) time where L is the length of the word.",
+  code: `class TrieNode {
+    Map<Character, TrieNode> children = new HashMap<>();
+    int cp = 0;
+    int ew = 0;
+}
 
+class Trie {
+    private TrieNode root;
+
+    public Trie() {
+        root = new TrieNode();
+    }
+
+    public void insert(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            node.children.putIfAbsent(ch, new TrieNode());
+            node = node.children.get(ch);
+            node.cp++;
+        }
+        node.ew++;
+    }
+
+    public int countWordsEqualTo(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            if (!node.children.containsKey(ch)) {
+                return 0;
+            }
+            node = node.children.get(ch);
+        }
+        return node.ew;
+    }
+
+    public int countWordsStartingWith(String prefix) {
+        TrieNode node = root;
+        for (char ch : prefix.toCharArray()) {
+            if (!node.children.containsKey(ch)) {
+                return 0;
+            }
+            node = node.children.get(ch);
+        }
+        return node.cp;
+    }
+
+    public void erase(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            node = node.children.get(ch);
+            node.cp--;
+        }
+        node.ew--;
+    }
+}`,
+  language: "java",
+}
+  ]
 };
