@@ -1113,6 +1113,23 @@ class HitCounter {
 }`,
   language: "java",
 },
+{
+  title: "Check Divisibility by 9",
+  question: "Given a string representing a large positive integer, return true if the number is divisible by 9. Otherwise, return false.",
+  example: "Input: s = \"234567876799333\"",
+  output: "Output: true",
+  approach: "Iterate through each character of the string, sum up the individual numeric digit values based on ASCII values, and check whether the total sum is evenly divisible by 9.",
+  code: `class Solution {
+    public boolean isDivisibleBy9(String s) {
+        int sum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            sum += (s.charAt(i) - '0');
+        }
+        return sum % 9 == 0;
+    }
+}`,
+  language: "java",
+},
 
 
   ],
