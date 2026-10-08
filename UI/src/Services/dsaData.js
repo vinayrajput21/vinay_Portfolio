@@ -1458,7 +1458,36 @@ public class Solution {
     }
 }`,
   language: "java",
-}
+},
+{
+  title: "Reverse a Stack Using Recursion",
+  question: "Reverse a given stack using recursion such that the original bottom element becomes the top element and vice versa, without using any additional data structures.",
+  example: "Input: Stack = [1, 2, 3, 4, 5] (where 5 is at the top)",
+  output: "Output: Stack = [5, 4, 3, 2, 1] (where 1 is at the top)",
+  approach: "Use recursion to pop all elements from the stack until it is empty, then use a helper function to insert each popped element back at the bottom of the stack as the call stack unwinds.",
+  code: `class Solution {
+    public void reverseStack(Stack<Integer> st) {
+        if (st.isEmpty()) {
+            return;
+        }
+        int top = st.pop();
+        reverseStack(st);
+        insertAtBottom(st, top);
+    }
+    
+    private void insertAtBottom(Stack<Integer> st, int ele) {
+        if (st.isEmpty()) {
+            st.push(ele);
+            return;
+        }
+        int top = st.pop();
+        insertAtBottom(st, ele);
+        st.push(top);
+    }
+}`,
+  language: "java",
+},
+
   ],
   bitManipulation:[
     {
@@ -1888,6 +1917,29 @@ root : 7 3 15 null null 9 20`,
     public int prev() {
         ptr--;
         return list.get(ptr);
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Clone N-ary Tree",
+  question: "Given a root of an N-ary tree, return a deep copy (clone) of the tree. Each node in the N-ary tree contains a value and a list of its children.",
+  example: "Input: root = [1, null, 3, 2, 4, null, 5, 6]",
+  output: "Output: Cloned N-ary tree with identical structure and node values",
+  approach: "Use a recursive depth-first search approach to instantiate a new node with the current node's value, then recursively clone each child in the list of children and add them to the cloned node's children list.",
+  code: `class Solution {
+    public TreeNode cloneTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        
+        TreeNode clone = new TreeNode(root.val);
+        
+        for (TreeNode child : root.children) {
+            clone.children.add(cloneTree(child));
+        }
+        
+        return clone;
     }
 }`,
   language: "java",
