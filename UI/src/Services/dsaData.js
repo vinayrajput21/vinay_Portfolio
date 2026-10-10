@@ -1939,6 +1939,35 @@ root : 7 3 15 null null 9 20`,
   language: "java",
 },
 {
+  title: "Depth of BST Given Insertion Order",
+  question: "You are given a 0-indexed integer array order representing the insertion order of a binary search tree (BST). Return the depth of the resulting BST after all elements have been inserted.",
+  example: "Input: order = [2, 1, 4, 3]",
+  output: "Output: 3",
+  approach: "Use a TreeMap to keep track of the depth of each node as it is inserted. For each new value, find its closest smaller and larger existing keys using lowerKey and higherKey, calculate its depth as one plus the maximum of its neighbors' depths, and track the maximum depth overall.",
+  code: `class Solution {
+    public int maxDepthBST(int[] order) {
+        TreeMap<Integer, Integer> depth = new TreeMap<>();
+        int maxDepth = 0;
+
+        for (int val : order) {
+            Integer left = depth.lowerKey(val);
+            Integer right = depth.higherKey(val);
+
+            int leftDepth = left == null ? 0 : depth.get(left);
+            int rightDepth = right == null ? 0 : depth.get(right);
+
+            int currDepth = Math.max(leftDepth, rightDepth) + 1;
+
+            depth.put(val, currDepth);
+            maxDepth = Math.max(maxDepth, currDepth);
+        }
+
+        return maxDepth;
+    }
+}`,
+  language: "java",
+},
+{
   title: "Clone N-ary Tree",
   question: "Given a root of an N-ary tree, return a deep copy (clone) of the tree. Each node in the N-ary tree contains a value and a list of its children.",
   example: "Input: root = [1, null, 3, 2, 4, null, 5, 6]",
