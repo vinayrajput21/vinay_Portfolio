@@ -1130,6 +1130,28 @@ class HitCounter {
 }`,
   language: "java",
 },
+{
+  title: "Character Frequency",
+  question: "Given a string s, count the frequency of each character and return a formatted string containing each unique character in alphabetical order followed by its frequency count.",
+  example: "Input: s = \"banana\"",
+  output: "Output: \"a3 b1 n2\"",
+  approach: "Use a TreeMap to store character frequencies, which automatically keeps the keys sorted in alphabetical order, and then use a StringBuilder to format and concatenate each character and its count.",
+  code: `class Solution {
+    public String characterFrequency(String s) {
+        TreeMap<Character, Integer> mpp = new TreeMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            mpp.put(ch, mpp.getOrDefault(ch, 0) + 1);  
+        } 
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : mpp.entrySet()) {
+            result.append(entry.getKey()).append(entry.getValue()).append(" ");
+        }
+        return result.toString().trim();
+    }
+}`,
+  language: "java",
+},
 
 
   ],
