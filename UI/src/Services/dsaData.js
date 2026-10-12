@@ -1131,6 +1131,28 @@ class HitCounter {
   language: "java",
 },
 {
+  title: "Character Frequency",
+  question: "Given a string s, count the frequency of each character and return a formatted string containing each unique character in alphabetical order followed by its frequency count.",
+  example: "Input: s = \"banana\"",
+  output: "Output: \"a3 b1 n2\"",
+  approach: "Use a TreeMap to store character frequencies, which automatically keeps the keys sorted in alphabetical order, and then use a StringBuilder to format and concatenate each character and its count.",
+  code: `class Solution {
+    public String characterFrequency(String s) {
+        TreeMap<Character, Integer> mpp = new TreeMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            mpp.put(ch, mpp.getOrDefault(ch, 0) + 1);  
+        } 
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : mpp.entrySet()) {
+            result.append(entry.getKey()).append(entry.getValue()).append(" ");
+        }
+        return result.toString().trim();
+    }
+}`,
+  language: "java",
+},
+{
   title: "Maximum Profitable Triplets With Increasing Prices I",
   question: "Given two integer arrays prices and profits of length n, find the maximum sum of profits of a triplet of indices (i, j, k) such that i < j < k and prices[i] < prices[j] < prices[k]. If no such triplet exists, return -1.",
   example: "Input: prices = [10, 20, 15, 30, 25], profits = [5, 3, 7, 2, 8]",
@@ -1173,7 +1195,7 @@ class HitCounter {
     }
 }`,
   language: "java",
-},
+}
 
 
   ],
@@ -1978,6 +2000,35 @@ root : 7 3 15 null null 9 20`,
     public int prev() {
         ptr--;
         return list.get(ptr);
+    }
+}`,
+  language: "java",
+},
+{
+  title: "Depth of BST Given Insertion Order",
+  question: "You are given a 0-indexed integer array order representing the insertion order of a binary search tree (BST). Return the depth of the resulting BST after all elements have been inserted.",
+  example: "Input: order = [2, 1, 4, 3]",
+  output: "Output: 3",
+  approach: "Use a TreeMap to keep track of the depth of each node as it is inserted. For each new value, find its closest smaller and larger existing keys using lowerKey and higherKey, calculate its depth as one plus the maximum of its neighbors' depths, and track the maximum depth overall.",
+  code: `class Solution {
+    public int maxDepthBST(int[] order) {
+        TreeMap<Integer, Integer> depth = new TreeMap<>();
+        int maxDepth = 0;
+
+        for (int val : order) {
+            Integer left = depth.lowerKey(val);
+            Integer right = depth.higherKey(val);
+
+            int leftDepth = left == null ? 0 : depth.get(left);
+            int rightDepth = right == null ? 0 : depth.get(right);
+
+            int currDepth = Math.max(leftDepth, rightDepth) + 1;
+
+            depth.put(val, currDepth);
+            maxDepth = Math.max(maxDepth, currDepth);
+        }
+
+        return maxDepth;
     }
 }`,
   language: "java",
