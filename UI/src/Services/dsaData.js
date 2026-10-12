@@ -1130,6 +1130,50 @@ class HitCounter {
 }`,
   language: "java",
 },
+{
+  title: "Maximum Profitable Triplets With Increasing Prices I",
+  question: "Given two integer arrays prices and profits of length n, find the maximum sum of profits of a triplet of indices (i, j, k) such that i < j < k and prices[i] < prices[j] < prices[k]. If no such triplet exists, return -1.",
+  example: "Input: prices = [10, 20, 15, 30, 25], profits = [5, 3, 7, 2, 8]",
+  output: "Output: 20",
+  approach: "Iterate through each possible middle index j, scan all valid preceding elements i where prices[i] < prices[j] to find the maximum left profit, scan all valid succeeding elements k where prices[j] < prices[k] to find the maximum right profit, and track the maximum total sum of profits[i] + profits[j] + profits[k].",
+  code: `class Solution {
+    public int maxProfit(int[] prices, int[] profits) {
+        int n = prices.length;
+        int maxProfit = -1;
+        for (int j = 1; j < n - 1; j++) {
+            int leftMaxProfit = 0;
+            boolean foundLeft = false;
+            for (int i = 0; i < j; i++) {
+                if (prices[i] < prices[j]) {
+                    leftMaxProfit = Math.max(leftMaxProfit, profits[i]);
+                    foundLeft = true;
+                }
+            }
+            if (!foundLeft) {
+                continue;
+            }
+
+            int rightMaxProfit = 0;
+            boolean foundRight = false;
+            for (int k = j + 1; k < n; k++) {
+                if (prices[k] > prices[j]) {
+                    rightMaxProfit = Math.max(rightMaxProfit, profits[k]);
+                    foundRight = true;
+                }
+            }
+            if (!foundRight) {
+                continue;
+            }
+
+            int currentTotal = leftMaxProfit + profits[j] + rightMaxProfit;
+            maxProfit = Math.max(maxProfit, currentTotal);
+        }
+
+        return maxProfit;
+    }
+}`,
+  language: "java",
+},
 
 
   ],
