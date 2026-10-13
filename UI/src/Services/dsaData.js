@@ -1254,6 +1254,55 @@ class HitCounter {
     }
 }`,
   language: "java",
+},
+{
+  title: "Leaders in an Array",
+  question: "Given an array of integers, find all the leader elements in it. An element is a leader if it is strictly greater than all the elements to its right side (the rightmost element is always a leader).",
+  example: "Input: nums = [16, 17, 4, 3, 5, 2]",
+  output: "Output: [17, 5, 2]",
+  approach: "Traverse the array from right to left, checking elements to identify new maximum values, collect them into a result list, and finally reverse the list to restore the original left-to-right order.",
+  code: `class Solution {
+    public List<Integer> leaders(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+        int n = nums.length;
+        int max = Integer.MIN_VALUE;
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i; j < n; j++) {
+                if (max < nums[j]) {
+                    max = nums[j];
+                    res.add(max);
+                }
+            }
+        }
+        int size = res.size();
+        for (int i = 0; i < size / 2; i++) {
+            Integer temp = res.get(i);
+            res.set(i, res.get(size - 1 - i));
+            res.set(size - 1 - i, temp);
+        }
+        return res;
+    }
+}
+    
+OR
+
+class Solution {
+    public List<Integer> leaders(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+        int n = nums.length;
+        int max =nums[n - 1];
+        res.add(max);
+        for(int i=n-2;i>=0;i--){
+            if(max<nums[i]){
+                max=nums[i];
+                res.add(max);
+            }
+        }
+        Collections.reverse(res);
+        return res;
+    }
+}`,
+  language: "java",
 }
 
 
