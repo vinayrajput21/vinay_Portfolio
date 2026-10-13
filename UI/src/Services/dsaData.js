@@ -1152,6 +1152,65 @@ class HitCounter {
 }`,
   language: "java",
 },
+{
+  title: "Analyze User Website Visit Pattern",
+  question: "Given three arrays username, timestamp, and website of the same length, find the 3-sequence website pattern that was visited by the most users. If there is more than one pattern with the same maximum score, return the lexicographically smallest one.",
+  example: "Input: username = [\"joe\",\"joe\",\"joe\",\"james\",\"james\",\"james\",\"james\",\"mary\",\"mary\",\"mary\"], timestamp = [1,2,3,4,5,6,7,8,9,10], website = [\"home\",\"about\",\"career\",\"home\",\"cart\",\"maps\",\"home\",\"home\",\"about\",\"career\"]",
+  output: "Output: [\"home\", \"about\", \"career\"]",
+  approach: "Group website visits by each user, sort them chronologically by timestamp, generate all unique 3-sequence website combinations per user using nested loops, and track the global frequency using a hash map to find the most visited pattern with lexicographical tie-breaking.",
+  code: `class Solution {
+    class Visit {
+        int time;
+        String site;
+        public Visit(int time, String site) {
+            this.time = time;
+            this.site = site;
+        }
+    }
+
+    public List<String> mostVisitedPattern(String[] username, int[] timestamp, String[] website) {
+        Map<String, List<Visit>> userVisits = new HashMap<>();
+        for (int i = 0; i < username.length; i++) {
+            userVisits.computeIfAbsent(username[i], k -> new ArrayList<>()).add(new Visit(timestamp[i], website[i]));
+        }
+
+        Map<String, Integer> patternCount = new HashMap<>();
+        String bestPattern = "";
+        int maxCount = 0;
+
+        for (String user : userVisits.keySet()) {
+            List<Visit> visits = userVisits.get(user);
+            Collections.sort(visits, (a, b) -> Integer.compare(a.time, b.time));
+
+            Set<String> visitedPatterns = new HashSet<>();
+            int n = visits.size();
+            for (int i = 0; i < n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    for (int k = j + 1; k < n; k++) {
+                        String pattern = visits.get(i).site + "," + 
+                                       visits.get(j).site + "," + 
+                                       visits.get(k).site;
+                        visitedPatterns.add(pattern);
+                    }
+                }
+            }
+
+            for (String pattern : visitedPatterns) {
+                patternCount.put(pattern, patternCount.getOrDefault(pattern, 0) + 1);
+                
+                int count = patternCount.get(pattern);
+                if (count > maxCount || (count == maxCount && (bestPattern.isEmpty() || pattern.compareTo(bestPattern) < 0))) {
+                    maxCount = count;
+                    bestPattern = pattern;
+                }
+            }
+        }
+
+        return Arrays.asList(bestPattern.split(","));
+    }
+}`,
+  language: "java",
+},
 
 
   ],
