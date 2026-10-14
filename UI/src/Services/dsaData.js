@@ -2323,5 +2323,35 @@ class Trie {
 }`,
   language: "java",
 }
+  ],
+  slidingWindowTwoPointer:[
+    {
+  title: "Maximum Points You Can Obtain from Cards",
+  question: "There are several cards arranged in a row, and each card has an associated score. In one step, you can take either the card from the beginning or the end of the row. You have to take exactly k cards. Return the maximum score you can obtain.",
+  example: "Input: cardScore = [1, 2, 3, 4, 5, 6, 1], k = 3",
+  output: "Output: 12",
+  approach: "Find the minimum sum of a contiguous subarray of length (n - k) using a sliding window technique, and subtract it from the total sum of all card scores to get the maximum possible score obtained by picking k cards from the ends.",
+  code: `class Solution {
+    public int maxScore(int[] cardScore, int k) {
+        int n = cardScore.length;
+        int window = n - k;
+        int totalSum = 0;
+        for (int num : cardScore) {
+            totalSum += num;
+        }
+        int currWindow = 0;
+        for (int i = 0; i < window; i++) {
+            currWindow += cardScore[i];
+        }
+        int minWindow = currWindow;
+        for (int i = window; i < n; i++) {
+            currWindow += cardScore[i] - cardScore[i - window];
+            minWindow = Math.min(currWindow, minWindow);
+        }
+        return totalSum - minWindow;
+    }
+}`,
+  language: "java",
+}
   ]
 };
