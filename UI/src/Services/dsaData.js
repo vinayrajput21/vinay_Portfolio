@@ -1303,6 +1303,27 @@ class Solution {
     }
 }`,
   language: "java",
+},
+{
+  title: "Matrix Median",
+  question: "Given a 2D matrix of integers, find and return the median element of the matrix.",
+  example: "Input: matrix = [[1, 3, 5], [2, 6, 9], [3, 6, 9]]",
+  output: "Output: 5",
+  approach: "Flatten all elements of the 2D matrix into a single 1D array, sort the array in ascending order, and return the element located at the middle index.",
+  code: `class Solution {
+    public int findMedian(int[][] matrix) {
+        int idx = 0;
+        int arr[] = new int[(matrix.length) * (matrix[0].length)];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                arr[idx++] = matrix[i][j];
+            }
+        }
+        Arrays.sort(arr);
+        return arr[arr.length / 2];
+    }
+}`,
+  language: "java",
 }
 
 
@@ -2326,6 +2347,32 @@ class Trie {
   ],
   slidingWindowTwoPointer:[
     {
+  title: "Longest Substring Without Repeating Characters",
+  question: "Given a string s, find the length of the longest substring without duplicate characters.",
+  example: "Input: s = \"abcabcbb\"",
+  output: "Output: 3",
+  approach: "Use a sliding window technique with a HashSet to track unique characters, expanding the right boundary with each iteration and dynamically shrinking the left boundary whenever a duplicate character is encountered.",
+  code: `class Solution {
+    public int longestNonRepeatingSubstring(String s) {
+        int max = 0;
+        int n = s.length();
+        int j = 0;
+        Set<Character> set = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            while (set.contains(s.charAt(i))) {
+                set.remove(s.charAt(j));
+                j++;
+            }
+            set.add(s.charAt(i));
+            max = Math.max(max, i - j + 1);
+        }
+
+        return max;
+    }
+}`,
+  language: "java",
+},
+    {    
   title: "Maximum Points You Can Obtain from Cards",
   question: "There are several cards arranged in a row, and each card has an associated score. In one step, you can take either the card from the beginning or the end of the row. You have to take exactly k cards. Return the maximum score you can obtain.",
   example: "Input: cardScore = [1, 2, 3, 4, 5, 6, 1], k = 3",
