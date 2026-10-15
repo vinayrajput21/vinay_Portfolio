@@ -2399,6 +2399,38 @@ class Trie {
     }
 }`,
   language: "java",
+},
+{
+  title: "Max Consecutive Ones III",
+  question: "Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.",
+  example: "Input: nums = [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], k = 2",
+  output: "Output: 6",
+  approach: "Use a sliding window technique to expand the right boundary while tracking the count of zeros, and shrink the left boundary whenever the zero count exceeds k, maintaining the maximum length of valid windows.",
+  code: `class Solution {
+    public int longestOnes(int[] nums, int k) {
+        int left = 0, right = 0;
+        int zeroCount = 0;
+        int maxLength = 0;
+        
+        while (right < nums.length) {
+            if (nums[right] == 0) {
+                zeroCount++;
+            }
+            
+            while (zeroCount > k) {
+                if (nums[left] == 0) {
+                    zeroCount--;
+                }
+                left++;
+            }
+            maxLength = Math.max(maxLength, right - left + 1);
+            right++;
+        }
+        
+        return maxLength;
+    }
+}`,
+  language: "java",
 }
   ]
 };
