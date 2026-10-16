@@ -1350,6 +1350,21 @@ class Solution {
         
         return list;
     }
+}
+    
+OR
+
+class Solution {    
+    public List<Character> frequencySort(String s) {
+        Map<Character, Integer> freq = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            freq.put(ch, freq.getOrDefault(ch, 0) + 1);
+        }
+        List<Character>list = new ArrayList<>(freq.keySet());
+        list.sort((a,b)->freq.get(b)-freq.get(a));
+        return list;
+    }
 }`,
   language: "java",
 }
