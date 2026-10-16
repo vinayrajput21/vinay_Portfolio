@@ -1324,6 +1324,34 @@ class Solution {
     }
 }`,
   language: "java",
+},
+{
+  title: "Sort Unique Characters by Frequency",
+  question: "Given a string s, return a list of its unique characters sorted in decreasing order based on their frequencies, with alphabetical order used as a tie-breaker.",
+  example: "Input: s = \"tree\"",
+  output: "Output: ['e', 'r', 't']",
+  approach: "Count character frequencies using a HashMap, extract the unique characters into a list, and sort them using a custom comparator that prioritizes higher frequency (descending) and falls back to alphabetical order (ascending) on ties.",
+  code: `class Solution {    
+    public List<Character> frequencySort(String s) {
+        Map<Character, Integer> freq = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            freq.put(ch, freq.getOrDefault(ch, 0) + 1);
+        }
+        
+        List<Character> list = new ArrayList<>(freq.keySet());
+        list.sort((a, b) -> {
+            int freqCompare = freq.get(b).compareTo(freq.get(a));
+            if (freqCompare == 0) {
+                return a.compareTo(b);
+            }
+            return freqCompare;
+        });
+        
+        return list;
+    }
+}`,
+  language: "java",
 }
 
 
