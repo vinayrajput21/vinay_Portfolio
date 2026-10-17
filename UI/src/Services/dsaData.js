@@ -1578,6 +1578,24 @@ class Main {
     }
 }`,
   language: "java",
+},
+{
+  title: "Count Nodes in a Linked List",
+  question: "Given the head of a singly linked list, return the total number of nodes in the linked list.",
+  example: "Input: head = [1, 2, 3, 4, 5]",
+  output: "Output: 5",
+  approach: "Traverse the linked list iteratively from the head node to the end, incrementing a counter for each node encountered until the pointer becomes null.",
+  code: `class Solution {
+    public int countNodes(ListNode head) {
+        int count = 0;
+        while (head != null) {
+            count++;
+            head = head.next;
+        }
+        return count;
+    }
+}`,
+  language: "java",
 }
   ],
   recursion:[
