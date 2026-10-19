@@ -1814,6 +1814,36 @@ public class Solution {
 }`,
       language: "java",
     },
+    {
+  title: "Divide Two Integers",
+  question: "Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator. Return the quotient after dividing dividend by divisor, truncating toward zero.",
+  example: "Input: dividend = 10, divisor = 3",
+  output: "Output: 3",
+  approach: "Handle overflow edge cases like Integer.MIN_VALUE divided by -1, determine the result's sign using XOR, convert operands to positive long values, and use bit shifting from 31 down to 0 to subtract the largest possible multiples of the divisor while building the quotient bit by bit.",
+  code: `class Solution {
+    public int divide(int dividend, int divisor) {
+        if (dividend == Integer.MIN_VALUE && divisor == -1) {
+            return Integer.MAX_VALUE;
+        }
+
+        int sign = ((dividend < 0) ^ (divisor < 0)) ? -1 : 1;
+
+        long dvd = Math.abs((long) dividend);
+        long dvs = Math.abs((long) divisor);
+
+        long quotient = 0;
+        for (int i = 31; i >= 0; i--) {
+            if ((dvs << i) <= dvd) {
+                dvd -= (dvs << i);
+                quotient |= (1L << i); 
+            }
+        }
+
+        return sign * (int) quotient;
+    }
+}`,
+  language: "java",
+}
   ],
   greedyAlgorithms:[
     {
