@@ -2627,6 +2627,62 @@ class Solution {
     }
 }`,
   language: "java",
+},
+{
+  title: "Longest Substring with At Most K Distinct Characters",
+  question: "Given a string s and an integer k, return the length of the longest substring of s that contains at most k distinct characters.",
+  example: "Input: s = \"eceba\", k = 2",
+  output: "Output: 3",
+  approach: "Use a sliding window with a frequency array and a HashSet (or frequency count tracker) to maintain at most k distinct characters, expanding the right boundary and shrinking the left boundary when the distinct character count exceeds k.",
+  code: `class Solution {
+    public static int kDistinctChar(String s, int k) {
+        Map<Character,Integer>freq=new HashMap<>();
+        int max=0,left=0;
+        for(int right=0;right<s.length();right++){
+            char rightChar = s.charAt(right);
+            freq.put(rightChar,freq.getOrDefault(rightChar,0)+1);
+            while(freq.size()>k){
+                char leftChar = s.charAt(left);
+                freq.put(leftChar,freq.get(leftChar)-1);
+                if(freq.get(leftChar)==0){
+                    freq.remove(leftChar);
+                }
+                left++;
+            }
+            max=Math.max(max,right-left+1);
+        }
+        return max;
+    }
+}
+    
+OR
+
+class Solution {
+  public static int kDistinctChar(String s, int k) {
+    Set<Character> set = new HashSet<>();
+    int[] freq = new int[256];
+    int n = s.length();
+    int left = 0, max = 0;
+        for (int right = 0; right < n; right++) {
+            char rightChar = s.charAt(right);
+            set.add(rightChar);
+            freq[rightChar]++;
+            
+            while (set.size() > k) {
+                char leftChar = s.charAt(left);
+                freq[leftChar]--;
+                if (freq[leftChar] == 0) {
+                    set.remove(leftChar);
+                }
+                left++;
+            }
+            
+            max = Math.max(max, right - left + 1);
+        }
+        return max;
+    }
+}`,
+  language: "java",
 }
   ]
 };
