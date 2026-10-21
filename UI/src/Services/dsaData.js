@@ -2603,31 +2603,28 @@ class Trie {
 
 OR
 
+import java.util.HashMap;
+import java.util.Map;
+
 class Solution {
     public int totalFruits(int[] fruits) {
-       int n = fruits.length;
-       int max = 0;
-       int b1 = -1, b2 = -1;
-       int right = 0;
-       for (int left = 0; left < n; left++) {
-            right = left;
-            b1 = -1;
-            b2 = -1;
-            while (right < n) {
-                if (b1 == -1) {
-                    b1 = fruits[right];
-                } else if (b2 == -1 && fruits[right] != b1) {
-                    b2 = fruits[right];
+        Map<Integer, Integer> countMap = new HashMap<>();
+        int left = 0, max = 0;
+        
+        for (int right = 0; right < fruits.length; right++) {
+            countMap.put(fruits[right], countMap.getOrDefault(fruits[right], 0) + 1);
+            
+            while (countMap.size() > 2) {
+                countMap.put(fruits[left], countMap.get(fruits[left]) - 1);
+                if (countMap.get(fruits[left]) == 0) {
+                    countMap.remove(fruits[left]);
                 }
-                
-                if (fruits[right] == b1 || fruits[right] == b2) {
-                    max = Math.max(max, right - left + 1);
-                } else {
-                    break;
-                }
-                right++;
+                left++;
             }
-       }
+            
+            max = Math.max(max, right - left + 1);
+        }
+        
         return max;
     }
 }`,
