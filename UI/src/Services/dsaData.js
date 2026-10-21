@@ -2275,6 +2275,50 @@ root : 7 3 15 null null 9 20`,
     }
 }`,
   language: "java",
+},
+{
+  title: "Range Sum of BST",
+  question: "Given the root node of a binary search tree and two integers low and high, return the sum of values of all nodes with a value in the inclusive range [low, high].",
+  example: "Input: root = [10, 5, 15, 3, 7, null, 18], low = 7, high = 15",
+  output: "Output: 32",
+  approach: "Use a recursive depth-first traversal to visit each node, check if its value falls within the inclusive range [low, high], accumulate the matching values into a running sum, and explore both left and right subtrees.",
+  code: `class Solution {
+    private int res = 0;
+
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        res = 0;
+        rangeSum(root, low, high);
+        return res;
+    }
+
+    public void rangeSum(TreeNode root, int low, int high) {
+        if (root == null) {
+            return;
+        }
+        if (root.data <= high && root.data >= low) {
+            res += root.data;
+        }
+        rangeSum(root.left, low, high);
+        rangeSum(root.right, low, high);
+    }
+}
+OR
+class Solution {
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if(root==null){
+            return 0;
+        }
+        if(root.data>high){
+            return rangeSumBST(root.left,low,high);
+        }
+        if(root.data<low){
+           return rangeSumBST(root.right,low,high);
+        }
+        return root.data+rangeSumBST(root.left,low,high)+rangeSumBST(root.right,low,high);
+    }
+    
+}   `,
+  language: "java",
 }
   ],
   dynamicProgramming:[
