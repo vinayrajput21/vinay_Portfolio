@@ -2603,8 +2603,6 @@ class Trie {
 
 OR
 
-import java.util.HashMap;
-import java.util.Map;
 
 class Solution {
     public int totalFruits(int[] fruits) {
