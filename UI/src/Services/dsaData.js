@@ -2566,6 +2566,72 @@ class Trie {
     }
 }`,
   language: "java",
+},
+{
+  title: "Fruit Into Baskets",
+  question: "You are visiting a farm that has a single row of fruit trees represented by an integer array fruits. You have two baskets, and each basket can hold only one type of fruit. Return the maximum number of fruits you can pick.",
+  example: "Input: fruits = [1, 2, 1]",
+  output: "Output: 3",
+  approach: "Use a nested loop to check all possible subarrays starting from each left index, keeping track of at most two distinct fruit types in the two baskets, and update the maximum number of collected fruits.",
+  code: `class Solution {
+    public int totalFruits(int[] fruits) {
+       int n = fruits.length;
+       int max = 0;
+       int b1 = -1, b2 = -1;
+       int right = 0;
+       for (int left = 0; left < n; left++) {
+            right = left;
+            b1 = -1;
+            b2 = -1;
+        while (right < n) {
+            if (b1 == -1) {
+                b1 = fruits[right];
+            } else if (b2 == -1 && b1 != fruits[right]) {
+                b2 = fruits[right];
+            }
+            if (b1 == fruits[right] || b2 == fruits[right]) {
+                max = Math.max(max, right - left + 1);
+            } else {
+                break;
+            }
+            right++;
+        }
+       }
+        return max;
+    }
+}
+
+OR
+
+class Solution {
+    public int totalFruits(int[] fruits) {
+       int n = fruits.length;
+       int max = 0;
+       int b1 = -1, b2 = -1;
+       int right = 0;
+       for (int left = 0; left < n; left++) {
+            right = left;
+            b1 = -1;
+            b2 = -1;
+            while (right < n) {
+                if (b1 == -1) {
+                    b1 = fruits[right];
+                } else if (b2 == -1 && fruits[right] != b1) {
+                    b2 = fruits[right];
+                }
+                
+                if (fruits[right] == b1 || fruits[right] == b2) {
+                    max = Math.max(max, right - left + 1);
+                } else {
+                    break;
+                }
+                right++;
+            }
+       }
+        return max;
+    }
+}`,
+  language: "java",
 }
   ]
 };
