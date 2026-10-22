@@ -2654,7 +2654,7 @@ class Solution {
         return max;
     }
 }
-    
+
 OR
 
 class Solution {
@@ -2680,6 +2680,90 @@ class Solution {
             max = Math.max(max, right - left + 1);
         }
         return max;
+    }
+}`,
+  language: "java",
+}
+  ],
+  stackAndQueues:[
+    {
+  title: "Design Snake Game",
+  question: "Design a Snake game that is played on a screen of size height x width. The snake starts at position (0, 0) with a length of 1. When the snake eats food, its length and score increase by 1. Food appears one by one. The game ends if the snake hits the boundaries or runs into its own body. Implement the SnakeGame class with constructor and move(direction) method.",
+  example: "Input: [\"SnakeGame\", \"move\", \"move\", \"move\", \"move\", \"move\", \"move\"] -> [[3, 2, [[1, 2], [0, 1]]], [\"R\"], [\"D\"], [\"R\"], [\"U\"], [\"L\"], [\"U\"]]",
+  output: "Output: [null, 0, 0, 1, 1, 2, -1]",
+  approach: "Represent grid cells as flattened integer indices, use a Deque to maintain the snake's body coordinates, and a HashSet for O(1) collision detection. For each move, calculate the new head position, check boundary conditions and self-collisions, manage food consumption by growing or truncating the tail, and update the score.",
+  code: `class SnakeGame {
+    private int width;
+    private int height;
+    private int[][] food;
+    private int foodIndex;
+    private int score;
+    private Deque<Integer> snake;
+    private Set<Integer> snakeSet;
+
+    public SnakeGame(int width, int height, int[][] food) {
+        this.width = width;
+        this.height = height;
+        this.food = food;
+        this.foodIndex = 0;
+        this.score = 0;
+        this.snake = new LinkedList<>();
+        this.snake.offer(0);
+        this.snakeSet = new HashSet<>();
+        this.snakeSet.add(0);
+    }
+    
+    public int move(String direction) {
+        int head = snake.peekLast();
+        int r = head / width;
+        int c = head % width;
+        
+        int newR = r;
+        int newC = c;
+        if (direction.equals("U")) {
+            newR--;
+        } else if (direction.equals("D")) {
+            newR++;
+        } else if (direction.equals("L")) {
+            newC--;
+        } else if (direction.equals("R")) {
+            newC++;
+        }
+        
+        if (newR < 0 || newR >= height || newC < 0 || newC >= width) {
+            return -1;
+        }
+        
+        int newHead = newR * width + newC;
+        
+        boolean eatingFood = false;
+        if (foodIndex < food.length && food[foodIndex][0] == newR && food[foodIndex][1] == newC) {
+            eatingFood = true;
+        }
+        
+        int tail = -1;
+        if (!eatingFood) {
+            tail = snake.pollFirst();
+            snakeSet.remove(tail);
+        }
+
+        if (snakeSet.contains(newHead)) {
+            if (!eatingFood) {
+                snake.addFirst(tail);
+                snakeSet.add(tail);
+            }
+            return -1;
+        }
+        
+        if (eatingFood) {
+            score++;
+            foodIndex++;
+        }
+
+        snake.offer(newHead);
+        snakeSet.add(newHead);
+        
+        return score;
     }
 }`,
   language: "java",
