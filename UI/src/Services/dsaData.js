@@ -2768,5 +2768,27 @@ class Solution {
 }`,
   language: "java",
 }
+  ],
+  heaps:[
+    {
+  title: "Check if Array Represents Min-Heap",
+  question: "Given an array of integers, return true if the array represents a valid min-heap, otherwise return false. A min-heap is a complete binary tree where the value of each parent node is less than or equal to the values of its children.",
+  example: "Input: nums = [1, 3, 5, 7, 9, 8]",
+  output: "Output: true",
+  approach: "Iterate through all non-leaf nodes from index 0 up to (n / 2 - 1), and for each node verify that its value is less than or equal to its left and right child values within array bounds, returning false if any heap property violation is found.",
+  code: `class Solution {
+    public boolean isHeap(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n / 2; i++) {
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+            if (left < n && nums[i] > nums[left]) return false;
+            if (right < n && nums[i] > nums[right]) return false;
+        }
+        return true;
+    }
+}`,
+  language: "java",
+}
   ]
 };
