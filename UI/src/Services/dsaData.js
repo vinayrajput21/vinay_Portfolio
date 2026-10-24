@@ -2727,6 +2727,36 @@ class Solution {
     }
 }`,
   language: "java",
+},
+{
+  title: "Longest Repeating Character Replacement",
+  question: "You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times. Return the length of the longest substring containing the same letter you can get after performing the above operations.",
+  example: "Input: s = \"AABABBA\", k = 1",
+  output: "Output: 4",
+  approach: "Use a sliding window technique tracking character frequencies with a hash map and maintaining the maximum frequency of any single character in the current window. Shrink the left boundary when the number of replacements needed (window length minus max frequency) exceeds k.",
+  code: `class Solution {
+    public int characterReplacement(String s, int k) {
+        int maxLen = 0;
+        int left = 0;
+        int maxCount = 0;
+        int n = s.length();
+        Map<Character, Integer> freq = new HashMap<>();
+        for (int right = 0; right < n; right++) {
+            char rightChar = s.charAt(right);
+            freq.put(rightChar, freq.getOrDefault(rightChar, 0) + 1);
+            maxCount = Math.max(maxCount, freq.get(rightChar));
+            if ((right - left + 1) - maxCount > k) {
+                char leftChar = s.charAt(left);
+                freq.put(leftChar, freq.get(leftChar) - 1);
+                left++;
+            }
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+
+        return maxLen;
+    }
+}`,
+  language: "java",
 }
   ],
   stackAndQueues:[
