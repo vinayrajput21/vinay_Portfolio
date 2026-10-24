@@ -1367,6 +1367,50 @@ class Solution {
     }
 }`,
   language: "java",
+},
+{
+  title: "Check Perfect Number",
+  question: "Given an integer n, return true if it is a perfect number, otherwise return false. A perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself.",
+  example: "Input: n = 28",
+  output: "Output: true",
+  approach: "Iterate through all integers from 1 up to n - 1, find all proper divisors of n, accumulate their sum, and check whether the total sum equals the number itself.",
+  code: `class Solution {
+    public boolean isPerfect(int n) {
+        int sum = 0;
+        for (int i = 1; i < n; i++) {
+            if (n % i == 0) {
+                sum += i;
+            }
+        }
+        if (sum == n) {
+            return true;
+        }
+        return false;
+    }
+}
+    
+OR 
+
+class Solution {
+    public boolean isPerfect(int n) {
+        if (n <= 1) return false;
+        
+        int sum = 1;
+        
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                sum += i;
+                int otherDivisor = n / i;
+                if (otherDivisor != i) {
+                    sum += otherDivisor;
+                }
+            }
+        }
+        
+        return sum == n;
+    }
+}`,
+  language: "java",
 }
 
 
